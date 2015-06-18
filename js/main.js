@@ -1,0 +1,7 @@
+$(function(){
+	$("#startBtn").click(function()
+	{
+		$(".content").removeClass("hide");
+    	$(".description").addClass("hide");
+	});
+});
