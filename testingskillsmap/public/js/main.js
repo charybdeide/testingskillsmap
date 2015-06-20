@@ -1,13 +1,16 @@
 $(function(){
-	$("#aboutBtn").click(function()
+	$("#loginBtn").click(function()
 	{
-		$(".aboutContent").removeClass("hide");
-    	$(".description").addClass("hide");
+		//$(".aboutContent").removeClass("hide");
+    //	$(".description").addClass("hide");
+    
 	});
 	$("#startBtn").click(function()
 	{
-		$(".makeMapContent").removeClass("hide");
-    	$(".description").addClass("hide");
+		//$(".makeMapContent").removeClass("hide");
+    //	$(".description").addClass("hide");
+      var url = window.location.href + "createMap.html";
+      window.location.href = url;
 	});
 	$('[data-toggle="tooltip"]').tooltip({
     container : 'body'
