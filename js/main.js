@@ -20,9 +20,12 @@ $(function(){
 
   	$(".skillsMap").on("click", ".addSkill", function(event) {
   		$(this).parent().children("ul").append($("#extraSkillTemplate").html());
-  		console.log($(this).parent());
   	});
 
+	$(".skillsMap").on("click", ".removeSkill", function(event) {
+  		$(this).parent().remove();
+  		
+  	});
   	
   	
 });
