@@ -23,9 +23,11 @@ $(function(){
   	});
 
 	$(".skillsMap").on("click", ".removeSkill", function(event) {
-  		$(this).parent().remove();
-  		
+  		$(this).parent().remove();  		
   	});
   	
+	$(".skillsMap").on("click", ".removeCategory", function(event) {
+  		$(this).parent().remove();  		
+  	});
   	
 });
