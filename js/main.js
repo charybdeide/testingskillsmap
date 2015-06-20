@@ -29,5 +29,18 @@ $(function(){
 	$(".skillsMap").on("click", ".removeCategory", function(event) {
   		$(this).parent().remove();  		
   	});
+
+  	$("#mySection").on("click", "#downloadBtn", function(event) {
+  		
+  		var list = [];
+  		var list = yourMap.check($(".skillsMap"));
+  		console.log(JSON.stringify(list));
+  		//console.log($(".skillsMap li").children("input").);
+  		//console.log($(".skillsMap").children("li").length);
+  		//console.log($(".skillsMap li:nth-child(2)").children("input").val());
+
+  		
+  	});
+
   	
 });
