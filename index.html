@@ -209,7 +209,7 @@ searches for an adequate substitute.">Metacognition</td>
                                         <input type="text" placeholder="Skill">
                                     </li>
                                 </ul>
-                                <button class="btn">Add Skill</button>
+                                <button class="btn addSkill">Add Skill</button>
                             </li> 
                         </ul>
                         <button id="addCategory" class="btn">Add category</button>
@@ -256,15 +256,20 @@ searches for an adequate substitute.">Metacognition</td>
         <template id="categoryTemplate">
             <li class="category">
                 <input type="text" placeholder="Skill category">
-                <button class="btn">Add Skill</button>
             </li>
         </template>
-        <template id="skillTemplate">
+        <template id="initialSkillsTemplate">
             <ul>
                 <li class="skill">
                     <input type="text" placeholder="Skill">
                 </li>
             </ul>
+            <button class="btn addSkill">Add Skill</button>
+        </template>
+        <template id="extraSkillTemplate">
+            <li class="skill">
+                    <input type="text" placeholder="Skill">
+            </li>    
         </template>
 
     </body>

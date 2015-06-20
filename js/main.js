@@ -15,7 +15,14 @@ $(function(){
   	$("#addCategory").click(function()
   	{
   		$(".skillsMap").append($("#categoryTemplate").html());
-  		$(".category:last-of-type").append($("#skillTemplate").html());
+  		$(".category:last-of-type").append($("#initialSkillsTemplate").html());
   	});
 
+  	$(".skillsMap").on("click", ".addSkill", function(event) {
+  		$(this).parent().children("ul").append($("#extraSkillTemplate").html());
+  		console.log($(this).parent());
+  	});
+
+  	
+  	
 });
