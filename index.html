@@ -204,9 +204,11 @@ searches for an adequate substitute.">Metacognition</td>
                         <ul class="skillsMap">                
                             <li class="category">
                                 <input type="text" placeholder="Skill category">
+                                <button class="btn removeCategory"> - </button>
                                 <ul>
                                     <li class="skill">
                                         <input type="text" placeholder="Skill">
+                                        <button class="btn removeSkill"> - </button>
                                     </li>
                                 </ul>
                                 <button class="btn addSkill">Add Skill</button>
@@ -256,12 +258,14 @@ searches for an adequate substitute.">Metacognition</td>
         <template id="categoryTemplate">
             <li class="category">
                 <input type="text" placeholder="Skill category">
+                <button class="btn removeCategory"> - </button>
             </li>
         </template>
         <template id="initialSkillsTemplate">
             <ul>
                 <li class="skill">
                     <input type="text" placeholder="Skill">
+                    <button class="btn removeSkill"> - </button>
                 </li>
             </ul>
             <button class="btn addSkill">Add Skill</button>
@@ -269,6 +273,7 @@ searches for an adequate substitute.">Metacognition</td>
         <template id="extraSkillTemplate">
             <li class="skill">
                     <input type="text" placeholder="Skill">
+                    <button class="btn removeSkill"> - </button>
             </li>    
         </template>
 
