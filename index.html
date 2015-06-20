@@ -198,6 +198,23 @@ searches for an adequate substitute.">Metacognition</td>
                 </div>
                 <div class="step3">
                     <h2>Step 3: List them under categories in your map</h2>
+                    <p>To Do: details on how to categorize</p>
+                    <section id="mySection">
+                        <label>My personal testing skills map</label>
+                        <ul class="skillsMap">                
+                            <li class="category">
+                                <input type="text" placeholder="Skill category">
+                                <ul>
+                                    <li class="skill">
+                                        <input type="text" placeholder="Skill">
+                                    </li>
+                                </ul>
+                                <button class="btn">Add Skill</button>
+                            </li> 
+                        </ul>
+                        <button id="addCategory" class="btn">Add category</button>
+                      
+                    </section>
                 </div>
                 <div class="step4">
                     <h2>Step 4: Repeat</h2>
@@ -222,6 +239,7 @@ searches for an adequate substitute.">Metacognition</td>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.3.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/yourMap.js"></script>
         <script src="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 
 
@@ -234,5 +252,20 @@ searches for an adequate substitute.">Metacognition</td>
             r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
             ga('create','UA-XXXXX-X','auto');ga('send','pageview');
         </script>
+
+        <template id="categoryTemplate">
+            <li class="category">
+                <input type="text" placeholder="Skill category">
+                <button class="btn">Add Skill</button>
+            </li>
+        </template>
+        <template id="skillTemplate">
+            <ul>
+                <li class="skill">
+                    <input type="text" placeholder="Skill">
+                </li>
+            </ul>
+        </template>
+
     </body>
 </html>

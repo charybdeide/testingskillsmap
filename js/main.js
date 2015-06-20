@@ -12,5 +12,10 @@ $(function(){
 	$('[data-toggle="tooltip"]').tooltip({
     container : 'body'
   	});
+  	$("#addCategory").click(function()
+  	{
+  		$(".skillsMap").append($("#categoryTemplate").html());
+  		$(".category:last-of-type").append($("#skillTemplate").html());
+  	});
 
 });
