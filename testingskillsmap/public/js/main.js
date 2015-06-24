@@ -1,9 +1,10 @@
 $(function(){
+
 	$("#loginBtn").click(function()
 	{
 		//$(".aboutContent").removeClass("hide");
     //	$(".description").addClass("hide");
-    
+
 	});
 	$("#startBtn").click(function()
 	{
@@ -41,5 +42,5 @@ $(function(){
   		
   	});
 
-  	
 });
+
