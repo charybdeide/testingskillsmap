@@ -22,7 +22,7 @@ function serializeMap(rootElement) {
 			skillsList.push(skill);
 		}
 		list.push({
-			"name": category,
+			"category": category,
 			"skills": skillsList
 		});
 		skillsList = [];

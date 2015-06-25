@@ -1,12 +1,40 @@
 var Hapi = require('hapi');
-var fs = require("fs");
+var fs = require('fs');
 var filename = "config.json";
 var twitterData = JSON.parse(fs.readFileSync(filename));
-console.log(twitterData);
-console.log(twitterData.TwitterClientId);
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/testingskillsmap');
+
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function (callback) {
+  console.log("Connection to DB established");
+});
+
+mongoose.model('mapcollection', new mongoose.Schema({
+  userName: String,
+  userTwitterHandle: String,
+  mapName: String,
+  mapData: [{category: String, skills: [String]}]
+}, {collection: 'mapcollection'}));
+
+var mapcollection = mongoose.model('mapcollection');
+
+//mapcollection.create({userName: 'Test2'}, function(err,small) {
+//  if(err) return handleError(err);
+//});
+
+//var query = mapcollection.find(function(err, maps) {
+//  if(err) return console.log(err);
+//  console.log(maps[1]);
+//});
+
+//console.log(query.select('mapData'));
+
 
 // Register bell with the server
 server.register(require('bell'), function (err) {
@@ -38,6 +66,13 @@ server.register(require('bell'), function (err) {
                 // and redirect to the application. The third-party credentials are
                 // stored in request.auth.credentials. Any query parameters from
                 // the initial request are passed back via request.auth.credentials.query.
+                var uName = request.auth.credentials.profile.raw.name;
+                var twName = request.auth.credentials.profile.raw.screen_name;
+                mapcollection.create({userName : uName, userTwitterHandle : twName});
+                //var query = mapcollection.find({userName : uName},function(err, maps) {
+                //  if(err) return console.log(err);
+                //  console.log(maps[0]);
+                });
                 return reply.redirect('/');
             }
         }
