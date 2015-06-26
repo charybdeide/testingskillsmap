@@ -6,9 +6,10 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "bell": "^4.0.0",
     "debug": "~2.2.0",
     "hapi": "^8.6.1",
-    "jade": "~1.9.2",
+    "jade": "^1.9.2",
     "mongoose": "^4.0.6",
     "morgan": "~1.5.3",
     "serve-favicon": "~2.2.1"

@@ -1,4 +1,6 @@
 {
 	"TwitterClientId":  "",
-	"TwitterClientSecret": "" 	
+	"TwitterClientSecret": "",
+	"GoogleClientId": "",	
+	"GoogleClientSecret": "" 	
 }

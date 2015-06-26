@@ -34,13 +34,27 @@ $(function(){
   		$(this).parent().remove();  		
   	});
 
-  	$("#mySection").on("click", "#downloadBtn", function(event) {
+  $("#mySection").on("click", "#downloadBtn", function(event) {
+  	var list = [];
+  	var list = yourMap.check($(".skillsMap"));
+  	console.log(JSON.stringify(list));
   		
-  		var list = [];
-  		var list = yourMap.check($(".skillsMap"));
-  		console.log(JSON.stringify(list));
-  		
-  	});
+  });
+  
+  $("#mySection").on("click", "#saveBtn", function(event) {
+    
+    var name = String($("#mySection").children("input").val());
+    
+    var list = [];
+    var list = yourMap.check($(".skillsMap"));
+
+    
+    $.post("/api/map", {mapName: name, mapData:list}, function(data, status) {
+    })  
+      
+
+    });
+
 
 });
 

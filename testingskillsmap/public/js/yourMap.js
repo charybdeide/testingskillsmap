@@ -4,6 +4,7 @@
 	{
 		//TO DO: to check if content is valid
 		return serializeMap(rootElement);
+		
 	}
 
 })(typeof exports === 'undefined' ? this['yourMap'] = {} : exports);

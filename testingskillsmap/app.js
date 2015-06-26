@@ -1,7 +1,8 @@
 var Hapi = require('hapi');
 var fs = require('fs');
 var filename = "config.json";
-var twitterData = JSON.parse(fs.readFileSync(filename));
+
+var configData = JSON.parse(fs.readFileSync(filename));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
@@ -45,11 +46,28 @@ server.register(require('bell'), function (err) {
     server.auth.strategy('twitter', 'bell', {
         provider: 'twitter',
         password: 'cookie_encryption_password',
-        clientId: twitterData.TwitterClientId,
-        clientSecret: twitterData.TwitterClientSecret,
+        clientId: configData.TwitterClientId,
+        clientSecret: configData.TwitterClientSecret,
         isSecure: false     // Terrible idea but required if not using HTTPS
     });
 
+    server.auth.strategy('google', 'bell', {
+        provider: 'google',
+        password: 'password',
+        isSecure: false,
+
+        // You'll need to go to https://console.developers.google.com and set up an application to get started
+        // Once you create your app, fill out "APIs & auth >> Consent screen" and make sure to set the email field
+        // Next, go to "APIs & auth >> Credentials and Create new Client ID
+        // Select "web application" and set "AUTHORIZED JAVASCRIPT ORIGINS" and "AUTHORIZED REDIRECT URIS"
+        // This will net you the clientId and the clientSecret needed.
+        // Also be sure to pass the redirect_uri as well. It must be in the list of "AUTHORIZED REDIRECT URIS"
+        clientId: configData.GoogleClientId,
+        clientSecret: configData.GoogleClientSecret,
+        providerParams: {
+            redirect_uri: server.info.uri + '/auth/google'
+        }
+    });
     // Use the 'twitter' authentication strategy to protect the
     // endpoint handling the incoming authentication credentials.
     // This endpoints usually looks up the third party account in
@@ -72,11 +90,24 @@ server.register(require('bell'), function (err) {
                 //var query = mapcollection.find({userName : uName},function(err, maps) {
                 //  if(err) return console.log(err);
                 //  console.log(maps[0]);
-                });
+                //});
                 return reply.redirect('/');
             }
         }
     });
+
+    server.route({
+        method: ['GET', 'POST'],
+        path: '/auth/google',
+        config: {
+            auth: 'google',
+            handler: function (request, reply) {
+                //return reply.redirect('/');
+                reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
+            }
+        }
+    });
+
 
 });
 
@@ -92,6 +123,13 @@ server.route({
     }
 });
 
+server.route({
+    method: ['POST'],
+    path: '/api/map',
+    handler: function (request, reply) { 
+      console.log(request.payload);
+      return reply('ok'); }
+});
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);
