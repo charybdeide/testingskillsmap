@@ -1,5 +1,10 @@
 var Hapi = require('hapi');
 var fs = require('fs');
+
+var views = require('./src/server/views');
+var login = require('./src/login');
+var maps = require('./src/maps');
+
 var filename = "config.json";
 
 var configData = JSON.parse(fs.readFileSync(filename));
@@ -8,6 +13,10 @@ mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
+
+views.init(server, __dirname);
+login.init(server);
+maps.init(server);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -24,8 +33,6 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
 }, {collection: 'usermap'}));
 
 var userIdentif;
-
-
 
 //var query = mapcollection.find(function(err, maps) {
 //  if(err) return console.log(err);
@@ -63,9 +70,9 @@ server.register(require('bell'), function (err) {
         // This will net you the clientId and the clientSecret needed.
         // Also be sure to pass the redirect_uri as well. It must be in the list of "AUTHORIZED REDIRECT URIS"
         providerParams: {
-            redirect_uri: server.info.uri + '/bell/google' 
+            redirect_uri: server.info.uri + '/bell/google'
         }
-       
+
     });
     // Use the 'twitter' authentication strategy to protect the
     // endpoint handling the incoming authentication credentials.
@@ -106,10 +113,15 @@ server.register(require('bell'), function (err) {
             }
         }
     });
-
-
 });
 
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        reply.view('index', { layout: 'default' });
+    }
+});
 
 // serve static file
 server.route({
@@ -125,7 +137,7 @@ server.route({
 server.route({
     method: ['POST'],
     path: '/api/map',
-    handler: function (request, reply) { 
+    handler: function (request, reply) {
 
       var query = { userTwitterHandle: userIdentif };
       var update = { $set: {mapName: request.payload.mapName, mapData: request.payload.mapData }};
@@ -134,13 +146,12 @@ server.route({
         console.log(numAffected);
       }
       );
-      
+
       console.log(request.payload.mapName + request.payload.mapData);
-      
+
       return reply('ok'); }
 });
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);
 });
-
