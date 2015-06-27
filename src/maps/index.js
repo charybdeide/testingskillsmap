@@ -5,6 +5,7 @@ var init = function(server) {
       path: '/create',
       handler: function (request, reply) {
           reply.view('create', {
+            title: "mumu",
             js: [
               { src: 'js/main.js' },
               { src: 'js/yourMap.js' }
