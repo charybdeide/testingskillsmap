@@ -15,15 +15,13 @@ db.once('open', function (callback) {
   console.log("Connection to DB established");
 });
 
-mongoose.model('mapcollection', new mongoose.Schema({
+var usermap = mongoose.model('usermap', new mongoose.Schema({
   userName: String,
   userTwitterHandle: String,
   userIdentificator: String,
   mapName: String,
   mapData: [{category: String, skills: [String]}]
-}, {collection: 'mapcollection'}));
-
-var mapcollection = mongoose.model('mapcollection');
+}, {collection: 'usermap'}));
 
 var userIdentif;
 
@@ -88,7 +86,7 @@ server.register(require('bell'), function (err) {
                 var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
                 userIdentif = twName;
-                mapcollection.create({userName : uName, userTwitterHandle : twName, userIdentificator: userIdentif});
+                usermap.create({userName : uName, userTwitterHandle : twName, userIdentificator: userIdentif});
                 //var query = mapcollection.find({userName : uName},function(err, maps) {
                 //  if(err) return console.log(err);
                 //  console.log(maps[0]);
@@ -132,7 +130,7 @@ server.route({
       var query = { userTwitterHandle: userIdentif };
       var update = { $set: {mapName: request.payload.mapName, mapData: request.payload.mapData }};
       var options = { multi: true };
-      mapcollection.update(query, update, function callback (err, numAffected) {
+      usermap.update(query, update, function callback (err, numAffected) {
         console.log(numAffected);
       }
       );
