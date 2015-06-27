@@ -125,7 +125,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply.view('index', { layout: 'default' });
+        reply.view('index', { bodyClass: 'index' });
     }
 });
 
