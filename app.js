@@ -46,6 +46,10 @@ server.register({
     register: Yar,
     options: options
 }, function (err) {
+  if(err) {
+    console.log(err);
+  }
+});
 
 // Register bell with the server
 server.register(require('bell'), function (err) {
@@ -95,7 +99,7 @@ server.register(require('bell'), function (err) {
                 // and redirect to the application. The third-party credentials are
                 // stored in request.auth.credentials. Any query parameters from
                 // the initial request are passed back via request.auth.credentials.query.
-                
+
                 //var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
                 userIdentif = twName;
@@ -140,13 +144,19 @@ server.route({
     method: ['POST'],
     path: '/api/map',
 
-    handler: function (request, reply) { 
+    handler: function (request, reply) {
       var session = request.session.get('session');
-      console.log(session); 
+      console.log(session);
 
-      var update = { user: session.user, timestamp: new Date(), mapName: request.payload.mapName, mapData: request.payload.mapData };
-      usermap.create(update);      
-            
+      var update = {
+        user: session.user,
+        timestamp: new Date(),
+        mapName: request.payload.mapName,
+        mapData: request.payload.mapData
+      };
+
+      usermap.create(update);
+
       return reply(session.user); }
 });
 
