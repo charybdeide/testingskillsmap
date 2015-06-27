@@ -47,3 +47,11 @@ body {
     border-width: 3px;
     border-color: green;
 }
+
+.menu-right-corner a {
+  display: inline-block !important;
+}
+
+.menu-right-corner {
+  color: white;
+}

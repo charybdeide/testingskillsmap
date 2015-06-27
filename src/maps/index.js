@@ -4,13 +4,13 @@ var init = function(server) {
       method: 'GET',
       path: '/create',
       handler: function (request, reply) {
-          reply.view('create', {
-            title: "mumu",
+          reply.view('create', { session: request.session.get('session'),
             js: [
               { src: 'js/main.js' },
               { src: 'js/yourMap.js' }
               ]
           });
+
       }
   });
 };

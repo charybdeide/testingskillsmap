@@ -45,6 +45,17 @@ server.register(require('bell'), function (err) {
       }
   });
 
+  
+ server.route({
+      method: 'GET',
+      path: '/logout',
+      handler: function (request, reply) {
+          request.session.set('session', {});
+          return reply.redirect('/');
+
+      }
+  });
+
   server.route({
         method: ['GET', 'POST'], // Must handle both GET and POST
         path: '/auth/twitter',          // The callback endpoint registered with the provider
@@ -59,8 +70,10 @@ server.register(require('bell'), function (err) {
 
                 //var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
+                var uName = request.auth.credentials.profile.raw.name.split(" ");
+                var uFName = uName[0];
                 userIdentif = twName;
-                request.session.set('session', {'user': twName});
+                request.session.set('session', {'user': twName, 'name': uFName});
                 return reply.redirect('/');
             }
         }
@@ -72,15 +85,16 @@ server.register(require('bell'), function (err) {
         config: {
             auth: 'google',
             handler: function (request, reply) {
-            	var email = request.auth.credentials.profile.email
-            	request.session.set('session', {'user': email});
+            	var email = request.auth.credentials.profile.email;
+                var uFName = request.auth.credentials.profile.name.first;
+            	request.session.set('session', {'user': email, 'name': uFName});
                 return reply.redirect('/');
             }
         }
     });
 
-};
 
+};
 
 module.exports = {
   init: init

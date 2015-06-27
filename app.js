@@ -1,3 +1,5 @@
+'use strict';
+
 var Hapi = require('hapi');
 var fs = require('fs');
 
@@ -5,7 +7,7 @@ var views = require('./src/server/views');
 var login = require('./src/login');
 var maps = require('./src/maps');
 
-var filename = "config.json";
+var filename = 'config.json';
 var Yar = require('yar');
 
 var configData = JSON.parse(fs.readFileSync(filename));
@@ -21,8 +23,8 @@ maps.init(server);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  console.log("Connection to DB established");
+db.once('open', function () {
+  console.log('Connection to DB established');
 });
 
 var usermap = mongoose.model('usermap', new mongoose.Schema({
@@ -31,8 +33,6 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
   mapName: String,
   mapData: [{category: String, skills: [String]}]
 }, {collection: 'usermap'}));
-
-var userIdentif;
 
 var options = {
     cookieOptions: {
@@ -56,7 +56,7 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply.view('index', { layout: 'default' });
+        reply.view('index', { session: request.session.get('session') });
     }
 });
 
@@ -77,7 +77,6 @@ server.route({
 
     handler: function (request, reply) {
       var session = request.session.get('session');
-
       var update = {
         user: session.user,
         timestamp: new Date(),
@@ -86,7 +85,7 @@ server.route({
       };
 
       usermap.create(update);
-
+      
       return reply(session.user); }
 });
 
