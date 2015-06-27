@@ -47,3 +47,12 @@ body {
     border-width: 3px;
     border-color: green;
 }
+
+.sign-in {
+  text-align: center;
+}
+
+.sign-in .fa {
+  margin-top: 50px;
+  font-size: 80px;
+}
