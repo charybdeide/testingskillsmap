@@ -1,6 +1,7 @@
 var Hapi = require('hapi');
 var fs = require('fs');
 var filename = "config.json";
+var Yar = require('yar');
 
 var configData = JSON.parse(fs.readFileSync(filename));
 var mongoose = require('mongoose');
@@ -24,19 +25,24 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
 
 var userIdentif;
 
-var user = mongoose.model('user', new mongoose.Schema({
-    name: String,
-    twitterHandle: String,
-    email: String
-}, {collection: "user"}));
+var options = {
+    cookieOptions: {
+        password: 'password',   // Required
+        isSecure: false // Required if using http
+    }
+};
 
-//var query = mapcollection.find(function(err, maps) {
-//  if(err) return console.log(err);
-//  console.log(maps[1]);
-//});
 
-//console.log(query.select('mapData'));
+server.register({
+    register: Yar,
+    options: options
+}, function (err) {
 
+    if (err) {
+        console.log(err);
+        throw err;
+    }
+});
 
 // Register bell with the server
 server.register(require('bell'), function (err) {
@@ -49,7 +55,7 @@ server.register(require('bell'), function (err) {
         password: 'cookie_encryption_password',
         clientId: configData.TwitterClientId,
         clientSecret: configData.TwitterClientSecret,
-        isSecure: false     // Terrible idea but required if not using HTTPS
+        isSecure: false,     // Terrible idea but required if not using HTTPS
     });
 
     server.auth.strategy('google', 'bell', {
@@ -86,14 +92,11 @@ server.register(require('bell'), function (err) {
                 // and redirect to the application. The third-party credentials are
                 // stored in request.auth.credentials. Any query parameters from
                 // the initial request are passed back via request.auth.credentials.query.
-                var uName = request.auth.credentials.profile.raw.name;
+                
+                //var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
                 userIdentif = twName;
-                user.create({name : uName, twitterHandle : twName});
-                //var query = mapcollection.find({userName : uName},function(err, maps) {
-                //  if(err) return console.log(err);
-                //  console.log(maps[0]);
-                //});
+                request.session.set('session', {'user': twName});
                 return reply.redirect('/');
             }
         }
@@ -129,11 +132,13 @@ server.route({
     method: ['POST'],
     path: '/api/map',
     handler: function (request, reply) { 
+      var session = request.session.get('session');
+      console.log(session); 
 
-      var update = { mapName: request.payload.mapName, mapData: request.payload.mapData, timestamp: new Date() };
+      var update = { user: session.user, timestamp: new Date(), mapName: request.payload.mapName, mapData: request.payload.mapData };
       usermap.create(update);      
             
-      return reply('ok'); }
+      return reply(session.user); }
 });
 
 server.start(function () {
