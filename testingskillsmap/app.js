@@ -6,7 +6,6 @@ var configData = JSON.parse(fs.readFileSync(filename));
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
-
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
 
@@ -19,15 +18,16 @@ db.once('open', function (callback) {
 mongoose.model('mapcollection', new mongoose.Schema({
   userName: String,
   userTwitterHandle: String,
+  userIdentificator: String,
   mapName: String,
   mapData: [{category: String, skills: [String]}]
 }, {collection: 'mapcollection'}));
 
 var mapcollection = mongoose.model('mapcollection');
 
-//mapcollection.create({userName: 'Test2'}, function(err,small) {
-//  if(err) return handleError(err);
-//});
+var userIdentif;
+
+
 
 //var query = mapcollection.find(function(err, maps) {
 //  if(err) return console.log(err);
@@ -54,6 +54,8 @@ server.register(require('bell'), function (err) {
     server.auth.strategy('google', 'bell', {
         provider: 'google',
         password: 'password',
+        clientId: configData.GoogleClientId,
+        clientSecret: configData.GoogleClientSecret,
         isSecure: false,
 
         // You'll need to go to https://console.developers.google.com and set up an application to get started
@@ -62,11 +64,10 @@ server.register(require('bell'), function (err) {
         // Select "web application" and set "AUTHORIZED JAVASCRIPT ORIGINS" and "AUTHORIZED REDIRECT URIS"
         // This will net you the clientId and the clientSecret needed.
         // Also be sure to pass the redirect_uri as well. It must be in the list of "AUTHORIZED REDIRECT URIS"
-        clientId: configData.GoogleClientId,
-        clientSecret: configData.GoogleClientSecret,
         providerParams: {
-            redirect_uri: server.info.uri + '/auth/google'
+            redirect_uri: server.info.uri + '/bell/google' 
         }
+       
     });
     // Use the 'twitter' authentication strategy to protect the
     // endpoint handling the incoming authentication credentials.
@@ -86,7 +87,8 @@ server.register(require('bell'), function (err) {
                 // the initial request are passed back via request.auth.credentials.query.
                 var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
-                mapcollection.create({userName : uName, userTwitterHandle : twName});
+                userIdentif = twName;
+                mapcollection.create({userName : uName, userTwitterHandle : twName, userIdentificator: userIdentif});
                 //var query = mapcollection.find({userName : uName},function(err, maps) {
                 //  if(err) return console.log(err);
                 //  console.log(maps[0]);
@@ -98,12 +100,12 @@ server.register(require('bell'), function (err) {
 
     server.route({
         method: ['GET', 'POST'],
-        path: '/auth/google',
+        path: '/bell/google',
         config: {
             auth: 'google',
             handler: function (request, reply) {
-                //return reply.redirect('/');
-                reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
+                return reply.redirect('/');
+                //reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
             }
         }
     });
@@ -127,7 +129,17 @@ server.route({
     method: ['POST'],
     path: '/api/map',
     handler: function (request, reply) { 
-      console.log(request.payload);
+
+      var query = { userTwitterHandle: userIdentif };
+      var update = { $set: {mapName: request.payload.mapName, mapData: request.payload.mapData }};
+      var options = { multi: true };
+      mapcollection.update(query, update, function callback (err, numAffected) {
+        console.log(numAffected);
+      }
+      );
+      
+      console.log(request.payload.mapName + request.payload.mapData);
+      
       return reply('ok'); }
 });
 
