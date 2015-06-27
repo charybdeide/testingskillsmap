@@ -16,16 +16,19 @@ db.once('open', function (callback) {
 });
 
 var usermap = mongoose.model('usermap', new mongoose.Schema({
-  userName: String,
-  userTwitterHandle: String,
-  userIdentificator: String,
+  user: String,
+  timestamp: Date,
   mapName: String,
   mapData: [{category: String, skills: [String]}]
 }, {collection: 'usermap'}));
 
 var userIdentif;
 
-
+var user = mongoose.model('user', new mongoose.Schema({
+    name: String,
+    twitterHandle: String,
+    email: String
+}, {collection: "user"}));
 
 //var query = mapcollection.find(function(err, maps) {
 //  if(err) return console.log(err);
@@ -86,7 +89,7 @@ server.register(require('bell'), function (err) {
                 var uName = request.auth.credentials.profile.raw.name;
                 var twName = request.auth.credentials.profile.raw.screen_name;
                 userIdentif = twName;
-                usermap.create({userName : uName, userTwitterHandle : twName, userIdentificator: userIdentif});
+                user.create({name : uName, twitterHandle : twName});
                 //var query = mapcollection.find({userName : uName},function(err, maps) {
                 //  if(err) return console.log(err);
                 //  console.log(maps[0]);
@@ -127,16 +130,9 @@ server.route({
     path: '/api/map',
     handler: function (request, reply) { 
 
-      var query = { userTwitterHandle: userIdentif };
-      var update = { $set: {mapName: request.payload.mapName, mapData: request.payload.mapData }};
-      var options = { multi: true };
-      usermap.update(query, update, function callback (err, numAffected) {
-        console.log(numAffected);
-      }
-      );
-      
-      console.log(request.payload.mapName + request.payload.mapData);
-      
+      var update = { mapName: request.payload.mapName, mapData: request.payload.mapData, timestamp: new Date() };
+      usermap.create(update);      
+            
       return reply('ok'); }
 });
 
