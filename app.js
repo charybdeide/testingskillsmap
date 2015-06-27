@@ -56,7 +56,10 @@ server.route({
     method: 'GET',
     path: '/',
     handler: function (request, reply) {
-        reply.view('index', { session: request.session.get('session') });
+        reply.view('index', {
+          bodyClass: 'index',
+          session: request.session.get('session')
+        });
     }
 });
 
@@ -85,7 +88,7 @@ server.route({
       };
 
       usermap.create(update);
-      
+
       return reply(session.user); }
 });
 

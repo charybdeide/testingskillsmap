@@ -15,5 +15,8 @@
   "devel"     : true,
   "node"      : true,
   "sub"       : true,
-  "quotmark"  : "single"
+  "quotmark"  : "single",
+  "globals": {
+    "$": false
+  }
 }
