@@ -48,6 +48,14 @@ body {
     border-color: green;
 }
 
+.skillsMap, .skillsMap ul {
+  list-style-type: none;
+}
+
+.skillsMap li {
+  margin: 5px 0;
+}
+
 .sign-in {
   text-align: center;
 }

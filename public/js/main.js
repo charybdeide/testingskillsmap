@@ -1,54 +1,41 @@
-$(function(){
+/*global yourMap:false */
+$(function() {
 
-	$("#loginBtn").click(function()
-	{
-		//$(".aboutContent").removeClass("hide");
-    //	$(".description").addClass("hide");
-
-	});
-  
 	$('[data-toggle="tooltip"]').tooltip({
-    container : 'body'
-  	});
-  	$("#addCategory").click(function()
-  	{
-  		$(".skillsMap").append($("#categoryTemplate").html());
-  		$(".category:last-of-type").append($("#initialSkillsTemplate").html());
-  	});
+		container: 'body'
+	});
 
-  	$(".skillsMap").on("click", ".addSkill", function(event) {
-  		$(this).parent().children("ul").append($("#extraSkillTemplate").html());
-  	});
+	$('#addCategory').click(function() {
+		$('.skillsMap').append($('#categoryTemplate').html());
+		$('.category:last-of-type').append($('#initialSkillsTemplate').html());
+	});
 
-	$(".skillsMap").on("click", ".removeSkill", function(event) {
-  		$(this).parent().remove();  		
-  	});
-  	
-	$(".skillsMap").on("click", ".removeCategory", function(event) {
-  		$(this).parent().remove();  		
-  	});
+	$('.skillsMap').on('click', '.addSkill', function() {
+		$(this).parent().children('ul').append($('#extraSkillTemplate').html());
+	});
 
-  $("#mySection").on("click", "#downloadBtn", function(event) {
-  	var list = [];
-  	var list = yourMap.check($(".skillsMap"));
-  	console.log(JSON.stringify(list));
-  		
-  });
-  
-  $("#mySection").on("click", "#saveBtn", function(event) {
-    
-    var name = String($("#mySection").children("input").val());
-    
-    var list = [];
-    var list = yourMap.check($(".skillsMap"));
+	$('.skillsMap').on('click', '.removeSkill', function() {
+		$(this).closest('li').remove();
+	});
 
-    
-    $.post("/api/map", {mapName: name, mapData:list}, function(data, status) {
-    })  
-      
+	$('.skillsMap').on('click', '.removeCategory', function() {
+		$(this).closest('li').remove();
+	});
 
-    });
+	$('#mySection').on('click', '#downloadBtn', function() {
+		var list = yourMap.check($('.skillsMap'));
+		console.log(JSON.stringify(list));
+	});
 
+	$('#mySection').on('click', '#saveBtn', function() {
+		var name = String($('#mySection').children('input').val());
 
+		var list = yourMap.check($('.skillsMap'));
+		$.post('/api/map', {
+			mapName: name,
+			mapData: list
+		}, function( /* data, status */ ) {
+			alert('saved!');
+		});
+	});
 });
-
