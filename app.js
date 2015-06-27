@@ -105,7 +105,6 @@ server.register(require('bell'), function (err) {
             auth: 'google',
             handler: function (request, reply) {
                 return reply.redirect('/');
-                //reply('<pre>' + JSON.stringify(request.auth.credentials, null, 4) + '</pre>');
             }
         }
     });

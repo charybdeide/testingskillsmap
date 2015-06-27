@@ -6,13 +6,7 @@ $(function(){
     //	$(".description").addClass("hide");
 
 	});
-	$("#startBtn").click(function()
-	{
-		//$(".makeMapContent").removeClass("hide");
-    //	$(".description").addClass("hide");
-      var url = window.location.href + "createMap.html";
-      window.location.href = url;
-	});
+  
 	$('[data-toggle="tooltip"]').tooltip({
     container : 'body'
   	});
