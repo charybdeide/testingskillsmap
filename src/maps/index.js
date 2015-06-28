@@ -75,14 +75,6 @@ var init = function(server) {
       var session = request.session.get('session');
       var query = { user: session.user };
 
-      var update = {
-        user: session.user,
-        timestamp: new Date(),
-        mapName: request.payload.mapName,
-        mapData: request.payload.mapData,
-        isPublished: false
-      };
-
       usermap.findOne(query, function(err, record) {
         if(err) {
           sendError(err);
@@ -90,10 +82,23 @@ var init = function(server) {
         }
 
         if(!record) {
+          var update = {
+            user: session.user,
+            timestamp: new Date(),
+            mapName: request.payload.mapName,
+            mapData: request.payload.mapData,
+            isPublished: false
+          };
           usermap.create(update, checkError(reply));
         } else {
+          var update = {
+            timestamp: new Date(),
+            mapName: request.payload.mapName,
+            mapData: request.payload.mapData,
+          };
           usermap.update(query, update, checkError(reply));
         }
+
       });
     }
   });
@@ -106,6 +111,22 @@ var init = function(server) {
         var session = request.session.get('session');
         var set = {
           isPublished: true
+        };
+        var query = {
+          user: session.user,
+        };
+        usermap.update(query, set, checkError(reply));
+      }
+  });
+
+ server.route({
+      method: ['POST'],
+      path: '/api/mapUnPublish',
+
+      handler: function (request, reply) {
+        var session = request.session.get('session');
+        var set = {
+          isPublished: false
         };
         var query = {
           user: session.user,

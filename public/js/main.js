@@ -32,7 +32,7 @@ $(function() {
 	});
 
 	$('#mySection').on('click', '#saveBtn', function() {
-		var name = String($('#mySection').children('input').val());
+		var name = $('#mySection').children('input').val();
 
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
@@ -40,11 +40,21 @@ $(function() {
 			mapData: list
 		}, function( /* data, status */ ) {
 		});
+		$('.published-state').removeClass('hide');
 	});
 
 	$('.step5').on('click', '#shareMapBtn', function() {
 		$.post('/api/mapPublish');
+		$('#shareMapBtn').addClass('hide');
+		$('#unShareMapBtn').removeClass('hide');
 	});
+
+	$('.step5').on('click', '#unShareMapBtn', function() {
+		$.post('/api/mapUnPublish');
+		$('#shareMapBtn').removeClass('hide');
+		$('#unShareMapBtn').addClass('hide');
+	});
+
 });
 
 function addCategory(name) {
