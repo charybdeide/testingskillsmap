@@ -12,24 +12,21 @@
 function serializeMap(rootElement) {
 	var list = [];
 	var skillsList = [];
-	var categoriesNumber = $(".skillsMap").children("li").length;
-	for(i = 1; i <= categoriesNumber; i++)
-	{
-		var category = $(".skillsMap li:nth-child("+ i +")").children("input").val();
-		var skillsNumber = $(".skillsMap li:nth-child("+ i +") ul").children("li").length;
-		for(j = 1; j <= skillsNumber; j++)
-		{
-			var skill =  $(".skillsMap li:nth-child("+ i +") ul li:nth-child("+j+")").children("input").val();
+	$('.skillsMap .category-name').each(function() {
+		var category = $(this).val();
+
+		$(this).closest('li').find('.skill-name').each(function() {
+			var skill = $(this).val();
 			skillsList.push(skill);
-		}
+		});
+
 		list.push({
 			"category": category,
 			"skills": skillsList
 		});
-		skillsList = [];
 		
-	}
-	
+		skillsList = [];
+	});
 	return list;
 	
 }

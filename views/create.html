@@ -1,6 +1,6 @@
 <div class="makeMapContent">
   <h1>Some guidelines</h1>
-  <p>To identify the skills, try the following flow:</p>
+  <p>To create your map, try the following flow:</p>
 
   <div class="step1">
     <h2>Step 1: Identify problem-solving situations</h2>
@@ -185,14 +185,16 @@ searches for an adequate substitute.">Metacognition</td>
   <div class="step5">
     <h2>Step 5: Share your map in the collective repo</h2>
     <p>You can share your own map in an anonymous way and you can check out other maps to get some inspiration</p>
+    <button id="shareMap" class="btn btn-default">Upload map in the repo</button>
+
   </div>
 
 </div>
 
 <template id="categoryTemplate">
   <li class="category">
-    <div class="input-group input-group">
-      <input type="text" class="form-control" placeholder="Skill category">
+    <div class="input-group">
+      <input type="text" class="form-control category-name" placeholder="Skill category">
 
       <span class="input-group-btn">
         <button class="btn btn-danger removeCategory"><i class="fa fa-minus"></i></button>
@@ -204,8 +206,8 @@ searches for an adequate substitute.">Metacognition</td>
 <template id="initialSkillsTemplate">
   <ul>
     <li class="skill">
-      <div class="input-group input-group">
-        <input type="text" class="form-control" placeholder="Skill">
+      <div class="input-group">
+        <input type="text" class="form-control skill-name" placeholder="Skill">
         <span class="input-group-btn">
           <button class="btn btn-danger removeCategory"><i class="fa fa-minus"></i></button>
         </span>
@@ -218,8 +220,8 @@ searches for an adequate substitute.">Metacognition</td>
 
 <template id="extraSkillTemplate">
   <li class="skill">
-    <div class="input-group input-group">
-      <input type="text" class="form-control" placeholder="Skill">
+    <div class="input-group">
+      <input type="text" class="form-control skill-name" placeholder="Skill">
       <span class="input-group-btn">
         <button class="btn btn-danger removeSkill"><i class="fa fa-minus"></i></button>
       </span>

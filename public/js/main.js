@@ -35,7 +35,6 @@ $(function() {
 			mapName: name,
 			mapData: list
 		}, function( /* data, status */ ) {
-			alert('saved!');
 		});
 	});
 });

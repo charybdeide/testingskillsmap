@@ -31,7 +31,8 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
   user: String,
   timestamp: Date,
   mapName: String,
-  mapData: [{category: String, skills: [String]}]
+  mapData: [{category: String, skills: [String]}],
+  isPublished: Boolean
 }, {collection: 'usermap'}));
 
 var options = {
