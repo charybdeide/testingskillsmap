@@ -11,8 +11,6 @@ var filename = 'config.json';
 var Yar = require('yar');
 
 var configData = JSON.parse(fs.readFileSync(filename));
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
@@ -20,20 +18,6 @@ server.connection({ port: 3000 });
 views.init(server, __dirname);
 login.init(server, configData);
 maps.init(server);
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log('Connection to DB established');
-});
-
-var usermap = mongoose.model('usermap', new mongoose.Schema({
-  user: String,
-  timestamp: Date,
-  mapName: String,
-  mapData: [{category: String, skills: [String]}],
-  isPublished: Boolean
-}, {collection: 'usermap'}));
 
 var options = {
     cookieOptions: {
@@ -75,23 +59,6 @@ server.route({
     }
 });
 
-server.route({
-    method: ['POST'],
-    path: '/api/map',
-
-    handler: function (request, reply) {
-      var session = request.session.get('session');
-      var update = {
-        user: session.user,
-        timestamp: new Date(),
-        mapName: request.payload.mapName,
-        mapData: request.payload.mapData
-      };
-
-      usermap.create(update);
-
-      return reply(session.user); }
-});
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);

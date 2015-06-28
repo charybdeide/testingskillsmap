@@ -1,14 +1,3 @@
-(function(exports) {
-
-	exports.check = function(rootElement)
-	{
-		//TO DO: to check if content is valid
-		return serializeMap(rootElement);
-		
-	}
-
-})(typeof exports === 'undefined' ? this['yourMap'] = {} : exports);
-
 function serializeMap(rootElement) {
 	var list = [];
 	var skillsList = [];
@@ -29,6 +18,21 @@ function serializeMap(rootElement) {
 	});
 	return list;
 	
+}
+
+function deserializeMap(record) {
+	var name = record.mapName;
+	$('#mySection').children('input').val(name);
+
+	var numberOfCategories = record.mapData.length;
+	for(i = 0; i < numberOfCategories; i++)
+	{
+		var category = addCategory(record.mapData[i].category);
+		var numberOfSKills = record.mapData[i].skills.length;
+		for(j = 0; j < numberOfSKills; j++)
+			addSkill(category, record.mapData[i].skills[j]);
+	}		
+
 }
 
 function hasValidElements(list) {

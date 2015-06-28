@@ -11,15 +11,16 @@
   "license": "ISC",
   "dependencies": {
     "bell": "^4.0.0",
+    "boom": "^2.8.0",
     "debug": "~2.2.0",
+    "handlebars": "~3.0.3",
+    "handlebars-layouts": "~3.0.0",
     "hapi": "^8.6.1",
     "jade": "^1.9.2",
     "mongoose": "^4.0.6",
     "morgan": "~1.5.3",
-    "serve-favicon": "~2.2.1",
-    "handlebars": "~3.0.3",
     "path": "~0.11.14",
-    "handlebars-layouts": "~3.0.0",
+    "serve-favicon": "~2.2.1",
     "yar": "~3.0.3"
   },
   "repository": {
