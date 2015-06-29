@@ -1,3 +1,10 @@
+$(function() {
+	$.get('/api/getMap', function(map) {
+		deserializeMap(JSON.parse(map));
+	});
+});
+
+
 function serializeMap(rootElement) {
 	var list = [];
 	var skillsList = [];
@@ -32,7 +39,7 @@ function deserializeMap(record) {
 		for(j = 0; j < numberOfSKills; j++)
 			addSkill(category, record.mapData[i].skills[j]);
 	}		
-	makePublishBtnVisible();
+	makePublishStateBtnsVisible();
 	if(record.isPublished) makeUnPublishBtnVisible();
 
 }

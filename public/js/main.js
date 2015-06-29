@@ -1,10 +1,6 @@
 
 $(function() {
 
-	$.get('/api/getMap', function(map) {
-		deserializeMap(JSON.parse(map));
-	});
-
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
 	});
@@ -40,7 +36,7 @@ $(function() {
 			mapData: list
 		}, function( /* data, status */ ) {
 		});
-		makePublishBtnVisible();
+		makePublishStateBtnsVisible();
 	});
 
 	$('.step5').on('click', '#shareMapBtn', function() {
@@ -76,7 +72,7 @@ function addSkill(category, name) {
 
 }
 
-function makePublishBtnVisible() {
+function makePublishStateBtnsVisible() {
 	$('.published-state').removeClass('hide');
 }
 

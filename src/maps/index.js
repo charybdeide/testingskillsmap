@@ -42,7 +42,22 @@ var init = function(server) {
           reply.view('create', { session: request.session.get('session'),
             js: [
               { src: 'js/main.js' },
-              { src: 'js/yourMap.js' }
+              { src: 'js/yourMap.js' },
+              ]
+          });
+
+      }
+  });
+
+  server.route({
+      method: 'GET',
+      path: '/browse',
+      handler: function (request, reply) {
+
+          reply.view('browse', { session: request.session.get('session'),
+            js: [
+              { src: 'js/main.js' },
+              { src: 'js/browseMaps.js' }
               ]
           });
 
@@ -53,7 +68,6 @@ var init = function(server) {
       method: 'GET',
       path: '/api/getMap',
       handler: function (request, reply) {
-
           var session = request.session.get('session');
           var query = { user: session.user };
           usermap.findOne(query, function(err, record) {
@@ -134,6 +148,21 @@ var init = function(server) {
       }
   });
 
+server.route({
+      method: 'GET',
+      path: '/api/getPublishedMaps',
+      handler: function (request, reply) {
+
+          var query = { isPublished: true };
+          usermap.find(query, function(err, record) {
+            if(err) {
+              sendError(err);
+              return;
+            }
+            return reply(JSON.stringify(record));
+          });
+      }
+  });
 
 };
 
