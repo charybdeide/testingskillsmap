@@ -32,6 +32,8 @@ function deserializeMap(record) {
 		for(j = 0; j < numberOfSKills; j++)
 			addSkill(category, record.mapData[i].skills[j]);
 	}		
+	makePublishBtnVisible();
+	if(record.isPublished) makeUnPublishBtnVisible();
 
 }
 

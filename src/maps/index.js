@@ -61,7 +61,6 @@ var init = function(server) {
               sendError(err);
               return;
             }
-            
             return reply(JSON.stringify(record));
           });
       }

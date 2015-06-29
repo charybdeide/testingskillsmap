@@ -40,13 +40,12 @@ $(function() {
 			mapData: list
 		}, function( /* data, status */ ) {
 		});
-		$('.published-state').removeClass('hide');
+		makePublishBtnVisible();
 	});
 
 	$('.step5').on('click', '#shareMapBtn', function() {
 		$.post('/api/mapPublish');
-		$('#shareMapBtn').addClass('hide');
-		$('#unShareMapBtn').removeClass('hide');
+		makeUnPublishBtnVisible();
 	});
 
 	$('.step5').on('click', '#unShareMapBtn', function() {
@@ -75,4 +74,13 @@ function addSkill(category, name) {
 
 	category.children('ul').append(elem);
 
+}
+
+function makePublishBtnVisible() {
+	$('.published-state').removeClass('hide');
+}
+
+function makeUnPublishBtnVisible() {
+	$('#shareMapBtn').addClass('hide');
+	$('#unShareMapBtn').removeClass('hide');
 }
