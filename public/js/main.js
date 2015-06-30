@@ -31,16 +31,12 @@ $(function() {
 		console.log(JSON.stringify(list));
 	});
 
-	$('#mySection').on('click', '#saveBtn', function() {
-		var name = $('#mySection').children('input').val();
+	$('#mySection').on('click', function() {	
+		saveUserMap();
+	});
 
-		var list = serializeMap($('.skillsMap'));
-		$.post('/api/map', {
-			mapName: name,
-			mapData: list
-		}, function( /* data, status */ ) {
-		});
-		makePublishStateBtnsVisible();
+	$('#mySection').on('change', function() {	
+		saveUserMap();
 	});
 
 	$('.step5').on('click', '#shareMapBtn', function() {
@@ -84,4 +80,18 @@ function makePublishStateBtnsVisible() {
 function makeUnPublishBtnVisible() {
 	$('#shareMapBtn').addClass('hide');
 	$('#unShareMapBtn').removeClass('hide');
+}
+
+function saveUserMap() {
+	{	
+		var name = $('#mySection').children('input').val();
+
+		var list = serializeMap($('.skillsMap'));
+		$.post('/api/map', {
+			mapName: name,
+			mapData: list
+		}, function( /* data, status */ ) {
+		});
+		makePublishStateBtnsVisible();
+	}
 }
