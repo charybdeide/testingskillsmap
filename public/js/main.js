@@ -9,7 +9,6 @@ $(function() {
     	container: 'body'
     });
 
-
 	$('#addCategory').click(function() {
 		var category = addCategory();
 		addSkill(category);

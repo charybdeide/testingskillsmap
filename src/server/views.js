@@ -16,6 +16,17 @@ handlebars.registerHelper('login', function(template) {
   return out; 
 })
 
+handlebars.registerHelper('mainButton', function(template) {
+  var session = template.data.root.session;
+  if(!session || !session.user)
+  {
+    var out = "<a href='/login' class='btn btn-lg btn-default'>Login to start</a>";
+  }
+  else
+    out = "<a href='/create' class='btn btn-lg btn-default'>Work on your map</a>";
+  return out;
+})
+
 var init = function(server, path) {
 
   // see: http://hapijs.com/tutorials/views

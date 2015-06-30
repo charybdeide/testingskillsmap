@@ -4,7 +4,6 @@ $(function() {
 	});
 });
 
-
 function serializeMap(rootElement) {
 	var list = [];
 	var skillsList = [];
