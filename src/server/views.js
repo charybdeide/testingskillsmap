@@ -27,6 +27,17 @@ handlebars.registerHelper('mainButton', function(template) {
   return out;
 })
 
+handlebars.registerHelper('leftMenuButtons', function(template) {
+  var session = template.data.root.session;
+  if(!session || !session.user)
+  {
+    var out = "<li><a href='/about'>About</a></li>";
+  }
+  else
+    out = "<li><a href='/about'>About</a></li><li><a href='/create'>Create</a></li><li><a href='/browse'>Browse</a></li>";
+  return out;
+})
+
 var init = function(server, path) {
 
   // see: http://hapijs.com/tutorials/views
