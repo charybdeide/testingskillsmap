@@ -5,7 +5,9 @@ $(function() {
 		container: 'body'
 	});
 
-    $('[data-toggle="popover"]').popover();
+    $('[data-toggle="popover"]').popover({
+    	container: 'body'
+    });
 
 
 	$('#addCategory').click(function() {
