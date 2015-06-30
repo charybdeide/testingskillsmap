@@ -5,6 +5,10 @@ $(function() {
 		container: 'body'
 	});
 
+
+    $('[data-toggle="popover"]').popover();
+
+
 	$('#addCategory').click(function() {
 		var category = addCategory();
 		addSkill(category);
