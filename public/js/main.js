@@ -5,7 +5,6 @@ $(function() {
 		container: 'body'
 	});
 
-
     $('[data-toggle="popover"]').popover();
 
 
@@ -54,6 +53,7 @@ $(function() {
 		$('#unShareMapBtn').addClass('hide');
 	});
 
+	$('textarea.ckeditor').ckeditor();
 });
 
 function addCategory(name) {
