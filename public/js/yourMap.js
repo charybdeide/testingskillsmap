@@ -1,5 +1,6 @@
-$(function() {
+var saveTimeout;
 
+$(function() {
 	$.get('/api/getMap', function(map) {
 		deserializeMap(JSON.parse(map));
 		deserializeStep1(JSON.parse(map));
@@ -27,19 +28,17 @@ $(function() {
 		console.log(JSON.stringify(list));
 	});
 
-	$('#mySection').on('click', function() {	
+	$('body').on('keypress', '.saveOnKeyPress', function() {
+		$(this).closest('.input-group').addClass('has-warning');
 		saveUserInput();
 	});
-
-	$('#mySection').on('change', function() {	
+	
+	$('body').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
-
-	$('.step1Editable').on('click', function() {	
-		saveUserInput();
-	});
-
-	$('.step1Editable').on('change', function() {	
+	
+	$('.saveEditableOnChange').on('change', function() {
+		$(this).addClass('has-warning');
 		saveUserInput();
 	});
 });
@@ -80,7 +79,6 @@ function deserializeMap(record) {
 	}		
 	makePublishStateBtnsVisible();
 	if(record.isPublished) makeUnPublishBtnVisible();
-
 }
 
 
@@ -102,11 +100,15 @@ function addSkill(category, name) {
 	elem.find('input.skill-name').val(name);
 
 	category.children('ul').append(elem);
-
 }
 
 function saveUserInput() {
-	{	
+	
+	console.log('save');
+		
+	clearTimeout(saveTimeout);
+	
+	saveTimeout = setTimeout(function() {	
 		var step1 = $('.step1Editable').html();
 		
 		var facts = $("#facts").val();
@@ -128,9 +130,9 @@ function saveUserInput() {
 			"attitudes": attitudes,
 			"metacognition": metacognition
 		});
-
+	
 		var name = $('#mySection').children('input').val();
-
+	
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
 			step1Data: step1,
@@ -138,10 +140,11 @@ function saveUserInput() {
 			mapName: name,
 			mapData: list
 		}, function( /* data, status */ ) {
+			$('.input-group.has-warning').removeClass('has-warning');
 		});
+	
 		makePublishStateBtnsVisible();
-
-	}
+	}, 2000);
 }
 
 function deserializeStep1(record) {
