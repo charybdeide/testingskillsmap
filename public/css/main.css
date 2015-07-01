@@ -109,3 +109,11 @@ body.index .introduction {
 .editable {
   color: green;
 }
+
+.tableInput {
+  color: green;
+}
+
+.headerCreate {
+  position: fixed;
+}

@@ -1,12 +1,38 @@
 $(function() {
+	
 	$.get('/api/getMap', function(map) {
 		deserializeMap(JSON.parse(map));
 	});
 
-	for(var command in aloha.ui.commands)
-	{
-		$('#'+command+'Button').on('click', aloha.ui.command(aloha.ui.commands[command]));
-	}
+	$('#addCategory').click(function() {
+		var category = addCategory();
+		addSkill(category);
+	});
+
+	$('.skillsMap').on('click', '.addSkill', function() {
+		addSkill($(this).closest('li'));
+	});
+
+	$('.skillsMap').on('click', '.removeSkill', function() {
+		$(this).closest('li').remove();
+	});
+
+	$('.skillsMap').on('click', '.removeCategory', function() {
+		$(this).closest('li').remove();
+	});
+
+	$('#mySection').on('click', '#downloadBtn', function() {
+		var list = serializeMap($('.skillsMap'));
+		console.log(JSON.stringify(list));
+	});
+
+	$('#mySection').on('click', function() {	
+		saveUserMap();
+	});
+
+	$('#mySection').on('change', function() {	
+		saveUserMap();
+	});
 	
 });
 
@@ -49,10 +75,36 @@ function deserializeMap(record) {
 
 }
 
-function hasValidElements(list) {
-	for(i in list)
-		if(String(list[i]) !== list[i])
-			return false;
+function addCategory(name) {
+	var template = $('#categoryTemplate').html();
+	var elm = $(template);
 
-	return true;
+	elm.find("input.category-name").val(name);
+	
+	$('.skillsMap').append(elm);
+
+	return elm;
+}
+
+function addSkill(category, name) {
+	var template = $('#extraSkillTemplate').html();
+	var elem = $(template);
+	elem.find('input.skill-name').val(name);
+
+	category.children('ul').append(elem);
+
+}
+
+function saveUserMap() {
+	{	
+		var name = $('#mySection').children('input').val();
+
+		var list = serializeMap($('.skillsMap'));
+		$.post('/api/map', {
+			mapName: name,
+			mapData: list
+		}, function( /* data, status */ ) {
+		});
+		makePublishStateBtnsVisible();
+	}
 }
