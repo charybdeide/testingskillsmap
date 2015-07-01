@@ -37,10 +37,21 @@ $(function() {
 		saveUserInput();
 	});
 	
-	$('.saveEditableOnChange').on('change', function() {
+	$('.saveEditableOnChange').on('change DOMCharacterDataModified', function() {
+		console.log('change txt');
 		$(this).addClass('has-warning');
 		saveUserInput();
 	});
+	
+	$(window).scroll(function() {
+		var step1 = $('.makeMapContent .step1');
+		
+	    if ($(this).scrollTop() > step1.offset().top + step1.height()) {
+			$('.headerCreate').fadeOut();
+	     } else {
+			 $('.headerCreate').fadeIn();
+	     }
+	 });
 });
 
 function serializeMap(rootElement) {
@@ -103,8 +114,6 @@ function addSkill(category, name) {
 }
 
 function saveUserInput() {
-	console.log('save');
-		
 	clearTimeout(saveTimeout);
 	
 	saveTimeout = setTimeout(function() {	
@@ -139,7 +148,7 @@ function saveUserInput() {
 			mapName: name,
 			mapData: list
 		}, function( /* data, status */ ) {
-			$('.input-group.has-warning').removeClass('has-warning');
+			$('.input-group.has-warning, .editable.has-warning').removeClass('has-warning');
 		});
 	
 		makePublishStateBtnsVisible();

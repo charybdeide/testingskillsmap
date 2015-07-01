@@ -202,3 +202,13 @@ body.index .introduction {
   color: rgb(113, 178, 230);
   border-color: rgb(113, 178, 230);
 }
+
+.step1Editable {
+  min-height: 250px !important;
+  -webkit-transition: background-color ease-in-out 1s;
+}
+
+.step1Editable.has-warning {
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-transition: background-color ease-in-out 0.5s;
+}
