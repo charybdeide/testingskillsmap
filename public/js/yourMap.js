@@ -1,7 +1,8 @@
 $(function() {
-	
+
 	$.get('/api/getMap', function(map) {
 		deserializeMap(JSON.parse(map));
+		deserializeStep1(JSON.parse(map));
 	});
 
 	$('#addCategory').click(function() {
@@ -27,13 +28,20 @@ $(function() {
 	});
 
 	$('#mySection').on('click', function() {	
-		saveUserMap();
+		saveUserInput();
 	});
 
 	$('#mySection').on('change', function() {	
-		saveUserMap();
+		saveUserInput();
 	});
-	
+
+	$('.step1Editable').on('click', function() {	
+		saveUserInput();
+	});
+
+	$('.step1Editable').on('change', function() {	
+		saveUserInput();
+	});
 });
 
 function serializeMap(rootElement) {
@@ -75,6 +83,8 @@ function deserializeMap(record) {
 
 }
 
+
+
 function addCategory(name) {
 	var template = $('#categoryTemplate').html();
 	var elm = $(template);
@@ -95,16 +105,46 @@ function addSkill(category, name) {
 
 }
 
-function saveUserMap() {
+function saveUserInput() {
 	{	
+		var step1 = $('.step1Editable').html();
+		
+		var facts = $("#facts").val();
+		var concepts = $("#concepts").val();
+		var procedures = $("#procedures").val();
+		var cognitiveStrategies = $("#cognitiveStrategies").val();
+		var models = $("#models").val();
+		var skills = $("#skills").val();
+		var attitudes = $("#attitudes").val();
+		var metacognition = $("#metacognition").val();
+		var tableList = [];
+		tableList.push({
+			"facts": facts,
+			"concepts": concepts,
+			"procedures": procedures,
+			"cognitiveStrategies": cognitiveStrategies,
+			"models": models,
+			"skillsTable": skills,
+			"attitudes": attitudes,
+			"metacognition": metacognition
+		});
+
 		var name = $('#mySection').children('input').val();
 
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
+			step1Data: step1,
+			knowledgeDimensionData: tableList,
 			mapName: name,
 			mapData: list
 		}, function( /* data, status */ ) {
 		});
 		makePublishStateBtnsVisible();
+
 	}
+}
+
+function deserializeStep1(record) {
+	var step1Data = record.step1Data;
+	$('.step1Editable').html(step1Data);
 }
