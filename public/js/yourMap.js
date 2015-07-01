@@ -2,6 +2,12 @@ $(function() {
 	$.get('/api/getMap', function(map) {
 		deserializeMap(JSON.parse(map));
 	});
+
+	for(var command in aloha.ui.commands)
+	{
+		$('#'+command+'Button').on('click', aloha.ui.command(aloha.ui.commands[command]));
+	}
+	
 });
 
 function serializeMap(rootElement) {

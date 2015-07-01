@@ -105,3 +105,7 @@ body.index .introduction {
   border-width: 2px;
   display: inline-table;
 }
+
+.editable {
+  color: green;
+}

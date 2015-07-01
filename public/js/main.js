@@ -50,7 +50,7 @@ $(function() {
 		$('#unShareMapBtn').addClass('hide');
 	});
 
-	$('textarea.ckeditor').ckeditor();
+	aloha.dom.query('.editable', document).forEach(aloha);
 });
 
 function addCategory(name) {
