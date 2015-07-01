@@ -103,7 +103,6 @@ function addSkill(category, name) {
 }
 
 function saveUserInput() {
-	
 	console.log('save');
 		
 	clearTimeout(saveTimeout);

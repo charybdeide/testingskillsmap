@@ -83,14 +83,6 @@ body.index .introduction {
   color: white;
 }
 
-.skillsMap, .skillsMap ul {
-  list-style-type: none;
-}
-
-.skillsMap li {
-  margin: 5px 0;
-}
-
 .sign-in {
   text-align: center;
 }
@@ -114,4 +106,99 @@ body.index .introduction {
   position: fixed;
   right: 10px;
   z-index: 9999;
+}
+
+.skillsMap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  flex: 3;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid #ccc;
+  padding-bottom: 30px;
+}
+.skillsMap, .skillsMap ul {
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+.skillsMap .category {
+  border-top: 1px solid #ccc;
+  width: calc(100% / 3);
+  display: inline-block;
+  padding: 0 15px;
+  margin-top: 40px;
+}
+
+.skillsMap .input-group-btn {
+  vertical-align: bottom;
+}
+
+.skillsMap .category > ul {
+  padding-left: 10px;
+}
+
+.skillsMap .addSkill {
+  margin-left: 20px;
+}
+
+.skillsMap .category-name, .skillsMap .skill-name {
+  background: transparent;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0;
+  padding-right: 25px;
+} 
+
+.skillsMap .category-name, .skillsMap .skill-name,
+.skillsMap .category-name:active, .skillsMap .skill-name:active,
+.skillsMap .btn, .skillsMap .btn:focus {
+  box-shadow: none !important;
+} 
+
+
+.skillsMap .btn:focus {
+  outline: none;
+}
+
+.skillsMap .has-warning .category-name, 
+.skillsMap .has-warning .skill-name {
+  border-color: #EABA45
+}
+
+.skillsMap .category-name {
+    padding-top: 30px;
+    height: 60px;
+}
+
+.skillsMap .btn-danger {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  color: #ccc;
+  margin-top: 1px;
+  margin-left: -31px !important;
+}
+
+.skillsMap .btn-danger:hover,
+.skillsMap .btn-danger:focus {
+  color: #a9432f;
+  background-color: transparent;
+}
+
+.skillsMap .addSkill {
+  border-top: 0;
+  border-right: 0;
+  background-color: transparent;
+  border-radius: 0;
+  color: #ccc;
+}
+
+.skillsMap .addSkill:hover,
+.skillsMap .addSkill:focus {
+  color: rgb(113, 178, 230);
+  border-color: rgb(113, 178, 230);
 }
