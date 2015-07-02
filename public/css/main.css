@@ -99,7 +99,7 @@ body.index .introduction {
 }
 
 .editable {
-  color: green;
+  color: #086A87;
 }
 
 .headerCreate {
@@ -145,7 +145,7 @@ body.index .introduction {
   margin-left: 20px;
 }
 
-.skillsMap .category-name, .skillsMap .skill-name {
+.skillsMap .category-name, .skillsMap .skill-name, .mapName {
   background: transparent;
   border-top: 0;
   border-right: 0;
@@ -155,10 +155,17 @@ body.index .introduction {
 
 .skillsMap .category-name, .skillsMap .skill-name,
 .skillsMap .category-name:active, .skillsMap .skill-name:active,
-.skillsMap .btn, .skillsMap .btn:focus {
+.skillsMap .btn, .skillsMap .btn:focus, .mapName {
   box-shadow: none !important;
 } 
 
+.mapName {
+  border-left: 0;
+  border-bottom: 0;
+  font-size: 22px;
+  font-weight: 680;
+  color: #61210B;
+}
 
 .skillsMap .btn:focus {
   outline: none;
@@ -172,6 +179,13 @@ body.index .introduction {
 .skillsMap .category-name {
     padding-top: 30px;
     height: 60px;
+    font-weight: 690;
+    font-size: 18px;
+    color: #4B088A;
+}
+
+.skillsMap .skill-name {
+    font-size: 15px;
 }
 
 .skillsMap .btn-danger {

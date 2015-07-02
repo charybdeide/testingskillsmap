@@ -28,12 +28,16 @@ $(function() {
 		console.log(JSON.stringify(list));
 	});
 
-	$('body').on('keypress', '.saveOnKeyPress', function() {
+	$('body').on('keyup', '.saveOnKeyPress', function() {
 		$(this).closest('.input-group').addClass('has-warning');
 		saveUserInput();
 	});
-	
+/*
 	$('body').on('click', '.saveOnClick', function() {
+		saveUserInput();
+	});
+*/
+	$('.skillsMap').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
 	
@@ -152,7 +156,7 @@ function saveUserInput() {
 		});
 	
 		makePublishStateBtnsVisible();
-	}, 2000);
+	}, 1000);
 }
 
 function deserializeStep1(record) {

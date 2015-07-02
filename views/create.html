@@ -1,19 +1,19 @@
 <div class = 'headerCreate btn-group'>
-  <button id="boldButton" class="btn btn-primary">B</button>
-  <button id="italicButton" class="btn btn-primary">I</button>
-  <button id="underlineButton" class="btn btn-primary">U</button>
-  <button id="olButton" class="btn btn-primary">OL</button>
-  <button id="ulButton" class="btn btn-primary">UL</button>
-  <button id="h1Button" class="btn btn-primary">h1</button>
-  <button id="h2Button" class="btn btn-primary">h2</button>
-  <button id="h3Button" class="btn btn-primary">h3</button>
-  <button id="h4Button" class="btn btn-primary">h4</button>
-  <button id="unformatButton" class="btn btn-primary">X</button>
+  <button id="boldButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="bold"><i class="fa fa-bold"></i></button>
+  <button id="italicButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="italic"><i class="fa fa-italic"></i></button>
+  <button id="underlineButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="underline"><i class="fa fa-underline"></i></button>
+  <button id="olButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="ordered list"><i class="fa fa-list-ol"></i></button>
+  <button id="ulButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="unordered list"><i class="fa fa-list-ul"></i></button>
+  <button id="unformatButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="remove formatting"><i class="fa fa-remove"></i></button>
+  <button id="h2Button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
+  <button id="h3Button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="heading 3">H3</button>
+  <button id="h4Button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="heading 4">H4</button>
+  <button id="pButton" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="paragraph"><i class="fa fa-paragraph"></i></button>
 </div>
 
 <div class="makeMapContent">
   <h1>Some guidelines</h1>
-  <p>To create your map, try the following flow:</p>
+  <p>To help you create your map, here's the following flow:</p>
 
   <div class="step1">
     <h2>Step 1: Identify problem-solving situations</h2>
@@ -202,7 +202,7 @@ searches for an adequate substitute."><i class="fa fa-eye"></i>
     <h2>Step 3: List them under categories in your map</h2>
     <p>To Do: details on how to categorize</p>
     <section id="mySection">
-      <input type="text" class="form-control saveOnKeyPress" placeholder="My personal testing skills map">
+      <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
 
       <ul class="skillsMap">
       </ul>
@@ -252,7 +252,7 @@ searches for an adequate substitute."><i class="fa fa-eye"></i>
     <div class="input-group">
       <input type="text" class="form-control skill-name saveOnKeyPress" placeholder="Skill">
       <span class="input-group-btn">
-        <button class="btn btn-danger removeSkill saveOnClick"><i class="fa fa-minus"></i></button>
+        <button class="btn btn-danger removeSkill saveOnClick specialClass"><i class="fa fa-minus"></i></button>
       </span>
     </div>
   </li>
