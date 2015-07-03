@@ -12,12 +12,13 @@
 </div>
 
 <div class="makeMapContent">
-  <h1>Some guidelines</h1>
-  <p>To help you create your map, here's the following flow:</p>
+  <h1>This is your personal workspace</h1>
+  <p>Here's where you keep your notes and work on your map.</p>
+  <p>To help in creating your map and working on it as it grows, you can use the following flow as a guideline:</p>
 
-  <div class="step1">
+  <div class="step1 step">
     <h2>Step 1: Identify problem-solving situations</h2>
-    <p>Think of a situation when you tried to solve a problem while doing some test activity and identify the following steps:</p>
+    <p>In the book "How we think", John Dewey presents a scaffolding for the reflection process, in the form of the following steps. To apply it for reflecting on your testing skills, think of a situation when you tried to solve a problem while doing some test activity and identify:</p>
     <ol>
       <li>the difficulty you felt</li>
       <li>the location of the problem</li>
@@ -25,16 +26,18 @@
       <li>how you experimented with and tested solutions</li>
       <li>the conclusion regarding the acceptance or rejection of the suggested solution/s</li>
     </ol>
-    <p>These steps are presented in the book "How we think" as a skeleton for the reflection process.</p>
     <p>Taking notes while thinking about each of the steps can help in the analysis of the situation:</p>
     <div class="editable step1Editable saveEditableOnChange">Start taking notes here....</div>
   </div>
-  <div class="step2">
+  <div class="step2 step">
     <h2>Step 2: Identify the skills you used</h2>
-    <p>For each of the steps in the reflection process, think about what skills you used. Here are some heuristics which can help you to identify the skills and not mix them with something else:
+    <p>For each of the steps in the reflection process, think about what skills you used. </p>
+    <p>
+      When identifying skills, it's essential to figure out what skills are, but also what other elements in the knowledge dimension are.
+      Here are some heuristics which can help you to identify the skills and not mix them with something else:
     </p>
     <ul>
-      <li> A table in the BBST Instructors' course differentiating between different elements in the knowledge dimension, and their different levels in the cognitive process dimension. Hover over each element to get some details on how to identify it.
+      <li> First, a table in the BBST Instructors' course differentiating between different elements in the knowledge dimension, and their different levels in the cognitive process dimension. Hover over each element to get some details on how to identify it.
         <table class="table table-hover table-bordered">
           <thead>
             <tr>
@@ -50,7 +53,7 @@
                 <td> 
                    <div class = "input-group">
                     <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="For example, “James Bach was born in 1623” is a statement of fact (but not true for the James Bach we know in the software testing community). A fact is the subject of a true statement of fact."><i class="fa fa-eye"></i>
+                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="For example, “James Bach was born in 1623” is a statement of fact (but not true for the James Bach we know in the software testing community). A fact is the subject of a true statement of fact."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "facts" class="form-control saveOnKeyPress">
@@ -68,7 +71,7 @@
     ■ definitions
     ■ descriptions of relationships between things
     ■ descriptions of contrasts between things
-    ■ description of the idea underlying a practice, process, task, heuristic (whatever)."><i class="fa fa-eye"></i>
+    ■ description of the idea underlying a practice, process, task, heuristic (whatever)."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "concepts" class="form-control saveOnKeyPress">
@@ -85,7 +88,7 @@
                       <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Reporting a bug" data-content="Consider the task of reporting a bug. Imagine someone has broken this task down into subtasks (simplify the steps, look for more general conditions, write a short descriptive summary, etc.)
 and presented the tasks in a sequential order. This might be a procedure or a cognitive strategy.
 This description is intended as a procedure if the author expects you to do all of the steps in exactly this order every time.
-The description is intended as a cognitive strategy if it is meant to provide a set of ideas to help you think through what you have to do for a given bug, with the understanding you may do different things in different orders each time. In such cases, the description is a useful reference point as you go."><i class="fa fa-eye"></i>
+The description is intended as a cognitive strategy if it is meant to provide a set of ideas to help you think through what you have to do for a given bug, with the understanding you may do different things in different orders each time. In such cases, the description is a useful reference point as you go."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "procedures" class="form-control saveOnKeyPress">
@@ -119,7 +122,7 @@ model of a program to derive scripted test cases for unskilled personnel to foll
 procedure.
 This definition of a model is a concept.
 The assertion “Harry Robinson publishes papers on software testing and models” is a statement
-of fact."><i class="fa fa-eye"></i>
+of fact."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "models" class="form-control saveOnKeyPress">
@@ -127,7 +130,7 @@ of fact."><i class="fa fa-eye"></i>
                 </td>
                 
             </tr>
-            <tr>
+            <tr id= "skillsRow">
               <th scope="row" data-toggle="tooltip" data-placement="left" title="Skills are behaviors improved with practice.">Skills</td>
 
                 <td>
@@ -139,7 +142,7 @@ work. Getting better at skilled work takes time and practice.
 Instruction about skills will often feature examples demonstrating skilled work, like “Here’s
 how I use this technique” or “Here’s how I found that bug.” The specific demonstrations
 might be of a procedure, cognitive strategy, or skilled performance. In many cases, it would be
-accurate and useful to class something as both a skill and a cognitive strategy."><i class="fa fa-eye"></i>
+accurate and useful to class something as both a skill and a cognitive strategy."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "skills" class="form-control saveOnKeyPress">
@@ -174,7 +177,7 @@ task);
 skill/ procedure/staffing to apply to obtain that information);
 ■ monitoring how well you are applying the procedure or strategy; and
 ■ remembering a definition or realizing you don’t remember it and digging through web
-searches for an adequate substitute."><i class="fa fa-eye"></i>
+searches for an adequate substitute."><i class="fa fa-lightbulb-o"></i>
                       </a>
                     </span>
                     <input type = "text" id= "metacognition" class="form-control saveOnKeyPress">
@@ -185,22 +188,24 @@ searches for an adequate substitute."><i class="fa fa-eye"></i>
           </tbody>
         </table>
 
-        <li>Try to identify a specific skill, tied to the situation you are analyzing. Avoid writing down generic characteristics like "Communication"; you can communicate more or less effectively. What does "Communication" tell you? What can you get from
+        <li>Try to identify a specific skill, one tied to the situation you are analyzing. Avoid writing down generic characteristics like "Communication"; you can communicate more or less effectively. What does "Communication" tell you? What can you get from
           it if you read it in 6 months from now? Will you be able to recall the exact skill and why you think it was a skill? </li>
-        <li>Think of skills as heuristics. Here are the 4 signatures of the heuristic from "Discussion of the method":
-          <ol>
-            <li>A heuristic does not guarantee a solution,</li>
-            <li>It may contradict other heuristics,</li>
-            <li>It reduces the search time for solving a problem, and</li>
-            <li>Its acceptance depends on the immediate context instead of an absolute standard</li>
-          </ol>
+        <li>Think of skills as heuristics. Here are the four signatures of the heuristic from "Discussion of the method":
+          <ul id="heuristicSignature">
+            <li><i class="fa fa-paw"></i> A heuristic does not guarantee a solution,</li>
+            <li><i class="fa fa-paw"></i> It may contradict other heuristics,</li>
+            <li><i class="fa fa-paw"></i> It reduces the search time for solving a problem, and</li>
+            <li><i class="fa fa-paw"></i> Its acceptance depends on the immediate context instead of an absolute standard</li>
+          </ul>
         </li>
         <li>Lorem ipsum</li>
     </ul>
   </div>
-  <div class="step3">
+  <div class="step3 step">
     <h2>Step 3: List them under categories in your map</h2>
-    <p>To Do: details on how to categorize</p>
+    <p>Categorizing your skills can help in some ways, because it adds structure. For example, after you have gathered data in your skills map, you can look for large differences between categories. Maybe one of them has many more skills than others. That may mean that you have an area of skills that you work on a lot, that you specialize in, and so you’ve discovered a main interest. Or noticing that you use skills from a single category often, can inform you that maybe it would be interesting looking at how you could apply other kinds of skills to solve some problems. 
+    </p>
+    <p>Don’t expect the categories to be perfect delimiters of skills. If a skill could work in two distinct categories, that’s fine, you can choose the one you think fits best. However, when creating categories, a good heuristic is that if any of the skills in your map could go into that category, then it’s too general.</p>
     <section id="mySection">
       <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
 
@@ -213,14 +218,14 @@ searches for an adequate substitute."><i class="fa fa-eye"></i>
     </section>
   </div>
 
-  <div class="step4">
+  <div class="step4 step">
     <h2>Step 4: Repeat</h2>
     <p>Remember, what's more important than the resulting map is the reflection process you practice with each time you go through the flow. With time and deliberate practice, the map will become more relevant and you will notice interesting patterns about
       your own skills evolution.
   </div>
 
-  <div class="step5">
-    <h2>Step 5: Share your map in the collective repo</h2>
+  <div class="step5 step">
+    <h2>Step 5: Share the map in the collective repo</h2>
     <p>You can share your own map in an anonymous way by publishing it in the collective repo. At any point you can unpublish it, making it private.</p>
     <div class="published-state hide">
       <button id="shareMapBtn" class="btn btn-default">Publish</button>

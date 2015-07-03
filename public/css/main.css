@@ -120,6 +120,7 @@ body.index .introduction {
   border-left: 1px solid #ccc;
   padding-bottom: 30px;
 }
+
 .skillsMap, .skillsMap ul {
   list-style-type: none;
   margin-left: 10px;
@@ -164,7 +165,7 @@ body.index .introduction {
   border-bottom: 0;
   font-size: 22px;
   font-weight: 680;
-  color: #61210B;
+  color: #8A2908;
 }
 
 .skillsMap .btn:focus {
@@ -225,4 +226,21 @@ body.index .introduction {
 .step1Editable.has-warning {
   background-color: rgba(255, 255, 255, 0.4);
   -webkit-transition: background-color ease-in-out 0.5s;
+}
+
+.step {
+  margin-top: 50px;
+
+}
+
+#skillsRow {
+  background-color: #E0F2F7;
+}
+
+#heuristicSignature {
+  list-style-type: none;
+}
+
+#mySection {
+  margin-top: 30px;
 }
