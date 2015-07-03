@@ -25,9 +25,18 @@ $(function() {
 		$('#shareMapBtn').removeClass('hide');
 		$('#unShareMapBtn').addClass('hide');
 	});
-
 	
 });
+
+document.onreadystatechange = function () {
+  var state = document.readyState;
+  if (state == 'complete') {
+      setTimeout(function(){
+         $('#load').addClass('hide');
+         $('#step1Editable').removeClass('hide');
+      },1000);
+  }
+}
 
 function makePublishStateBtnsVisible() {
 	$('.published-state').removeClass('hide');

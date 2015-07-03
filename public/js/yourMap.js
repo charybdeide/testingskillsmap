@@ -2,8 +2,11 @@ var saveTimeout;
 
 $(function() {
 	$.get('/api/getMap', function(map) {
-		deserializeMap(JSON.parse(map));
-		deserializeStep1(JSON.parse(map));
+		if(map != 'null')
+		{
+			deserializeStep1(JSON.parse(map));
+			deserializeMap(JSON.parse(map));	
+		}	
 	});
 
 	$('#addCategory').click(function() {
