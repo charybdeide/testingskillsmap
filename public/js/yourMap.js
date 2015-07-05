@@ -60,7 +60,7 @@ $(function() {
 	    saveUserInput();
 	    return $this;
 	});
-	
+
 	$(window).scroll(function() {
 		var step1 = $('.makeMapContent .step1');
 		
@@ -97,15 +97,18 @@ function serializeMap(rootElement) {
 function deserializeMap(record) {
 	var name = record.mapName;
 	$('#mySection').children('input').val(name);
-
-	var numberOfCategories = record.mapData.length;
-	for(i = 0; i < numberOfCategories; i++)
+	if (record.mapData != null)
 	{
-		var category = addCategory(record.mapData[i].category);
-		var numberOfSKills = record.mapData[i].skills.length;
-		for(j = 0; j < numberOfSKills; j++)
-			addSkill(category, record.mapData[i].skills[j]);
-	}		
+		var numberOfCategories = record.mapData.length;
+		for(i = 0; i < numberOfCategories; i++)
+		{
+			var category = addCategory(record.mapData[i].category);
+			var numberOfSKills = record.mapData[i].skills.length;
+			for(j = 0; j < numberOfSKills; j++)
+				addSkill(category, record.mapData[i].skills[j]);
+		}	
+	}
+			
 	makePublishStateBtnsVisible();
 	if(record.isPublished) makeUnPublishBtnVisible();
 }

@@ -9,7 +9,7 @@ $(function() {
     });
 
     aloha.dom.query('.editable', document).forEach(aloha);
-
+    
     for(var command in aloha.ui.commands)
 	{
 		$('#'+command+'Button').on('click', aloha.ui.command(aloha.ui.commands[command]));
