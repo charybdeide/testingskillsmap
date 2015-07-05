@@ -123,6 +123,10 @@ body.index .introduction {
   margin-top: 40px;
 }
 
+.input-group-map-name {
+  width: 100%;
+}
+
 .skillsMap .input-group-btn {
   vertical-align: bottom;
 }
@@ -151,18 +155,20 @@ body.index .introduction {
 
 .mapName {
   border-left: 0;
-  border-bottom: 0;
   font-size: 22px;
   font-weight: 680;
   color: #8A2908;
 }
 
-.skillsMap .btn:focus {
+.skillsMap .btn:focus, 
+.map-full-screen:focus, 
+.map-full-screen:active {
   outline: none;
 }
 
 .skillsMap .has-warning .category-name, 
-.skillsMap .has-warning .skill-name {
+.skillsMap .has-warning .skill-name,
+.skillsMap .has-warning .mapName {
   border-color: #EABA45
 }
 
@@ -178,7 +184,8 @@ body.index .introduction {
     font-size: 15px;
 }
 
-.skillsMap .btn-danger {
+.skillsMap .btn-danger,
+.map-full-screen {
   background-color: transparent;
   border: 0;
   border-radius: 0;
@@ -230,8 +237,40 @@ body.index .introduction {
   list-style-type: none;
 }
 
-#mySection {
+#mapSection {
   margin-top: 30px;
+}
+
+#mapSection .fa-compress {
+  display: none;
+}
+
+body.fullscreen-map #mapSection .fa-compress {
+  display: inline-block;
+}
+
+body.fullscreen-map #mapSection .fa-arrows-alt {
+  display: none;
+}
+
+body.fullscreen-map #mapSection {
+  margin-top: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  padding: 30px;
+}
+
+body.fullscreen-map .navbar.navbar-fixed-top,
+body.fullscreen-map .bs-docs-sidebar,
+body.fullscreen-map #step-1,
+body.fullscreen-map #step-2,
+body.fullscreen-map #step-4,
+body.fullscreen-map #step-5 {
+  display: none;
 }
 
 .bs-docs-sidenav ul {

@@ -195,15 +195,20 @@
       <p>Categorizing your skills can help in some ways, because it adds structure. For example, after you have gathered data in your skills map, you can look for large differences between categories. Maybe one of them has many more skills than others. That may mean that you have an area of skills that you work on a lot, that you specialize in, and so you’ve discovered a main interest. Or noticing that you use skills from a single category often, can inform you that maybe it would be interesting looking at how you could apply other kinds of skills to solve some problems. 
       </p>
       <p>Don’t expect the categories to be perfect delimiters of skills. If a skill could work in two distinct categories, that’s fine, you can choose the one you think fits best. However, when creating categories, a good heuristic is that if any of the skills in your map could go into that category, then it’s too general.</p>
-      <section id="mySection">
-        <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
-  
+      <section id="mapSection">
+
+        <div class="input-group input-group-map-name">
+          <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
+          <span class="input-group-btn">
+            <button class="btn map-full-screen"><i class="fa fa-arrows-alt"></i><i class="fa fa-compress"></i></button>
+          </span>
+        </div>
+
         <ul class="skillsMap">
         </ul>
-  
+
         <button id="addCategory" class="btn btn-default saveOnClick"><i class="fa fa-plus"></i> category</button>
         <button id="downloadBtn" class="btn btn-info">Generate JSON</button>
-  
       </section>
     </div>
   

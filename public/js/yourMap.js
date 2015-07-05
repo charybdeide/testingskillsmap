@@ -28,7 +28,7 @@ $(function() {
 		$(this).closest('li').remove();
 	});
 
-	$('#mySection').on('click', '#downloadBtn', function() {
+	$('#mapSection').on('click', '#downloadBtn', function() {
 		var list = serializeMap($('.skillsMap'));
 		console.log(JSON.stringify(list));
 	});
@@ -44,6 +44,10 @@ $(function() {
 
 	$('.skillsMap').on('click', '.saveOnClick', function() {
 		saveUserInput();
+	});
+	
+	$('.map-full-screen').click(function() {
+		$('body').toggleClass('fullscreen-map');
 	});
 });
 
@@ -71,7 +75,7 @@ function serializeMap(rootElement) {
 
 function deserializeMap(record) {
 	var name = record.mapName;
-	$('#mySection').children('input').val(name);
+	$('#mapSection').children('input').val(name);
 	if (record.mapData != null)
 	{
 		var numberOfCategories = record.mapData.length;
@@ -135,7 +139,7 @@ function saveUserInput() {
 			"metacognition": metacognition
 		});
 	
-		var name = $('#mySection').children('input').val();
+		var name = $('#mapSection').children('input').val();
 	
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
