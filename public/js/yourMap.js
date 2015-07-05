@@ -1,6 +1,8 @@
 var saveTimeout;
 
 $(function() {
+	initScrollSpy();
+
 	$.get('/api/getMap', function(map) {
 		if(map != 'null')
 		{
@@ -175,4 +177,27 @@ function saveUserInput() {
 function deserializeStep1(record) {
 	var step1Data = record.step1Data;
 	$('.step1Editable').html(step1Data);
+}
+
+function initScrollSpy() {
+	var $window = $(window);
+	var $body   = $(document.body);
+	
+	$body.scrollspy({
+		target: '.bs-docs-sidebar'
+	});
+
+	$window.on('load', function () {
+		$body.scrollspy('refresh');
+	});
+	
+	$(".bs-docs-sidebar a[href^='#']").on('click', function(e) {
+		e.preventDefault();
+		var hash = this.hash;
+		$('html, body').animate({
+			scrollTop: $(hash).offset().top
+		}, 300, function() {
+			window.location.hash = hash;
+		});
+	});
 }

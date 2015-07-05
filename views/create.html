@@ -1,243 +1,266 @@
-<div class = 'headerCreate btn-group'>
-  <button id="boldButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="bold"><i class="fa fa-bold"></i></button>
-  <button id="italicButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="italic"><i class="fa fa-italic"></i></button>
-  <button id="underlineButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="underline"><i class="fa fa-underline"></i></button>
-  <button id="olButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="ordered list"><i class="fa fa-list-ol"></i></button>
-  <button id="ulButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="unordered list"><i class="fa fa-list-ul"></i></button>
-  <button id="unformatButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="remove formatting"><i class="fa fa-remove"></i></button>
-  <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
-  <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
-  <button id="h3Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 3">H3</button>
-  <button id="h4Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 4">H4</button>
-  <button id="pButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="paragraph"><i class="fa fa-paragraph"></i></button>
-</div>
-
-<div class="makeMapContent">
-  <h1>This is your personal workspace</h1>
-  <p>Here's where you keep your notes and work on your map.</p>
-  <p>To help in creating your map and working on it as it grows, you can use the following flow as a guideline:</p>
-
-  <div class="step1 step">
-    <h2>Step 1: Identify problem-solving situations</h2>
-    <p>In the book "How we think", John Dewey presents a scaffolding for the reflection process, in the form of the following steps. To apply it for reflecting on your testing skills, think of a situation when you tried to solve a problem while doing some test activity,and identify:</p>
-    <ol>
-      <li>the difficulty you felt</li>
-      <li>the location of the problem</li>
-      <li>the possible solutions you found</li>
-      <li>how you experimented with and tested solutions</li>
-      <li>the conclusion regarding the acceptance or rejection of the suggested solution/s</li>
-    </ol>
-    <p>Taking notes while thinking about each of the steps can help in the analysis of the situation:</p>
-    <div id = "load"> <img src="ajax-loader.gif"></div>
-    <div id="step1Editable" class="editable step1Editable saveEditableOnChange hide">Start taking notes here....</div>
-  </div>
-  <div class="step2 step">
-    <h2>Step 2: Identify the skills you used</h2>
-    <p>For each of the steps in the reflection process, think about what skills you used. </p>
-    <p>
-      When identifying skills, it's essential to figure out what skills are, but also what other elements in the knowledge dimension are.
-      Here are some heuristics which can help you to identify the skills and to not mix them with something else:
-    </p>
-    <ul>
-      <li> First, a table in the BBST Instructors' course differentiating between different elements in the knowledge dimension, and their different levels in the cognitive process dimension. Hover over each element to get some details on how to identify it.
-        <table class="table table-hover table-bordered">
-          <thead>
-            <tr>
-              <th>The Knowledge Dimension</th>
-              <th>Identified elements</th>
-            </tr>
-          </thead>
-          <tbody>
-           
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="A “statement of fact” is a statement that can be unambiguously proved true or false.">Facts</td>
-               
-                <td> 
-                   <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="For example, “James Bach was born in 1623” is a statement of fact (but not true for the James Bach we know in the software testing community). A fact is the subject of a true statement of fact."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "facts" class="form-control saveOnKeyPress">
-                    </div>
-                </td>
-                
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="A concept is a general idea. “Concepts are abstract in that they omit the differences of things in their extension, treating them as if they were identical.” (Wikipedia: Concept). ">Concepts</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="In practical terms, we treat the following kinds of things as “concepts” in this taxonomy:
-    ■ definitions
-    ■ descriptions of relationships between things
-    ■ descriptions of contrasts between things
-    ■ description of the idea underlying a practice, process, task, heuristic (whatever)."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "concepts" class="form-control saveOnKeyPress">
-                  </div>
-                </td>
-               
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="Procedures are algorithms. They include a reproducible set of steps for achieving a goal.">Procedures</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Reporting a bug" data-content="Consider the task of reporting a bug. Imagine someone has broken this task down into subtasks (simplify the steps, look for more general conditions, write a short descriptive summary, etc.)
-and presented the tasks in a sequential order. This might be a procedure or a cognitive strategy.
-This description is intended as a procedure if the author expects you to do all of the steps in exactly this order every time.
-The description is intended as a cognitive strategy if it is meant to provide a set of ideas to help you think through what you have to do for a given bug, with the understanding you may do different things in different orders each time. In such cases, the description is a useful reference point as you go."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "procedures" class="form-control saveOnKeyPress">
-                  </div>
-                </td>
-                
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="Cognitive strategies are guiding procedures students can use to help them complete less structured tasks, such as those in reading comprehension and writing.">Cognitive Strategies</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <input type = "text" id= "cognitiveStrategies" class="form-control saveOnKeyPress">
-                    </span>
-                  </div>
-                </td>
-                
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="A model is a simplified representation created to make something easier to understand, manipulate or predict some aspects of the modeled object or system. It is an expression of
-something we may not completely understand in terms of something we think we do understand.">Models</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Differentiation between models and other elements" data-content="Deciding to use a state-machine representation of a program as a vehicle for generating tests is a
-cognitive strategy.
-Slavishly following someone’s step-by-step catalog of best practices for generating a statemachine
-model of a program to derive scripted test cases for unskilled personnel to follow is a
-procedure.
-This definition of a model is a concept.
-The assertion “Harry Robinson publishes papers on software testing and models” is a statement
-of fact."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "models" class="form-control saveOnKeyPress">
-                  </div>
-                </td>
-                
-            </tr>
-            <tr id= "skillsRow">
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="Skills are behaviors improved with practice.">Skills</td>
-
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="Effective bug report writing is a skill, and includes several other skills. One of those sub-skills is the ability to take a visible failure and vary your
-test conditions until you find a simpler set of conditions yielding the same failure. This is skilled
-work. Getting better at skilled work takes time and practice.
-Instruction about skills will often feature examples demonstrating skilled work, like “Here’s
-how I use this technique” or “Here’s how I found that bug.” The specific demonstrations
-might be of a procedure, cognitive strategy, or skilled performance. In many cases, it would be
-accurate and useful to class something as both a skill and a cognitive strategy."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "skills" class="form-control saveOnKeyPress">
-                  </div>
-                </td>
-                
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="“An attitude is a persisting state that modifies an individual’s choices of action” (Gagne, Briggs,
-& Wager, 1992, p. 48). Attitudes are often based on beliefs (a belief is a proposition held as true
-whether it has been verified true or not).">Attitudes</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <input type = "text" id= "attitudes" class="form-control saveOnKeyPress">
-                    </span>
-                  </div>
-                </td>
-                
-            </tr>
-            <tr>
-              <th scope="row" data-toggle="tooltip" data-placement="left" title="“Awareness and understanding of one's own thought process”(Oxford English dictionary)">Metacognition</td>
-                
-                <td>
-                  <div class = "input-group">
-                    <span class="input-group-btn">
-                      <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="Metacognition refers to the executive process involved in such tasks as:
-■ planning (such as choosing which procedure or cognitive strategy to adopt for a specific
-task);
-■ estimating how long it will take (or at least, deciding to estimate and figuring out what
-skill/ procedure/staffing to apply to obtain that information);
-■ monitoring how well you are applying the procedure or strategy; and
-■ remembering a definition or realizing you don’t remember it and digging through web
-searches for an adequate substitute."><i class="fa fa-lightbulb-o"></i>
-                      </a>
-                    </span>
-                    <input type = "text" id= "metacognition" class="form-control saveOnKeyPress">
-                  </div>
-                </td>
-                
-            </tr>
-          </tbody>
-        </table>
-
-        <li>Try to identify a specific skill, one tied to the situation you are analyzing. Avoid writing down generic characteristics like "Communication"; you can communicate more or less effectively. What does "Communication" tell you? What can you get from
-          it if you read it in 6 months from now? Will you be able to recall the exact skill and why you think it was a skill? </li>
-        <li>Think of skills as heuristics. Here are the four signatures of the heuristic from "Discussion of the method":
-          <ul id="heuristicSignature">
-            <li><i class="fa fa-paw"></i> A heuristic does not guarantee a solution,</li>
-            <li><i class="fa fa-paw"></i> It may contradict other heuristics,</li>
-            <li><i class="fa fa-paw"></i> It reduces the search time for solving a problem, and</li>
-            <li><i class="fa fa-paw"></i> Its acceptance depends on the immediate context instead of an absolute standard</li>
-          </ul>
-        </li>
-        <li>Lorem ipsum</li>
-    </ul>
-  </div>
-  <div class="step3 step">
-    <h2>Step 3: List them under categories in your map</h2>
-    <p>Categorizing your skills can help in some ways, because it adds structure. For example, after you have gathered data in your skills map, you can look for large differences between categories. Maybe one of them has many more skills than others. That may mean that you have an area of skills that you work on a lot, that you specialize in, and so you’ve discovered a main interest. Or noticing that you use skills from a single category often, can inform you that maybe it would be interesting looking at how you could apply other kinds of skills to solve some problems. 
-    </p>
-    <p>Don’t expect the categories to be perfect delimiters of skills. If a skill could work in two distinct categories, that’s fine, you can choose the one you think fits best. However, when creating categories, a good heuristic is that if any of the skills in your map could go into that category, then it’s too general.</p>
-    <section id="mySection">
-      <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
-
-      <ul class="skillsMap">
-      </ul>
-
-      <button id="addCategory" class="btn btn-default saveOnClick"><i class="fa fa-plus"></i> category</button>
-      <button id="downloadBtn" class="btn btn-info">Generate JSON</button>
-
-    </section>
+<div class="row">
+   <div class = 'headerCreate btn-group'>
+    <button id="boldButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="bold"><i class="fa fa-bold"></i></button>
+    <button id="italicButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="italic"><i class="fa fa-italic"></i></button>
+    <button id="underlineButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="underline"><i class="fa fa-underline"></i></button>
+    <button id="olButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="ordered list"><i class="fa fa-list-ol"></i></button>
+    <button id="ulButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="unordered list"><i class="fa fa-list-ul"></i></button>
+    <button id="unformatButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="remove formatting"><i class="fa fa-remove"></i></button>
+    <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
+    <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
+    <button id="h3Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 3">H3</button>
+    <button id="h4Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 4">H4</button>
+    <button id="pButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="paragraph"><i class="fa fa-paragraph"></i></button>
   </div>
 
-  <div class="step4 step">
-    <h2>Step 4: Repeat</h2>
-    <p>Remember, what's more important than the resulting map is the reflection process you practice with each time you go through the flow. With time and deliberate practice, the map will become more relevant and you will notice interesting patterns about
-      your own skills evolution.
-  </div>
 
-  <div class="step5 step">
-    <h2>Step 5: Share the map in the collective repo</h2>
-    <p>You can share your own map in an anonymous way by publishing it in the collective repo. At any point you can unpublish it, making it private.</p>
-    <div class="published-state hide">
-      <button id="shareMapBtn" class="btn btn-default">Publish</button>
-      <button id="unShareMapBtn" class="btn btn-default hide">Unpublish</button>
+  <div class="makeMapContent col-md-9" role="main" id="personal-workspace">
+    <h1><span class="target"></span>This is your personal workspace</h1>
+    <p>Here's where you keep your notes and work on your map.</p>
+    <p>To help in creating your map and working on it as it grows, you can use the following flow as a guideline:</p>
+  
+    <div id="step-1" class="step1 step">
+      <h2><span class="stepHelper">1.</span> Identify problem-solving situations</h2>
+      <p>In the book "How we think", John Dewey presents a scaffolding for the reflection process, in the form of the following steps. To apply it for reflecting on your testing skills, think of a situation when you tried to solve a problem while doing some test activity,and identify:</p>
+      <ol>
+        <li>the difficulty you felt</li>
+        <li>the location of the problem</li>
+        <li>the possible solutions you found</li>
+        <li>how you experimented with and tested solutions</li>
+        <li>the conclusion regarding the acceptance or rejection of the suggested solution/s</li>
+      </ol>
+      <p>Taking notes while thinking about each of the steps can help in the analysis of the situation:</p>
+      <div id = "load"> <img src="ajax-loader.gif"></div>
+      <div id="step1Editable" class="editable step1Editable saveEditableOnChange hide">Start taking notes here....</div>
     </div>
-
+    <div class="step2 step" id="step-2">
+      <h2><span class="stepHelper">2.</span> Identify the skills you used</h2>
+      <p>For each of the steps in the reflection process, think about what skills you used. </p>
+      <p>
+        When identifying skills, it's essential to figure out what skills are, but also what other elements in the knowledge dimension are.
+        Here are some heuristics which can help you to identify the skills and to not mix them with something else:
+      </p>
+      <ul>
+        <li> First, a table in the BBST Instructors' course differentiating between different elements in the knowledge dimension, and their different levels in the cognitive process dimension. Hover over each element to get some details on how to identify it.
+          <table class="table table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>The Knowledge Dimension</th>
+                <th>Identified elements</th>
+              </tr>
+            </thead>
+            <tbody>
+             
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="A “statement of fact” is a statement that can be unambiguously proved true or false.">Facts</td>
+                 
+                  <td> 
+                     <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="For example, “James Bach was born in 1623” is a statement of fact (but not true for the James Bach we know in the software testing community). A fact is the subject of a true statement of fact."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "facts" class="form-control saveOnKeyPress">
+                      </div>
+                  </td>
+                  
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="A concept is a general idea. “Concepts are abstract in that they omit the differences of things in their extension, treating them as if they were identical.” (Wikipedia: Concept). ">Concepts</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="In practical terms, we treat the following kinds of things as “concepts” in this taxonomy:
+      ■ definitions
+      ■ descriptions of relationships between things
+      ■ descriptions of contrasts between things
+      ■ description of the idea underlying a practice, process, task, heuristic (whatever)."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "concepts" class="form-control saveOnKeyPress">
+                    </div>
+                  </td>
+                 
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="Procedures are algorithms. They include a reproducible set of steps for achieving a goal.">Procedures</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Reporting a bug" data-content="Consider the task of reporting a bug. Imagine someone has broken this task down into subtasks (simplify the steps, look for more general conditions, write a short descriptive summary, etc.)
+  and presented the tasks in a sequential order. This might be a procedure or a cognitive strategy.
+  This description is intended as a procedure if the author expects you to do all of the steps in exactly this order every time.
+  The description is intended as a cognitive strategy if it is meant to provide a set of ideas to help you think through what you have to do for a given bug, with the understanding you may do different things in different orders each time. In such cases, the description is a useful reference point as you go."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "procedures" class="form-control saveOnKeyPress">
+                    </div>
+                  </td>
+                  
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="Cognitive strategies are guiding procedures students can use to help them complete less structured tasks, such as those in reading comprehension and writing.">Cognitive Strategies</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <input type = "text" id= "cognitiveStrategies" class="form-control saveOnKeyPress">
+                      </span>
+                    </div>
+                  </td>
+                  
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="A model is a simplified representation created to make something easier to understand, manipulate or predict some aspects of the modeled object or system. It is an expression of
+  something we may not completely understand in terms of something we think we do understand.">Models</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="Differentiation between models and other elements" data-content="Deciding to use a state-machine representation of a program as a vehicle for generating tests is a
+  cognitive strategy.
+  Slavishly following someone’s step-by-step catalog of best practices for generating a statemachine
+  model of a program to derive scripted test cases for unskilled personnel to follow is a
+  procedure.
+  This definition of a model is a concept.
+  The assertion “Harry Robinson publishes papers on software testing and models” is a statement
+  of fact."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "models" class="form-control saveOnKeyPress">
+                    </div>
+                  </td>
+                  
+              </tr>
+              <tr id= "skillsRow">
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="Skills are behaviors improved with practice.">Skills</td>
+  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="Effective bug report writing is a skill, and includes several other skills. One of those sub-skills is the ability to take a visible failure and vary your
+  test conditions until you find a simpler set of conditions yielding the same failure. This is skilled
+  work. Getting better at skilled work takes time and practice.
+  Instruction about skills will often feature examples demonstrating skilled work, like “Here’s
+  how I use this technique” or “Here’s how I found that bug.” The specific demonstrations
+  might be of a procedure, cognitive strategy, or skilled performance. In many cases, it would be
+  accurate and useful to class something as both a skill and a cognitive strategy."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "skills" class="form-control saveOnKeyPress">
+                    </div>
+                  </td>
+                  
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="“An attitude is a persisting state that modifies an individual’s choices of action” (Gagne, Briggs,
+  & Wager, 1992, p. 48). Attitudes are often based on beliefs (a belief is a proposition held as true
+  whether it has been verified true or not).">Attitudes</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <input type = "text" id= "attitudes" class="form-control saveOnKeyPress">
+                      </span>
+                    </div>
+                  </td>
+                  
+              </tr>
+              <tr>
+                <th scope="row" data-toggle="tooltip" data-placement="left" title="“Awareness and understanding of one's own thought process”(Oxford English dictionary)">Metacognition</td>
+                  
+                  <td>
+                    <div class = "input-group">
+                      <span class="input-group-btn">
+                        <a tabindex="0" class="btn btn-info" role="button" data-toggle="popover" data-trigger="focus" title="" data-content="Metacognition refers to the executive process involved in such tasks as:
+  ■ planning (such as choosing which procedure or cognitive strategy to adopt for a specific
+  task);
+  ■ estimating how long it will take (or at least, deciding to estimate and figuring out what
+  skill/ procedure/staffing to apply to obtain that information);
+  ■ monitoring how well you are applying the procedure or strategy; and
+  ■ remembering a definition or realizing you don’t remember it and digging through web
+  searches for an adequate substitute."><i class="fa fa-lightbulb-o"></i>
+                        </a>
+                      </span>
+                      <input type = "text" id= "metacognition" class="form-control saveOnKeyPress">
+                    </div>
+                  </td>
+                  
+              </tr>
+            </tbody>
+          </table>
+  
+          <li>Try to identify a specific skill, one tied to the situation you are analyzing. Avoid writing down generic characteristics like "Communication"; you can communicate more or less effectively. What does "Communication" tell you? What can you get from
+            it if you read it in 6 months from now? Will you be able to recall the exact skill and why you think it was a skill? </li>
+          <li>Think of skills as heuristics. Here are the four signatures of the heuristic from "Discussion of the method":
+            <ul id="heuristicSignature">
+              <li><i class="fa fa-paw"></i> A heuristic does not guarantee a solution,</li>
+              <li><i class="fa fa-paw"></i> It may contradict other heuristics,</li>
+              <li><i class="fa fa-paw"></i> It reduces the search time for solving a problem, and</li>
+              <li><i class="fa fa-paw"></i> Its acceptance depends on the immediate context instead of an absolute standard</li>
+            </ul>
+          </li>
+          <li>Lorem ipsum</li>
+      </ul>
+    </div>
+    <div class="step3 step" id="step-3">
+      <h2><span class="stepHelper">3.</span> List them under categories in your map</h2>
+      <p>Categorizing your skills can help in some ways, because it adds structure. For example, after you have gathered data in your skills map, you can look for large differences between categories. Maybe one of them has many more skills than others. That may mean that you have an area of skills that you work on a lot, that you specialize in, and so you’ve discovered a main interest. Or noticing that you use skills from a single category often, can inform you that maybe it would be interesting looking at how you could apply other kinds of skills to solve some problems. 
+      </p>
+      <p>Don’t expect the categories to be perfect delimiters of skills. If a skill could work in two distinct categories, that’s fine, you can choose the one you think fits best. However, when creating categories, a good heuristic is that if any of the skills in your map could go into that category, then it’s too general.</p>
+      <section id="mySection">
+        <input type="text" class="form-control saveOnKeyPress mapName" placeholder="My personal testing skills map">
+  
+        <ul class="skillsMap">
+        </ul>
+  
+        <button id="addCategory" class="btn btn-default saveOnClick"><i class="fa fa-plus"></i> category</button>
+        <button id="downloadBtn" class="btn btn-info">Generate JSON</button>
+  
+      </section>
+    </div>
+  
+    <div class="step4 step" id="step-4">
+      <h2><span class="stepHelper">4.</span> Repeat</h2>
+      <p>Remember, what's more important than the resulting map is the reflection process you practice with each time you go through the flow. With time and deliberate practice, the map will become more relevant and you will notice interesting patterns about
+        your own skills evolution.
+    </div>
+  
+    <div class="step5 step" id="step-5">
+      <h2><span class="stepHelper">5.</span> Share the map in the collective repo</h2>
+      <p>You can share your own map in an anonymous way by publishing it in the collective repo. At any point you can unpublish it, making it private.</p>
+      <div class="published-state hide">
+        <button id="shareMapBtn" class="btn btn-default">Publish</button>
+        <button id="unShareMapBtn" class="btn btn-default hide">Unpublish</button>
+      </div>
+  
+    </div>
+  
   </div>
 
-</div>
+  <div class="col-md-3" role="complementary">
+    <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+      <ul class="nav bs-docs-sidenav">
+         <li>
+           <a href="#personal-workspace">This is your personal workspace</a>
+            <ul class="nav">
+              <li><a href="#step-1">1. Identify problem-solving situations</a></li>
+              <li><a href="#step-2">2. Identify the skills you used</a></li>
+              <li><a href="#step-3">3. List them under categories in your map</a></li>
+              <li><a href="#step-4">4. Repeat</a></li>
+              <li><a href="#step-5">5. Share the map in the collective repo</a></li>
+            </ul>
+         </li>
+      </ul>
+      <a class="back-to-top" href="#top">
+        Back to top
+      </a>
+    </nav>
 
+  </div>
+</div>
 <template id="categoryTemplate">
   <li class="category">
     <div class="input-group">

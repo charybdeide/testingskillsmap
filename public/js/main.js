@@ -25,7 +25,6 @@ $(function() {
 		$('#shareMapBtn').removeClass('hide');
 		$('#unShareMapBtn').addClass('hide');
 	});
-	
 });
 
 document.onreadystatechange = function () {
@@ -34,7 +33,7 @@ document.onreadystatechange = function () {
       setTimeout(function(){
          $('#load').addClass('hide');
          $('#step1Editable').removeClass('hide');
-      },1000);
+      }, 1000);
   }
 }
 
