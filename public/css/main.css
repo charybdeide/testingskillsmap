@@ -298,7 +298,7 @@ body.fullscreen-map #step-5 {
 }
 
 #personal-workspace, #step-1, #step-2, #step-3, #step-4, #step-5,
-.bs-docs-sidenav, .sign-in {
+.bs-docs-sidenav, .sign-in, .browseMapContent {
   padding-top: 60px;
 }
 

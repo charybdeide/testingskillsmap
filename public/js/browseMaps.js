@@ -16,7 +16,6 @@ function deserializePublishedMap(record) {
 	var mapElem = addMapName(name);
 	
 	var categoriesNo = record.mapData.length;
-	console.log(record.mapData);
 	for(j = 0 ; j < categoriesNo; j++) {
 		var catName = record.mapData[j].category;
 		var mapCatElem = addMapCategory(mapElem, catName);

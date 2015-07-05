@@ -75,7 +75,7 @@ function serializeMap(rootElement) {
 
 function deserializeMap(record) {
 	var name = record.mapName;
-	$('#mapSection').children('input').val(name);
+	$('#mapName').val(name);
 	if (record.mapData != null)
 	{
 		var numberOfCategories = record.mapData.length;
@@ -139,8 +139,8 @@ function saveUserInput() {
 			"metacognition": metacognition
 		});
 	
-		var name = $('#mapSection').children('input').val();
-	
+		var name = $('#mapName').val();
+
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
 			step1Data: step1,
