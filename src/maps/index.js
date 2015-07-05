@@ -1,6 +1,7 @@
 'use strict';
 var Boom = require('Boom');
 var mongoose = require('mongoose');
+var data = require("./data.js");
 mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
 var db = mongoose.connection;
@@ -18,6 +19,12 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
   mapData: [{category: String, skills: [String]}],
   isPublished: Boolean
 }, {collection: 'usermap'}));
+
+var keywords = mongoose.model('keywords', new mongoose.Schema({
+  user: String,
+  keywords: [String]
+}, {collection: 'keywords'}));
+
 
 
 var sendError = function(err, reply) {
@@ -45,6 +52,7 @@ var init = function(server) {
             js: [
               { src: 'js/main.js' },
               { src: 'js/yourMap.js' },
+              { src: 'js/aloha.min.js' }
               ]
           });
 
@@ -90,6 +98,8 @@ var init = function(server) {
       var session = request.session.get('session');
       var query = { user: session.user };
 
+      var skillsList = data.getSkills(request.payload.mapData);
+      
       usermap.findOne(query, function(err, record) {
         if(err) {
           sendError(err);
@@ -106,7 +116,13 @@ var init = function(server) {
             mapData: request.payload.mapData,
             isPublished: false
           };
-          usermap.create(update, checkError(reply));
+          usermap.create(update, function(err) {
+            if(err) {
+              sendError(reply);
+            } 
+            else
+              keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+          });
         } else {
           var update = {
             timestamp: new Date(),
@@ -115,10 +131,27 @@ var init = function(server) {
             mapName: request.payload.mapName,
             mapData: request.payload.mapData,
           };
-          usermap.update(query, update, checkError(reply));
-        }
-
+          usermap.update(query, update, function(err) {
+            if(err) {
+              sendError(reply);
+            }
+            else
+            {
+              keywords.findOne(query, function(err, keywordsRecord) {
+                if(err) {
+                  sendError(err);
+                  return;
+                }
+                if(!keywordsRecord) keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+                else keywords.update(query, {keywords: skillsList}, checkError(reply));
+              })
+            }
+              
+          });
+        }       
       });
+
+    
     }
   });
 
