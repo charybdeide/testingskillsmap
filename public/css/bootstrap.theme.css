@@ -1,6 +1,9 @@
 body {
 	background-color: #fafafa;
 	position: relative;
+	font-family: 'Signika', sans-serif;
+	color: #666;
+	font-size: 15px;
 }
 
 .navbar {
@@ -13,14 +16,13 @@ body {
 	color: #fff;
 }
 
-body {
-	font-size: 16px;
-	color: #666;
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+	font-family: 'Overlock', cursive;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
 	color: #444;
-	font-family: 'Slabo 27px', serif;
 }
 
 a,
