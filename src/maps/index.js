@@ -32,6 +32,10 @@ var sendError = function(err, reply) {
   reply(Boom.internalServerError);
 }
 
+var unauthorizedError = function(reply) {
+    reply(Boom.unauthorized("You need to login to access this page"));
+}
+
 var checkError = function(reply) {
   return function(err) {
     if(err) {
@@ -47,6 +51,10 @@ var init = function(server) {
       method: 'GET',
       path: '/create',
       handler: function (request, reply) {
+
+
+          if (request.session.get('session').user == undefined) unauthorizedError(reply);
+          else  
 
           reply.view('create', { session: request.session.get('session'),
             js: [
@@ -64,6 +72,8 @@ var init = function(server) {
       path: '/browse',
       handler: function (request, reply) {
 
+          if (request.session.get('session').user == undefined) unauthorizedError(reply);
+          else
           reply.view('browse', { session: request.session.get('session'),
             js: [
               { src: 'js/main.js' },
