@@ -21,6 +21,15 @@ h1, h2, h3, h4, h5, h6 {
 	color: #444;
 }
 
+h5, h6 {
+	font-size: 16px;
+	color: #3C9276;
+}
+
+h5 {
+	font-weight: bold;
+}
+
 a,
 h2 .stepHelper {
 	color: #3C9276;
@@ -28,4 +37,26 @@ h2 .stepHelper {
 
 a:hover {
 	color: #183A2F;
+}
+
+.btn-info {
+  color: #3C9276;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-info:hover {
+  color: #62A791;
+  background-color: #eee;
+  border-color: #ccc;
+}
+
+.btn-info:active,
+.btn-info:focus,
+.btn-info:active:hover,
+.btn-info.active,
+.btn-info.active:hover {
+  color: #eee;
+  background-color: #62A791;
+  border-color: #ccc;
 }

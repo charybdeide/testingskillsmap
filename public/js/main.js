@@ -1,5 +1,6 @@
 $(function() {
 	initEditorTools();
+	initStep2();
 	
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
@@ -75,4 +76,13 @@ function initEditorTools() {
 
 		return event;
 	});
+}
+
+function initStep2() {
+	$(".btn-info-group").click(function() {
+		var group = $(this).attr("data-target");
+
+		$(this).toggleClass("active");
+		$(".identify-skills .group." + group).toggleClass("visible");
+	})
 }
