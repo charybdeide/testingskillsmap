@@ -45,31 +45,6 @@ $(function() {
 	$('.skillsMap').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
-
-	$('.saveEditableOnChange').on('change DOMCharacterDataModified', function() {
-		$(this).addClass('has-warning');
-		saveUserInput();
-	});
-
-	$('body').on('blur keyup paste input', '#step1Editable', function() {
-	    var $this = $(this);
-	    if ($this.data('before') !== $this.html()) {
-	        $this.data('before', $this.html());
-	        $this.trigger('change');
-	    }
-	    saveUserInput();
-	    return $this;
-	});
-
-	$(window).scroll(function() {
-		var step1 = $('.makeMapContent .step1');
-		
-	    if ($(this).scrollTop() > step1.offset().top + step1.height()) {
-			$('.headerCreate').fadeOut();
-	     } else {
-			 $('.headerCreate').fadeIn();
-	     }
-	 });
 });
 
 function serializeMap(rootElement) {

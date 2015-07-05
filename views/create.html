@@ -1,19 +1,4 @@
 <div class="row">
-   <div class = 'headerCreate btn-group'>
-    <button id="boldButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="bold"><i class="fa fa-bold"></i></button>
-    <button id="italicButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="italic"><i class="fa fa-italic"></i></button>
-    <button id="underlineButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="underline"><i class="fa fa-underline"></i></button>
-    <button id="olButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="ordered list"><i class="fa fa-list-ol"></i></button>
-    <button id="ulButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="unordered list"><i class="fa fa-list-ul"></i></button>
-    <button id="unformatButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="remove formatting"><i class="fa fa-remove"></i></button>
-    <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
-    <button id="h2Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
-    <button id="h3Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 3">H3</button>
-    <button id="h4Button" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 4">H4</button>
-    <button id="pButton" class="btn btn-primary saveOnClick" data-toggle="tooltip" data-placement="bottom" title="paragraph"><i class="fa fa-paragraph"></i></button>
-  </div>
-
-
   <div class="makeMapContent col-md-9" role="main" id="personal-workspace">
     <h1><span class="target"></span>This is your personal workspace</h1>
     <p>Here's where you keep your notes and work on your map.</p>
@@ -286,4 +271,28 @@
       </span>
     </div>
   </li>
+</template>
+
+<template id="editorTools">
+  <ul class="nav navbar-nav headerCreate">
+    <div class="navbar-form navbar-left" role="text-edit">
+      <div class="btn-group">
+        <button id="boldButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="bold"><i class="fa fa-bold"></i></button>
+        <button id="italicButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="italic"><i class="fa fa-italic"></i></button>
+        <button id="underlineButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="underline"><i class="fa fa-underline"></i></button>
+        <button id="unformatButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="remove formatting"><i class="fa fa-remove"></i></button>
+      </div>
+      
+      <div class="btn-group">
+        <button id="olButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="ordered list"><i class="fa fa-list-ol"></i></button>
+        <button id="ulButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="unordered list"><i class="fa fa-list-ul"></i></button>
+      </div>
+      
+      <div class="btn-group">
+        <button id="h2Button" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 2">H2</button>
+        <button id="h3Button" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 3">H3</button>
+        <button id="h4Button" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="heading 4">H4</button>
+        <button id="pButton" class="btn btn-default saveOnClick" data-toggle="tooltip" data-placement="bottom" title="paragraph"><i class="fa fa-paragraph"></i></button>
+      </div>
+    </div>
 </template>
