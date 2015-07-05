@@ -16,12 +16,8 @@ body {
 	color: #fff;
 }
 
-h1, h2, h3, h4, h5, h6, .navbar-brand {
-	font-family: 'Overlock', cursive;
-}
-
-
 h1, h2, h3, h4, h5, h6 {
+	font-family: 'Overlock', cursive;
 	color: #444;
 }
 
