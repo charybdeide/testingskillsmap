@@ -93,10 +93,6 @@ body.index .introduction {
   display: inline-table;
 }
 
-.editable {
-  color: #086A87;
-}
-
 .skillsMap {
   display: flex;
   flex-direction: row;
@@ -214,12 +210,17 @@ body.index .introduction {
   border-color: rgb(113, 178, 230);
 }
 
+.editable-separator {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 30px;
+  color: #3C9276;
+}
+
 .step1Editable {
   min-height: 250px !important;
   -webkit-transition: background-color ease-in-out 1s;
-  background-color: #fff;
-  padding: 30px 0;
-  margin: 30px 0;
 }
 
 .step1Editable.has-warning {
@@ -311,4 +312,10 @@ body.fullscreen-map #step-5 {
 
 .headerCreate li {
   cursor: pointer;
+}
+
+#load {
+  text-align: center;
+  height: 250px;
+  padding-top: 80px;
 }
