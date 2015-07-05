@@ -35,19 +35,28 @@ $(function() {
 		$(this).closest('.input-group').addClass('has-warning');
 		saveUserInput();
 	});
-/*
+
 	$('body').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
-*/
+
 	$('.skillsMap').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
-	
+
 	$('.saveEditableOnChange').on('change DOMCharacterDataModified', function() {
-		console.log('change txt');
 		$(this).addClass('has-warning');
 		saveUserInput();
+	});
+
+	$('body').on('blur keyup paste input', '#step1Editable', function() {
+	    var $this = $(this);
+	    if ($this.data('before') !== $this.html()) {
+	        $this.data('before', $this.html());
+	        $this.trigger('change');
+	    }
+	    saveUserInput();
+	    return $this;
 	});
 	
 	$(window).scroll(function() {
@@ -159,6 +168,7 @@ function saveUserInput() {
 		});
 	
 		makePublishStateBtnsVisible();
+
 	}, 1000);
 }
 
