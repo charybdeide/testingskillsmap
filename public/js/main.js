@@ -43,6 +43,14 @@ function makeUnPublishBtnVisible() {
 function initEditorTools() {
 	var hideTimeout;
 	
+	$(window).resize(function() {
+		var o = $("#step-1").offset();
+		$("#step1Editable").css({
+			marginLeft: o.left * -1,
+			paddingLeft: o.left
+		});
+	}).resize();
+	
 	$(".navbar.navbar-fixed-top .main-menu").after($("#editorTools").html());
 	
 	aloha.dom.query('.editable', document).forEach(aloha);

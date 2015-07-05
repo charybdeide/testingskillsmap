@@ -217,6 +217,9 @@ body.index .introduction {
 .step1Editable {
   min-height: 250px !important;
   -webkit-transition: background-color ease-in-out 1s;
+  background-color: #fff;
+  padding: 30px 0;
+  margin: 30px 0;
 }
 
 .step1Editable.has-warning {
@@ -282,7 +285,6 @@ body.fullscreen-map #step-5 {
   font-size: 13px;
   font-weight: 500;
   color: #767676;
-  
    padding-left: 10px;
 }
 
@@ -292,15 +294,7 @@ body.fullscreen-map #step-5 {
   color: #3C9276;
   text-decoration: none;
   background-color: transparent;
-  border-left: 1px solid #3C9276;
-  
-  padding-left: 9px;
 }
-
-.bs-docs-sidebar .back-to-top {
-   margin-left: 9px;
-}
-
 
 #personal-workspace, #step-1, #step-2, #step-3, #step-4, #step-5,
 .bs-docs-sidenav, .sign-in {
