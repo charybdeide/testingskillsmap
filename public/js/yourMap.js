@@ -1,6 +1,7 @@
 var saveTimeout;
 
 $(function() {
+	initScrollSpy();
 
 	$.get('/api/getMap', function(map) {
 		if(map != 'null')
@@ -27,7 +28,7 @@ $(function() {
 		$(this).closest('li').remove();
 	});
 
-	$('#mySection').on('click', '#downloadBtn', function() {
+	$('#mapSection').on('click', '#downloadBtn', function() {
 		var list = serializeMap($('.skillsMap'));
 		console.log(JSON.stringify(list));
 	});
@@ -44,31 +45,10 @@ $(function() {
 	$('.skillsMap').on('click', '.saveOnClick', function() {
 		saveUserInput();
 	});
-
-	$('.saveEditableOnChange').on('change DOMCharacterDataModified', function() {
-		$(this).addClass('has-warning');
-		saveUserInput();
+	
+	$('.map-full-screen').click(function() {
+		$('body').toggleClass('fullscreen-map');
 	});
-
-	$('body').on('blur keyup paste input', '#step1Editable', function() {
-	    var $this = $(this);
-	    if ($this.data('before') !== $this.html()) {
-	        $this.data('before', $this.html());
-	        $this.trigger('change');
-	    }
-	    saveUserInput();
-	    return $this;
-	});
-
-	$(window).scroll(function() {
-		var step1 = $('.makeMapContent .step1');
-		
-	    if ($(this).scrollTop() > step1.offset().top + step1.height()) {
-			$('.headerCreate').fadeOut();
-	     } else {
-			 $('.headerCreate').fadeIn();
-	     }
-	 });
 });
 
 function serializeMap(rootElement) {
@@ -95,7 +75,7 @@ function serializeMap(rootElement) {
 
 function deserializeMap(record) {
 	var name = record.mapName;
-	$('#mySection').children('input').val(name);
+	$('#mapSection').children('input').val(name);
 	if (record.mapData != null)
 	{
 		var numberOfCategories = record.mapData.length;
@@ -159,7 +139,7 @@ function saveUserInput() {
 			"metacognition": metacognition
 		});
 	
-		var name = $('#mySection').children('input').val();
+		var name = $('#mapSection').children('input').val();
 	
 		var list = serializeMap($('.skillsMap'));
 		$.post('/api/map', {
@@ -179,4 +159,27 @@ function saveUserInput() {
 function deserializeStep1(record) {
 	var step1Data = record.step1Data;
 	$('.step1Editable').html(step1Data);
+}
+
+function initScrollSpy() {
+	var $window = $(window);
+	var $body   = $(document.body);
+	
+	$body.scrollspy({
+		target: '.bs-docs-sidebar'
+	});
+
+	$window.on('load', function () {
+		$body.scrollspy('refresh');
+	});
+	
+	$(".bs-docs-sidebar a[href^='#']").on('click', function(e) {
+		e.preventDefault();
+		var hash = this.hash;
+		$('html, body').animate({
+			scrollTop: $(hash).offset().top
+		}, 300, function() {
+			window.location.hash = hash;
+		});
+	});
 }
