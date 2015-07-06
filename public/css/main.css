@@ -237,7 +237,7 @@ body.index .introduction {
   background-color: #E0F2F7;
 }
 
-#heuristicSignature {
+#heuristicSignature, .categoriesList, .skillsList{
   list-style-type: none;
 }
 
