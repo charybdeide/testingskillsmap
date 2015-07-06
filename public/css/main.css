@@ -319,3 +319,28 @@ body.fullscreen-map #step-5 {
   height: 250px;
   padding-top: 80px;
 }
+
+.bottom-group {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  max-height: 60%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 99999;
+  border-top: 1px solid #ccc;
+  overflow: auto;
+}
+
+.bottom-group .group {
+  display: none;
+}
+
+.bottom-group .group.visible {
+  display: block;
+}
+
+.bottom-group .group.visible {
+  border-bottom: 1px solid #ccc;
+}
+
