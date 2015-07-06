@@ -164,8 +164,8 @@ body.index .introduction {
 
 .skillsMap .has-warning .category-name, 
 .skillsMap .has-warning .skill-name,
-.skillsMap .has-warning .mapName {
-  border-color: #EABA45
+#mapSection .has-warning .mapName {
+  border-color: #EABA45;
 }
 
 .skillsMap .category-name {
@@ -344,3 +344,8 @@ body.fullscreen-map #step-5 {
   border-bottom: 1px solid #ccc;
 }
 
+.publishedSkillsMap .category {
+  display: inline-block;
+  margin: 1em;
+  width: 180px;
+}
