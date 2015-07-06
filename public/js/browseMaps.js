@@ -8,6 +8,20 @@ $(function() {
 		}
 			
 	});
+
+	$('#mapsSection').on('click', '.resize-map', function() {
+		if($(this).html() == "Shrink") {
+			$(this).prev().addClass('shrink');
+			$(this).prev().removeClass('enlarge');
+			$(this).html("Expand");	
+		}
+		else
+		{
+			$(this).prev().addClass('enlarge');
+			$(this).prev().removeClass('shrink');
+			$(this).html("Shrink");	
+		}
+	});
 });
 
 

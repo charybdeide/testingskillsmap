@@ -386,3 +386,20 @@ body.fullscreen-map #step-5 {
   border-left: 1px solid #ccc;
 }
   
+.publishedSkillsMap {
+  padding-bottom: 20px;
+}
+
+.shrink{
+-webkit-transform:scale(0.4);
+-moz-transform:scale(0.4);
+-ms-transform:scale(0.4);
+transform:scale(0.4);
+}
+
+.enlarge{
+-webkit-transform:scale(1);
+-moz-transform:scale(1);
+-ms-transform:scale(1);
+transform:scale(1);
+}
