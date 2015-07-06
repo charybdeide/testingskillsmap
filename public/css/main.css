@@ -344,8 +344,45 @@ body.fullscreen-map #step-5 {
   border-bottom: 1px solid #ccc;
 }
 
-.publishedSkillsMap .category {
-  display: inline-block;
-  margin: 1em;
-  width: 180px;
+.publishedSkillsMap .categoriesList {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: space-between;
+  flex: 3;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 40px;
+
 }
+
+.publishedSkillsMap .category {
+  margin-top: 20px;
+  border-top: 1px solid #ccc;
+
+}
+
+.publishedSkillsMap .category-name, .publishedSkillsMap .skill-name{
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+
+  padding-left: 5px;
+  padding-top: 10px;
+
+}
+
+.publishedSkillsMap .category-name {
+    font-size: 17px;
+    color: #3C9276;
+
+}
+
+.publishedSkillsMap .skill-name {
+    font-size: 14px;
+}
+
+.publishedSkillsMap .categoriesList {
+  border-left: 1px solid #ccc;
+}
+  
