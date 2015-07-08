@@ -6,6 +6,7 @@ var fs = require('fs');
 var views = require('./src/server/views');
 var login = require('./src/login');
 var maps = require('./src/maps');
+var about = require('./src/about');
 
 var filename = 'config.json';
 var Yar = require('yar');
@@ -18,6 +19,7 @@ server.connection({ port: 3000 });
 views.init(server, __dirname);
 login.init(server, configData);
 maps.init(server);
+about.init(server);
 
 var options = {
     cookieOptions: {

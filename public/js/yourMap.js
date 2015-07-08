@@ -28,11 +28,6 @@ $(function() {
 		$(this).closest('li').remove();
 	});
 
-	$('#mapSection').on('click', '#downloadBtn', function() {
-		var list = serializeMap($('.skillsMap'));
-		console.log(JSON.stringify(list));
-	});
-
 	$('body').on('keyup', '.saveOnKeyPress', function() {
 		$(this).closest('.input-group').addClass('has-warning');
 		saveUserInput();
