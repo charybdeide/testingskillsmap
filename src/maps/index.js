@@ -108,8 +108,10 @@ var init = function(server) {
       var session = request.session.get('session');
       var query = { user: session.user };
 
-      var skillsList = data.getSkills(request.payload.mapData);
-      
+      if(request.payload.mapData) {
+        var skillsList = data.getSkills(request.payload.mapData);
+      }
+
       usermap.findOne(query, function(err, record) {
         if(err) {
           sendError(err);
