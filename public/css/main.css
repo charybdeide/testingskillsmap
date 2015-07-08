@@ -243,6 +243,7 @@ body.index .introduction {
 
 #mapSection {
   margin-top: 30px;
+  overflow: auto;
 }
 
 #mapSection .fa-compress {
