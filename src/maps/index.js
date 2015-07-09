@@ -77,7 +77,9 @@ var init = function(server) {
           reply.view('browse', { session: request.session.get('session'),
             js: [
               { src: 'js/main.js' },
-              { src: 'js/browseMaps.js' }
+              { src: 'js/browseMaps.js' },
+              { src: 'js/snap.svg-min.js'},
+              { src: 'js/aloha.min.js' }
               ]
           });
 

@@ -6,7 +6,7 @@ $(function() {
 			var map = JSON.parse(maps)[i];
 			deserializePublishedMap(map);
 		}
-			
+
 	});
 
 	$('#mapsSection').on('click', '.resize-map', function() {
@@ -22,13 +22,34 @@ $(function() {
 			$(this).html("Shrink");	
 		}
 	});
+
 });
 
 
 function deserializePublishedMap(record) {
 	var name = record.mapName;
 	var mapElem = addMapName(name);
-	
+	mapElem.children('#mapSvg').each(function () {
+		var svg = $(this)[0];
+		var s = Snap(svg);
+		console.log($(this).attr('width'));
+		drawTitle(name, s);
+		var line = s.path(Snap.format("M{x0},{y0}L{x1},{y1}L{x2},{y2}", {
+			x0: 20,
+			y0: 20,
+			x1: 20,
+			y1: 60,
+			x2: 60,
+			y2: 60
+		}));
+		line.attr({
+			fill: "none",
+			stroke: "#000",
+			strokeWidth: 2
+		})
+		
+	});
+
 	var categoriesNo = record.mapData.length;
 	for(j = 0 ; j < categoriesNo; j++) {
 		var catName = record.mapData[j].category;
@@ -63,4 +84,13 @@ function addMapSKill(category, skillName) {
 	var elem = $(template);
 	elem.find('.skill-name').html(skillName);
 	category.children('ul').append(elem);
+}
+
+	
+
+function drawTitle(name, s) {
+	var xcoord = 15;
+	var ycoord = 15;
+	var title = s.text(xcoord,ycoord, name);
+	
 }
