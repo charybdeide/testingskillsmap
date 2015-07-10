@@ -55,6 +55,7 @@ function initEditorTools() {
 	aloha.editor.stack.unshift(function(event) {
 		if(arguments[0] && arguments[0].type) {
 			var t = arguments[0].type;
+			console.log(t);
 			clearTimeout(hideTimeout);
 
 			if(t == "keyup") {
@@ -68,7 +69,8 @@ function initEditorTools() {
 				}, 400);
 			}
 
-			if(t == "mouseup") {
+			if(t == "aloha.mouseup") {
+				console.log("aici");
 				$('.headerCreate').show();
 				$('.main-menu').hide();
 			}
