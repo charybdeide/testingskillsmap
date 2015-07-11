@@ -108,7 +108,6 @@ function drawTitle(name, s) {
 			stroke: "#000",
 			strokeWidth: 2
 		})
-	//return [x1, y1];
 }
 
 function drawCategory(name, s, coord, colIndex) {
