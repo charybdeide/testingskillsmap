@@ -2,7 +2,7 @@
 var Boom = require('Boom');
 var mongoose = require('mongoose');
 var data = require("./data.js");
-mongoose.connect('mongodb://localhost:27017/testingskillsmap');
+mongoose.connect('mongodb://192.168.1.197:27017/testingskillsmap');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
