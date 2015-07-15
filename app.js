@@ -7,36 +7,20 @@ var views = require('./src/server/views');
 var login = require('./src/login');
 var maps = require('./src/maps');
 var about = require('./src/about');
+var session = require('./src/session');
 
-var filename = 'config.json';
-var Yar = require('yar');
+var configFile = 'config.json';
 
-var configData = JSON.parse(fs.readFileSync(filename));
+var configData = JSON.parse(fs.readFileSync(configFile));
 
 var server = new Hapi.Server();
 server.connection({ port: 3000 });
 
+session.init(server);
 views.init(server, __dirname);
 login.init(server, configData);
 maps.init(server);
 about.init(server);
-
-var options = {
-    cookieOptions: {
-        password: 'password',   // Required
-        isSecure: false // Required if using http
-    }
-};
-
-
-server.register({
-    register: Yar,
-    options: options
-}, function (err) {
-  if(err) {
-    console.log(err);
-  }
-});
 
 
 server.route({

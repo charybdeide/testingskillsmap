@@ -2,6 +2,7 @@
 var Boom = require('Boom');
 var mongoose = require('mongoose');
 var data = require("./data.js");
+
 var views = require("../server/views");
 mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
