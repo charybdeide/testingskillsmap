@@ -1,4 +1,5 @@
 var handlebars = require('handlebars');
+var Promise = require('promise');
 
 var defaultContext = {
   title: 'Testing skills map',
@@ -57,6 +58,16 @@ var init = function(server, path) {
   });
 };
 
+function validateUser(request) {
+  return new Promise(function(resolve, reject) {
+    var session = request.session.get('session');
+    if (!(session && session.user)) reject(new Error("Unauthorized"));
+    else resolve(session);  
+  });
+  
+}
+
 module.exports =  {
-  init: init
+  init: init,
+  validateUser: validateUser
 };

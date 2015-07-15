@@ -2,6 +2,7 @@
 var Boom = require('Boom');
 var mongoose = require('mongoose');
 var data = require("./data.js");
+var views = require("../server/views");
 mongoose.connect('mongodb://localhost:27017/testingskillsmap');
 
 var db = mongoose.connection;
@@ -32,8 +33,9 @@ var sendError = function(err, reply) {
   reply(Boom.internalServerError);
 }
 
-var unauthorizedError = function(reply) {
-    reply(Boom.unauthorized("You need to login to access this page"));
+var unauthorizedError = function(reply, err) {
+    if(err) console.log(err);
+    reply(Boom.unauthorized(err.message));
 }
 
 var checkError = function(reply) {
@@ -51,18 +53,17 @@ var init = function(server) {
       method: 'GET',
       path: '/create',
       handler: function (request, reply) {
-
-
-          if (request.session.get('session').user == undefined) unauthorizedError(reply);
-          else  
-
-          reply.view('create', { session: request.session.get('session'),
+          views.validateUser(request).then(function(session) {
+            reply.view('create', { session: session,
             js: [
               { src: 'js/main.js' },
               { src: 'js/yourMap.js' },
               { src: 'js/aloha.min.js' }
               ]
-          });
+            });
+          }).catch(function(err) {
+            unauthorizedError(reply, err);
+          });         
 
       }
   });
@@ -72,16 +73,18 @@ var init = function(server) {
       path: '/browse',
       handler: function (request, reply) {
 
-          if (request.session.get('session').user == undefined) unauthorizedError(reply);
-          else
-          reply.view('browse', { session: request.session.get('session'),
+          views.validateUser(request).then(function(session) {
+            reply.view('browse', { session: request.session.get('session'),
             js: [
               { src: 'js/main.js' },
               { src: 'js/browseMaps.js' },
               { src: 'js/snap.svg-min.js'},
               { src: 'js/aloha.min.js' }
               ]
-          });
+            });
+          }).catch(function(err) {
+            unauthorizedError(reply, err);
+          });          
 
       }
   });

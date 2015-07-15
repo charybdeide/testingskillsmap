@@ -1,4 +1,5 @@
 'use strict';
+var views = require('../server/views');
 
 var init = function(server) {
   server.route({
@@ -6,12 +7,10 @@ var init = function(server) {
         path: '/about',
         handler: function (request, reply) {
 
-          if (request.session.get('session').user == undefined) reply.view('about');
-          else
-          reply.view('about', { session: request.session.get('session'),
-            js: [
-             
-              ]
+          views.validateUser(request).then(function(session) {
+            reply.view('about', { session: session });
+          }).catch(function(err) {
+            reply.view('about');
           });
 
         }
