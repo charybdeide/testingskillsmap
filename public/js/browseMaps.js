@@ -27,7 +27,7 @@ $(function() {
 
 
 function deserializePublishedMap(record) {
-	var name = record.mapName;
+	var name = record.map.name;
 	var mapElem = addMapName(name);
 	mapElem.children('#mapSvg').each(function () {
 		var svg = $(this)[0];
@@ -41,17 +41,17 @@ function deserializePublishedMap(record) {
 	coord[0] = initialCoord[0];
 	coord[1] = initialCoord[1];
 
-	var categoriesNo = record.mapData.length;
+	var categoriesNo = record.map.data.length;
 	for(j = 0 ; j < categoriesNo; j++) {
-		var catName = record.mapData[j].category;
+		var catName = record.map.data[j].category;
 		var mapCatElem = addMapCategory(mapElem, catName);
 		var newCoord = drawCategory(catName, s, coord, colIndex);
 
 		coord[0] = newCoord[0];
 		coord[1] = newCoord[1];
-		var skillsNo = record.mapData[j].skills.length;
+		var skillsNo = record.map.data[j].skills.length;
 		for(t = 0; t < skillsNo; t++){
-			var skillName = record.mapData[j].skills[t];
+			var skillName = record.map.data[j].skills[t];
 			if (skillName != "") addMapSKill(mapCatElem, skillName);
 		}
 		/*

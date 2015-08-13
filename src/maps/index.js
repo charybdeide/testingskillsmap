@@ -16,9 +16,13 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
   user: String,
   timestamp: Date,
   step1Data: String,
-  knowledgeDimensionData: [{facts: String, concepts: String, procedures: String, cognitiveStrategies: String, models: String, skillsTable: String, attitudes: String, metacognition: String}],
-  mapName: String,
-  mapData: [{category: String, skills: [String]}],
+  knowledgeDimension: {facts: String, concepts: String, procedures: String, cognitiveStrategies: String, models: String, skillsTable: String, attitudes: String, metacognition: String},
+   
+  map: {
+      name: String,
+      data: [{category: String, skills: [String]}],
+  },
+  
   isPublished: Boolean
 }, {collection: 'usermap'}));
 
@@ -129,9 +133,8 @@ var init = function(server) {
             user: session.user,
             timestamp: new Date(),
             step1Data: request.payload.step1Data,
-            knowledgeDimensionData: request.payload.knowledgeDimensionData,
-            mapName: request.payload.mapName,
-            mapData: request.payload.mapData,
+            knowledgeDimension: request.payload.knowledgeDimension,
+            map: request.payload.map,
             isPublished: false
           };
           usermap.create(update, function(err) {
@@ -145,9 +148,8 @@ var init = function(server) {
           var update = {
             timestamp: new Date(),
             step1Data: request.payload.step1Data,
-            knowledgeDimensionData: request.payload.knowledgeDimensionData,
-            mapName: request.payload.mapName,
-            mapData: request.payload.mapData,
+            knowledgeDimension: request.payload.knowledgeDimension,
+            map: request.payload.map,
           };
           usermap.update(query, update, function(err) {
             if(err) {
