@@ -1,31 +1,11 @@
 <div class="browseMapContent">
 	<h1>Published maps</h1>
 
-	<div id='mapsSection'>
-	</div>
+	<ul id='mapsSection'>
+		{{#each maps}}
+			<li><a href='/browse/{{this.id}}'>{{this.name}}</a></li>
+		{{/each}}
+	</ul>
 </div>
 
 
-<template id='publishedMapNameTemplate'>
-<div class='publishedSkillsMap'>
-    <svg id = 'mapSvg' width = '75%' height = '300' viewbox = "0 0 500 300"></svg>
-    <div class = 'title'></div>
-  <ul class = 'categoriesList shrink'></ul>
-  <button class='btn resize-map'>Expand</button>
-</div>
-</template>
-
-<template id="publishedMapCategoryTemplate">
-  <li class="category col-md-4">
-    <div class="category-name"></div>
-
-    <ul class = 'skillsList'></ul>
-
-  </li>
-</template>
-
-<template id="publishedMapSkillTemplate">
-  <li class="skill">
-    <div class="skill-name"></div>
-  </li>
-</template>

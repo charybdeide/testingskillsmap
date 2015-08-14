@@ -79,14 +79,23 @@ var init = function(server) {
       handler: function (request, reply) {
 
           views.validateUser(request).then(function(session) {
-            reply.view('browse', { session: request.session.get('session'),
-            js: [
-              { src: 'js/main.js' },
-              { src: 'js/browseMaps.js' },
-              { src: 'js/snap.svg-min.js'},
-              { src: 'js/aloha.min.js' }
-              ]
+            usermap.find({ isPublished: true }, function (err, records) {
+              if(err) {
+                return sendError(err);
+              }
+              
+              reply.view('browse', { 
+                maps: previewMaps(records),
+                session: request.session.get('session'),
+                js: [
+                  { src: 'js/main.js' },
+                  { src: 'js/browseMaps.js' },
+                  { src: 'js/snap.svg-min.js'},
+                  { src: 'js/aloha.min.js' }
+                  ]
+              });
             });
+     
           }).catch(function(err) {
             unauthorizedError(reply, err);
           });          
@@ -206,25 +215,26 @@ var init = function(server) {
         usermap.update(query, set, checkError(reply));
       }
   });
-
-server.route({
-      method: 'GET',
-      path: '/api/getPublishedMaps',
-      handler: function (request, reply) {
-
-          var query = { isPublished: true };
-          usermap.find(query, function(err, record) {
-            if(err) {
-              sendError(err);
-              return;
-            }
-            return reply(JSON.stringify(record));
-          });
-      }
-  });
-
 };
+
+function previewMaps(maps) {
+  var previews = [];
+  
+  for(var i in maps) { 
+    console.log(maps[i].map.data);
+    previews.push({
+      id: maps[i]._id,
+      name: maps[i].map.name
+      //categories: [{categoryWidth: , categoryName: }],
+    });
+  }
+   // categoriesCount: maps[i].data.length
+   
+    
+  return previews;
+}
 
 module.exports = {
   init: init
 };
+
