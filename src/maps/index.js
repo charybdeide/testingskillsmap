@@ -221,20 +221,34 @@ function previewMaps(maps) {
   var previews = [];
   
   for(var i in maps) { 
-    console.log(maps[i].map.data);
+    var categoriesList = []; 
+    for(var j in maps[i].map.data) {
+      var catWidth;
+      var catName;
+
+      if (maps[i].map.data[j].category || (maps[i].map.data[j].category == "" && maps[i].map.data[j].skills != ""))
+      {
+        catName = maps[i].map.data[j].category;
+        var skillsCount = maps[i].map.data[j].skills.length;
+        catWidth = Math.min(skillsCount * 2, 90);
+        categoriesList.push({
+          categoryWidth: catWidth,
+          categoryName: catName
+        }) 
+       
+      } 
+    }
     previews.push({
-      id: maps[i]._id,
-      name: maps[i].map.name
-      //categories: [{categoryWidth: , categoryName: }],
-    });
+        id: maps[i]._id,
+        name: maps[i].map.name,
+        categories: categoriesList
+      });
   }
-   // categoriesCount: maps[i].data.length
-   
-    
   return previews;
 }
 
 module.exports = {
-  init: init
+  init: init,
+  previewMaps: previewMaps
 };
 
