@@ -232,8 +232,9 @@ function previewMaps(maps) {
         var skillsCount = maps[i].map.data[j].skills.length;
         catWidth = Math.min(skillsCount * 2, 90);
         categoriesList.push({
-          categoryWidth: catWidth,
-          categoryName: catName
+          width: catWidth,
+          name: catName,
+          zindex: 100-catWidth
         }) 
        
       } 

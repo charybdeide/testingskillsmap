@@ -3,9 +3,21 @@
 
 	<ul id='mapsSection'>
 		{{#each maps}}
-			<li><a href='/browse/{{this.id}}'>{{this.name}}</a></li>
+		<li>
+			<a href='/browse/{{this.id}}'>
+				<div class='categories'>
+					<div class="categories-container">
+						{{#each this.categories}}
+							<div class='published-map-category' style= 'width:{{this.width}}%; z-index:{{this.zindex}}' data-toggle="tooltip" data-placement="top" title="{{this.name}}">
+								<img src="pixel.png">
+							</div>
+						{{/each}}
+					</div>
+				</div>
+				{{this.name}} 
+			</a>
+		</li>
+
 		{{/each}}
 	</ul>
 </div>
-
-
