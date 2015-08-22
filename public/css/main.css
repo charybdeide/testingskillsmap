@@ -299,7 +299,7 @@ body.fullscreen-map #step-5 {
 }
 
 #personal-workspace, #step-1, #step-2, #step-3, #step-4, #step-5,
-.bs-docs-sidenav, .sign-in, .browseMapContent, .aboutContent {
+.bs-docs-sidenav, .sign-in, .browseMapContent, .aboutContent, .publishedSkillsMap {
   padding-top: 60px;
 }
 
@@ -398,4 +398,40 @@ body.fullscreen-map #step-5 {
 
 .published-map-category img {
   width: 100%;
+}
+
+.publishedSkillsMap .categoriesList {
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 1px solid #ccc;
+  padding: 0;
+}
+
+.publishedSkillsMap .categoriesList > li {
+  border-top: 1px solid #ccc;
+  width: calc(100% / 3);
+  margin-top: 20px;
+  padding: 0 10px 0 30px;
+}
+
+.publishedSkillsMap .categoriesList > li .category {
+  border: 1px solid #ccc;
+  border-top: 0;
+  border-right: 0;
+  padding: 40px 15px 5px 15px;
+  display: block;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.publishedSkillsMap .categoriesList > li > ul {
+  padding-left: 10px;
+}
+
+.publishedSkillsMap .categoriesList > li > ul > li {
+  border: 1px solid #ccc;
+  border-top: 0;
+  border-right: 0;
+  padding: 20px 15px 0 15px;
+  margin-right: 10px;
 }

@@ -1,0 +1,19 @@
+<div class='publishedSkillsMap'>
+	<h1 class = 'title'>
+		{{map.name}}
+	</h1>
+	<ul  class='categoriesList'>
+		{{#each map.data}}
+		<li>
+			<div  class="category" >{{this.category}}</div>
+			<ul class='skillsList'>
+				{{#each this.skills}}
+				<li class="skill">
+					<div class="skill-name">{{this}}</div>
+				</li>
+				{{/each}}
+			</ul>
+		</li>
+		{{/each}}
+	</ul>
+</div>

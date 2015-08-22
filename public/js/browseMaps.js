@@ -23,6 +23,7 @@ $(function() {
 			var colSize = availableWidth / (circles - 2);
 			
 			var emptySpace = $(this).width() - totalWidth;
+			
 			//arrange the circles
 			if(emptySpace < 0)
 			{

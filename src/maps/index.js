@@ -103,6 +103,31 @@ var init = function(server) {
       }
   });
 
+  server.route({
+      method: 'GET',
+      path: '/browse/{id}',
+      handler: function (request, reply) {
+        
+        var query = { _id: request.params.id, isPublished: true};
+        usermap.findOne(query, {map: true}, function (err, record) {
+          if (err) {
+            sendError(err);
+            return;
+          }
+          
+          return reply.view('map',  { 
+                map: record.map,
+                session: request.session.get('session'),
+                js: [
+                  { src: '/js/main.js' },
+                  { src: '/js/browseMaps.js' },
+                  { src: '/js/snap.svg-min.js'},
+                  { src: '/js/aloha.min.js' }
+                  ]
+              });
+        });       
+      }
+  });
  server.route({
       method: 'GET',
       path: '/api/getMap',
