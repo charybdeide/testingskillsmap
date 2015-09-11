@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bell": "^4.0.0",
-    "boom": "^2.8.0",
+    "boom": "~2.8.0",
     "debug": "~2.2.0",
     "handlebars": "~3.0.3",
     "handlebars-layouts": "~3.0.0",

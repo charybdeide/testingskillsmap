@@ -1,5 +1,5 @@
 'use strict';
-var Boom = require('Boom');
+var Boom = require('boom');
 var mongoose = require('mongoose');
 var data = require("./data.js");
 
