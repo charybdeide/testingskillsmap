@@ -2,5 +2,6 @@
 	"TwitterClientId":  "",
 	"TwitterClientSecret": "",
 	"GoogleClientId": "",	
-	"GoogleClientSecret": "" 	
+	"GoogleClientSecret": "",
+	"loginRedirect": "" 	
 }
