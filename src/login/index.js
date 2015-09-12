@@ -12,6 +12,7 @@ server.register(require('bell'), function (err) {
         clientId: configData.TwitterClientId,
         clientSecret: configData.TwitterClientSecret,
         isSecure: false,     // Terrible idea but required if not using HTTPS
+        location: configData.loginRedirect
     });
 
     server.auth.strategy('google', 'bell', {
