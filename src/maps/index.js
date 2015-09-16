@@ -34,19 +34,19 @@ var keywords = mongoose.model('keywords', new mongoose.Schema({
 
 
 var sendError = function(err, reply) {
-  console.log(err);
+  console.error(err);
   reply(Boom.internalServerError);
 }
 
 var unauthorizedError = function(reply, err) {
-    if(err) console.log(err);
+    if(err) console.error(err);
     reply(Boom.unauthorized(err.message));
 }
 
 var checkError = function(reply) {
   return function(err) {
     if(err) {
-      sendError(reply);
+      sendError(err, reply);
     }
     else
       reply('ok');
