@@ -7,6 +7,7 @@ var views = require('./src/server/views');
 var login = require('./src/login');
 var maps = require('./src/maps');
 var about = require('./src/about');
+var firstPage = require('./src/firstPage');
 var session = require('./src/session');
 
 var configFile = 'config.json';
@@ -21,18 +22,7 @@ views.init(server, __dirname);
 login.init(server, configData);
 maps.init(server);
 about.init(server);
-
-
-server.route({
-    method: 'GET',
-    path: '/',
-    handler: function (request, reply) {
-        reply.view('index', {
-          bodyClass: 'index',
-          session: request.session.get('session')
-        });
-    }
-});
+firstPage.init(server);
 
 // serve static file
 server.route({
@@ -44,7 +34,6 @@ server.route({
         }
     }
 });
-
 
 server.start(function () {
     console.log('Server running at:', server.info.uri);
