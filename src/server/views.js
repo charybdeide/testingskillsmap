@@ -10,11 +10,11 @@ handlebars.registerHelper('login', function(template) {
   var out;
   if(!session || !session.user)
   {
-    out = "<a href='/login'>Login</a>";
+    out = '<a href="/login">Login</a>';
   }
   else
   {
-    out = session.name + " <a href='/logout'>Logout</a>";
+    out = session.name + ' <a href="/logout">Logout</a>';
   }
 
   return out;
@@ -26,10 +26,10 @@ handlebars.registerHelper('mainButton', function(template) {
 
   if(!session || !session.user)
   {
-    out = "<a href='/login' class='btn btn-lg btn-default'>Login to start</a>";
+    out = '<a href="/login" class="btn btn-lg btn-default">Login to start</a>';
   }
   else {
-    out = "<a href='/create' class='btn btn-lg btn-default'>Work on your map</a>";
+    out = '<a href="/create" class="btn btn-lg btn-default">Work on your map</a>';
   }
   return out;
 });
@@ -40,16 +40,15 @@ handlebars.registerHelper('leftMenuButtons', function(template) {
 
   if(!session || !session.user)
   {
-    out = "<li><a href='/about'>About</a></li>";
+    out = '<li><a href="/about">About</a></li>';
   }
   else {
-    out = "<li><a href='/about'>About</a></li><li><a href='/create'>Create</a></li><li><a href='/browse'>Browse</a></li>";
+    out = '<li><a href="/about">About</a></li><li><a href="/create">Create</a></li><li><a href="/browse">Browse</a></li>';
   }
   return out;
 });
 
 var init = function(server, path) {
-
   // see: http://hapijs.com/tutorials/views
   server.views({
     engines: {
@@ -60,9 +59,7 @@ var init = function(server, path) {
     path: './views',
 
     layoutPath: './views/layout',
-		layout: true,
-
-    helpersPath: './views/helpers',
+    layout: true,
     context: defaultContext
   });
 };
@@ -71,12 +68,11 @@ function validateUser(request) {
   return new Promise(function(resolve, reject) {
     var session = request.session.get('session');
     if (!(session && session.user)) {
-      reject(new Error("Unauthorized"));
+      reject(new Error('Unauthorized'));
     } else {
       resolve(session);
     }
   });
-
 }
 
 module.exports =  {
