@@ -17,6 +17,12 @@
   "sub"       : true,
   "quotmark"  : "single",
   "globals": {
-    "$": false
+    "$": false,
+    "describe": false,
+    "it": false,
+    "before": false,
+    "after": false,
+    "beforeEach": false,
+    "afterEach": false
   }
 }

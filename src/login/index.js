@@ -30,8 +30,8 @@ server.register(require('bell'), function (err) {
         // Also be sure to pass the redirect_uri as well. It must be in the list of "AUTHORIZED REDIRECT URIS"
         location: configData.loginRedirect
     });
-    
-    
+
+
 });
 
 
@@ -43,55 +43,51 @@ server.register(require('bell'), function (err) {
       }
   });
 
-  
+
  server.route({
       method: 'GET',
       path: '/logout',
       handler: function (request, reply) {
           request.session.set('session', {});
           return reply.redirect('/');
-
       }
   });
 
   server.route({
-        method: ['GET', 'POST'], // Must handle both GET and POST
-        path: '/auth/twitter',          // The callback endpoint registered with the provider
-        config: {
-            auth: 'twitter',
-            handler: function (request, reply) {
+    method: ['GET', 'POST'], // Must handle both GET and POST
+    path: '/auth/twitter',          // The callback endpoint registered with the provider
+    config: {
+      auth: 'twitter',
+      handler: function (request, reply) {
+        // Perform any account lookup or registration, setup local session,
+        // and redirect to the application. The third-party credentials are
+        // stored in request.auth.credentials. Any query parameters from
+        // the initial request are passed back via request.auth.credentials.query.
 
-                // Perform any account lookup or registration, setup local session,
-                // and redirect to the application. The third-party credentials are
-                // stored in request.auth.credentials. Any query parameters from
-                // the initial request are passed back via request.auth.credentials.query.
-
-                //var uName = request.auth.credentials.profile.raw.name;
-                var twName = request.auth.credentials.profile.raw.screen_name;
-                var uName = request.auth.credentials.profile.raw.name.split(" ");
-                var uFName = uName[0];
-                userIdentif = twName;
-                request.session.set('session', {'user': twName, 'name': uFName});
-                return reply.redirect('/');
-            }
-        }
-    });
+        //var uName = request.auth.credentials.profile.raw.name;
+        var twName = request.auth.credentials.profile.raw.screen_name;
+        var uName = request.auth.credentials.profile.raw.name.split(" ");
+        var uFName = uName[0];
+        userIdentif = twName;
+        request.session.set('session', {'user': twName, 'name': uFName});
+        return reply.redirect('/');
+      }
+    }
+  });
 
   server.route({
-        method: ['GET', 'POST'],
-        path: '/auth/google',
-        config: {
-            auth: 'google',
-            handler: function (request, reply) {
-            	var email = request.auth.credentials.profile.email;
-                var uFName = request.auth.credentials.profile.name.first;
-            	request.session.set('session', {'user': email, 'name': uFName});
-                return reply.redirect('/');
-            }
+    method: ['GET', 'POST'],
+    path: '/auth/google',
+    config: {
+        auth: 'google',
+        handler: function (request, reply) {
+        var email = request.auth.credentials.profile.email;
+        var uFName = request.auth.credentials.profile.name.first;
+        request.session.set('session', {'user': email, 'name': uFName});
+          return reply.redirect('/');
         }
-    });
-
-
+    }
+  });
 };
 
 module.exports = {
