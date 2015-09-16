@@ -1,28 +1,31 @@
 'use strict';
+
 var Boom = require('boom');
 var mongoose = require('mongoose');
-var data = require("./data.js");
-
-var views = require("../server/views");
-mongoose.connect('mongodb://localhost:27017/testingskillsmap');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log('Connection to DB established');
-});
+var data = require('./data.js');
+var views = require('../server/views');
 
 var usermap = mongoose.model('usermap', new mongoose.Schema({
   user: String,
   timestamp: Date,
   step1Data: String,
-  knowledgeDimension: {facts: String, concepts: String, procedures: String, cognitiveStrategies: String, models: String, skillsTable: String, attitudes: String, metacognition: String},
-   
+
+  knowledgeDimension: {
+    facts: String,
+    concepts: String,
+    procedures: String,
+    cognitiveStrategies: String,
+    models: String,
+    skillsTable: String,
+    attitudes: String,
+    metacognition: String
+  },
+
   map: {
       name: String,
       data: [{category: String, skills: [String]}],
   },
-  
+
   isPublished: Boolean
 }, {collection: 'usermap'}));
 
@@ -36,22 +39,24 @@ var keywords = mongoose.model('keywords', new mongoose.Schema({
 var sendError = function(err, reply) {
   console.error(err);
   reply(Boom.internalServerError);
-}
+};
 
 var unauthorizedError = function(reply, err) {
-    if(err) console.error(err);
+    if(err) {
+      console.error(err);
+    }
     reply(Boom.unauthorized(err.message));
-}
+};
 
 var checkError = function(reply) {
   return function(err) {
     if(err) {
       sendError(err, reply);
-    }
-    else
+    } else {
       reply('ok');
-  }
-}
+    }
+  };
+};
 
 var init = function(server) {
   server.route({
@@ -68,7 +73,7 @@ var init = function(server) {
             });
           }).catch(function(err) {
             unauthorizedError(reply, err);
-          });         
+          });
 
       }
   });
@@ -78,13 +83,13 @@ var init = function(server) {
       path: '/browse',
       handler: function (request, reply) {
 
-          views.validateUser(request).then(function(session) {
+          views.validateUser(request).then(function() {
             usermap.find({ isPublished: true }, function (err, records) {
               if(err) {
                 return sendError(err);
               }
-              
-              reply.view('browse', { 
+
+              reply.view('browse', {
                 maps: previewMaps(records),
                 session: request.session.get('session'),
                 js: [
@@ -95,10 +100,10 @@ var init = function(server) {
                   ]
               });
             });
-     
+
           }).catch(function(err) {
             unauthorizedError(reply, err);
-          });          
+          });
 
       }
   });
@@ -107,15 +112,15 @@ var init = function(server) {
       method: 'GET',
       path: '/browse/{id}',
       handler: function (request, reply) {
-        
+
         var query = { _id: request.params.id, isPublished: true};
         usermap.findOne(query, {map: true}, function (err, record) {
           if (err) {
             sendError(err);
             return;
           }
-          
-          return reply.view('map',  { 
+
+          return reply.view('map',  {
                 map: record.map,
                 session: request.session.get('session'),
                 js: [
@@ -125,7 +130,7 @@ var init = function(server) {
                   { src: '/js/aloha.min.js' }
                   ]
               });
-        });       
+        });
       }
   });
  server.route({
@@ -174,9 +179,10 @@ var init = function(server) {
           usermap.create(update, function(err) {
             if(err) {
               sendError(reply);
-            } 
-            else
+            }
+            else {
               keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+            }
           });
         } else {
           var update = {
@@ -196,16 +202,16 @@ var init = function(server) {
                   sendError(err);
                   return;
                 }
-                if(!keywordsRecord) keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
-                else keywords.update(query, {keywords: skillsList}, checkError(reply));
-              })
+                if(!keywordsRecord) {
+                  keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+                } else {
+                  keywords.update(query, {keywords: skillsList}, checkError(reply));
+                }
+              });
             }
-              
           });
-        }       
+        }
       });
-
-    
     }
   });
 
@@ -244,9 +250,9 @@ var init = function(server) {
 
 function previewMaps(maps) {
   var previews = [];
-  
-  for(var i in maps) { 
-    var categoriesList = []; 
+
+  for(var i in maps) {
+    var categoriesList = [];
     for(var j in maps[i].map.data) {
       var catWidth;
       var catName;
@@ -260,9 +266,8 @@ function previewMaps(maps) {
           width: catWidth,
           name: catName,
           zindex: 100-catWidth
-        }) 
-       
-      } 
+        });
+      }
     }
     previews.push({
         id: maps[i]._id,
@@ -277,4 +282,3 @@ module.exports = {
   init: init,
   previewMaps: previewMaps
 };
-
