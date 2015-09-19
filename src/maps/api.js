@@ -4,7 +4,7 @@ var Boom = require('boom');
 
 var sendError = function(err, reply) {
   console.error(err);
-  reply(Boom.internalServerError);
+  reply(Boom.badImplementation(err.message, err));
 };
 
 var checkError = function(reply) {
@@ -26,7 +26,7 @@ function init(server) {
           var query = { user: session.user };
           models.usermap.findOne(query, function(err, record) {
             if(err) {
-              sendError(err);
+              sendError(err, reply);
               return;
             }
             return reply(JSON.stringify(record));
@@ -41,14 +41,11 @@ function init(server) {
     handler: function (request, reply) {
       var session = request.session.get('session');
       var query = { user: session.user };
-
-      if(request.payload.mapData) {
-        var skillsList = data.getSkills(request.payload.mapData);
-      }
+      var skillsList = data.getSkills(request.payload.mapData);
 
       models.usermap.findOne(query, function(err, record) {
         if(err) {
-          sendError(err);
+          sendError(err, reply);
           return;
         }
         var update;
@@ -64,7 +61,7 @@ function init(server) {
           };
           models.usermap.create(update, function(err) {
             if(err) {
-              sendError(reply);
+              sendError(err, reply);
             } else {
               models.keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
             }
@@ -78,11 +75,11 @@ function init(server) {
           };
           models.usermap.update(query, update, function(err) {
             if(err) {
-              sendError(reply);
+              sendError(err, reply);
             } else {
               models.keywords.findOne(query, function(err, keywordsRecord) {
                 if(err) {
-                  sendError(err);
+                  sendError(err, reply);
                   return;
                 }
                 if(!keywordsRecord) {

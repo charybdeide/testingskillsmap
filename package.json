@@ -28,5 +28,8 @@
   "repository": {
     "type": "git",
     "url": "https://coveredincloth@bitbucket.org/coveredincloth/testingskillsmap.git"
+  },
+  "devDependencies": {
+    "should": "^7.1.0"
   }
 }

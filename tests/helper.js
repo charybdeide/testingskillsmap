@@ -30,6 +30,25 @@ function before(callback) {
   });
 }
 
+
+var emptyMap =  { 
+  "step1Data" : "", 
+  "isPublished" : true, 
+  "map" : { 
+    "name" : "", 
+    "data" : [], 
+    "knowledgeDimension" : { 
+      "facts" : "", 
+      "concepts" : "", 
+      "procedures" : "", 
+      "cognitiveStrategies" : "", 
+      "models" : "", 
+      "skillsTable" : "", 
+      "attitudes" : "", 
+      "metacognition" : "" }}};
+
+
 module.exports = {
-  before: before
+  before: before,
+  emptyMap: emptyMap
 };

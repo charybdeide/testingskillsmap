@@ -1,4 +1,8 @@
 function getSkills(mapData) {
+  if(!mapData) {
+    return [];
+  }
+  
   var list = [];
   var mapLength = mapData.length;
 
