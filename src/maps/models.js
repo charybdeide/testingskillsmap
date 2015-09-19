@@ -21,7 +21,7 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
       data: [{category: String, skills: [String]}],
   },
 
-  isPublished: Boolean
+  isPublished: { type: Boolean, default: false }
 }, {collection: 'usermap'}));
 
 var keywords = mongoose.model('keywords', new mongoose.Schema({

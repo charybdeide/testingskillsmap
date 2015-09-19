@@ -52,51 +52,27 @@ function init(server) {
 
       var skillsList = data.getSkills(request.payload.mapData);
 
-      models.usermap.findOne(query, function (err, record) {
+
+      var update = {
+        user: session.user,
+        timestamp: new Date(),
+        step1Data: request.payload.step1Data,
+        knowledgeDimension: request.payload.knowledgeDimension,
+        map: request.payload.map,
+      };
+      models.usermap.update(query, update, { upsert: true }, function (err) {
         if (err) {
           sendError(err, reply);
-          return;
-        }
-        var update;
-
-        if (!record) {
-          update = {
-            user: session.user,
-            timestamp: new Date(),
-            step1Data: request.payload.step1Data,
-            knowledgeDimension: request.payload.knowledgeDimension,
-            map: request.payload.map,
-            isPublished: false
-          };
-          models.usermap.create(update, function (err) {
-            if (err) {
-              sendError(err, reply);
-            } else {
-              models.keywords.create({ user: session.user, keywords: skillsList }, checkError(reply));
-            }
-          });
         } else {
-          update = {
-            timestamp: new Date(),
-            step1Data: request.payload.step1Data,
-            knowledgeDimension: request.payload.knowledgeDimension,
-            map: request.payload.map,
-          };
-          models.usermap.update(query, update, function (err) {
+          models.keywords.findOne(query, function (err, keywordsRecord) {
             if (err) {
               sendError(err, reply);
+              return;
+            }
+            if (!keywordsRecord) {
+              models.keywords.create({ user: session.user, keywords: skillsList }, checkError(reply));
             } else {
-              models.keywords.findOne(query, function (err, keywordsRecord) {
-                if (err) {
-                  sendError(err, reply);
-                  return;
-                }
-                if (!keywordsRecord) {
-                  models.keywords.create({ user: session.user, keywords: skillsList }, checkError(reply));
-                } else {
-                  models.keywords.update(query, { keywords: skillsList }, checkError(reply));
-                }
-              });
+              models.keywords.update(query, { keywords: skillsList }, checkError(reply));
             }
           });
         }
