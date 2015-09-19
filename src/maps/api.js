@@ -52,7 +52,6 @@ function init(server) {
 
       var skillsList = data.getSkills(request.payload.mapData);
 
-
       var update = {
         user: session.user,
         timestamp: new Date(),

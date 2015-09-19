@@ -57,6 +57,14 @@ body.index .jumbotron {
   color: #000;
 }
 
+body.index .jumbotron-container {
+  height: 532px;
+  background-image: url("../img/logo-large.png");
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: auto 30%;
+}
+
 body.index .introduction {
   background-color: rgba(240, 240, 240, 0.9);
   min-height: 100%;
@@ -434,4 +442,12 @@ body.fullscreen-map #step-5 {
   border-right: 0;
   padding: 20px 15px 0 15px;
   margin-right: 10px;
+}
+
+#main-logo {
+  position: absolute;
+  width: 100%;
+  max-width: 800px;
+  bottom:0;
+  
 }
