@@ -1,6 +1,7 @@
 var data = require('./data.js');
 var models = require('./models');
 var Boom = require('boom');
+var validation = require('./validation.js')
 
 var sendError = function(err, reply) {
   console.error(err);
@@ -41,6 +42,11 @@ function init(server) {
     handler: function (request, reply) {
       var session = request.session.get('session');
       var query = { user: session.user };
+     
+      if(!validation.isMapWitMeta(request.payload)) {
+       return reply(Boom.badRequest());
+      }
+      
       var skillsList = data.getSkills(request.payload.mapData);
 
       models.usermap.findOne(query, function(err, record) {

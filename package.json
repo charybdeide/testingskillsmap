@@ -30,6 +30,7 @@
     "url": "https://coveredincloth@bitbucket.org/coveredincloth/testingskillsmap.git"
   },
   "devDependencies": {
+    "chai": "^3.2.0",
     "should": "^7.1.0"
   }
 }
