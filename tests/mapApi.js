@@ -52,16 +52,15 @@ describe('/api/map', function () {
     });
   });
 
-  /*
     it('should return 403 if the user is not logged and tries to send map data', function (done) {
       testServer.inject({
         method: 'POST',
         url: '/api/map',
         payload: helper.emptyMap
       }, function (res) {
-        res.statusCode.should.equal(300);
+        expect(res.statusCode).to.equal(403);
         done();
       });
     });
-  */
+  
 });

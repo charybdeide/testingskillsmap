@@ -3,14 +3,14 @@ var models = require('./models');
 var Boom = require('boom');
 var validation = require('./validation.js')
 
-var sendError = function(err, reply) {
+var sendError = function (err, reply) {
   console.error(err);
   reply(Boom.badImplementation(err.message, err));
 };
 
-var checkError = function(reply) {
-  return function(err) {
-    if(err) {
+var checkError = function (reply) {
+  return function (err) {
+    if (err) {
       sendError(err, reply);
     } else {
       reply('ok');
@@ -20,19 +20,19 @@ var checkError = function(reply) {
 
 function init(server) {
   server.route({
-      method: 'GET',
-      path: '/api/getMap',
-      handler: function (request, reply) {
-          var session = request.session.get('session');
-          var query = { user: session.user };
-          models.usermap.findOne(query, function(err, record) {
-            if(err) {
-              sendError(err, reply);
-              return;
-            }
-            return reply(JSON.stringify(record));
-          });
-      }
+    method: 'GET',
+    path: '/api/getMap',
+    handler: function (request, reply) {
+      var session = request.session.get('session');
+      var query = { user: session.user };
+      models.usermap.findOne(query, function (err, record) {
+        if (err) {
+          sendError(err, reply);
+          return;
+        }
+        return reply(JSON.stringify(record));
+      });
+    }
   });
 
   server.route({
@@ -40,23 +40,26 @@ function init(server) {
     path: '/api/map',
 
     handler: function (request, reply) {
+      if (!validation.isUserLoggedIn(request)) {
+        return reply(Boom.forbidden());
+      }
       var session = request.session.get('session');
       var query = { user: session.user };
-     
-      if(!validation.isMapWitMeta(request.payload)) {
-       return reply(Boom.badRequest());
+
+      if (!validation.isMapWitMeta(request.payload)) {
+        return reply(Boom.badRequest());
       }
-      
+
       var skillsList = data.getSkills(request.payload.mapData);
 
-      models.usermap.findOne(query, function(err, record) {
-        if(err) {
+      models.usermap.findOne(query, function (err, record) {
+        if (err) {
           sendError(err, reply);
           return;
         }
         var update;
 
-        if(!record) {
+        if (!record) {
           update = {
             user: session.user,
             timestamp: new Date(),
@@ -65,11 +68,11 @@ function init(server) {
             map: request.payload.map,
             isPublished: false
           };
-          models.usermap.create(update, function(err) {
-            if(err) {
+          models.usermap.create(update, function (err) {
+            if (err) {
               sendError(err, reply);
             } else {
-              models.keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+              models.keywords.create({ user: session.user, keywords: skillsList }, checkError(reply));
             }
           });
         } else {
@@ -79,19 +82,19 @@ function init(server) {
             knowledgeDimension: request.payload.knowledgeDimension,
             map: request.payload.map,
           };
-          models.usermap.update(query, update, function(err) {
-            if(err) {
+          models.usermap.update(query, update, function (err) {
+            if (err) {
               sendError(err, reply);
             } else {
-              models.keywords.findOne(query, function(err, keywordsRecord) {
-                if(err) {
+              models.keywords.findOne(query, function (err, keywordsRecord) {
+                if (err) {
                   sendError(err, reply);
                   return;
                 }
-                if(!keywordsRecord) {
-                  models.keywords.create({user: session.user, keywords: skillsList}, checkError(reply));
+                if (!keywordsRecord) {
+                  models.keywords.create({ user: session.user, keywords: skillsList }, checkError(reply));
                 } else {
-                  models.keywords.update(query, {keywords: skillsList}, checkError(reply));
+                  models.keywords.update(query, { keywords: skillsList }, checkError(reply));
                 }
               });
             }
