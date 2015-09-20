@@ -444,10 +444,12 @@ body.fullscreen-map #step-5 {
   margin-right: 10px;
 }
 
-#main-logo {
-  position: absolute;
+.first-page-graphic {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 100%;
-  max-width: 800px;
+  max-width: 500px;
   bottom:0;
   
 }
