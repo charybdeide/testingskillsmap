@@ -52,4 +52,9 @@ $(function() {
 	
 		});
 	}).resize();
+
+
+  setTimeout(function() {
+    $(window).resize();
+  }, 1000);
 });
