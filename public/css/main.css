@@ -469,7 +469,7 @@ body.fullscreen-map #step-5 {
   background-size: auto 36%;
 }
 
-.chain-separator{
+.chain-separator {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -478,4 +478,10 @@ body.fullscreen-map #step-5 {
   width: 100%;
   max-width: 530px;
   bottom:0;
+}
+
+#menu-logo {
+  margin-top: 8px;
+  margin-right: 7px;
+  width: 70px;
 }

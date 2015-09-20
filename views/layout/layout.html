@@ -25,6 +25,9 @@
 
   <div class="navbar navbar-fixed-top">
     <div class="container">
+      <div class="navbar-logo navbar-header">
+        <img src="/img/logo-large.png" id="menu-logo">
+      </div>
       <div class="navbar-header">
         <a class="navbar-brand" href="/">Testing Skills Map</a>
       </div>
@@ -44,8 +47,7 @@
 
   <div class="container">
 
-    {{! Every view gets inserted here }}
-    {{{content}}}
+    {{! Every view gets inserted here }} {{{content}}}
 
   </div>
 
@@ -75,9 +77,10 @@
     ga('send', 'pageview');
   </script>
 
-  {{#js}} <script src="{{src}}"></script> {{/js}}
+  {{#js}}
+  <script src="{{src}}"></script> {{/js}}
 
-  
+
 
 </body>
 
