@@ -219,11 +219,8 @@ body.index .introduction {
 }
 
 .editable-separator {
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
-  font-size: 30px;
-  color: #3C9276;
+  height: 90px;
+
 }
 
 .step1Editable {
@@ -452,4 +449,33 @@ body.fullscreen-map #step-5 {
   max-width: 500px;
   bottom:0;
   
+}
+
+#heuristic-bullets-container {
+  background-image: url("../img/bullets-12.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: auto 110%;
+}
+
+#heuristicSignature {
+  margin-left: 18px;
+}
+
+.editable-container {
+  background-image: url("../img/new-editable-lines-13.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: auto 36%;
+}
+
+.chain-separator{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 530px;
+  bottom:0;
 }
