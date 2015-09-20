@@ -500,3 +500,8 @@ body.fullscreen-map #step-5 {
   -webkit-column-break-after: always;
   break-after: column;
 }
+
+#brand-sup {
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+}
