@@ -59,7 +59,7 @@ body.index .jumbotron {
 
 body.index .jumbotron-container {
   height: 532px;
-  background-image: url("../img/logo-large.png");
+  background-image: url("../img/logo.svg");
   background-repeat: no-repeat;
   background-position: bottom center;
   background-size: auto 30%;
@@ -149,13 +149,13 @@ body.index .introduction {
   border-right: 0;
   border-radius: 0;
   padding-right: 25px;
-} 
+}
 
 .skillsMap .category-name, .skillsMap .skill-name,
 .skillsMap .category-name:active, .skillsMap .skill-name:active,
 .skillsMap .btn, .skillsMap .btn:focus, .mapName {
   box-shadow: none !important;
-} 
+}
 
 .mapName {
   border-left: 0;
@@ -164,13 +164,13 @@ body.index .introduction {
   color: #8A2908;
 }
 
-.skillsMap .btn:focus, 
-.map-full-screen:focus, 
+.skillsMap .btn:focus,
+.map-full-screen:focus,
 .map-full-screen:active {
   outline: none;
 }
 
-.skillsMap .has-warning .category-name, 
+.skillsMap .has-warning .category-name,
 .skillsMap .has-warning .skill-name,
 #mapSection .has-warning .mapName {
   border-color: #EABA45;
@@ -448,7 +448,7 @@ body.fullscreen-map #step-5 {
   width: 100%;
   max-width: 400px;
   bottom:0;
-  
+
 }
 
 #heuristic-bullets-container {
@@ -487,13 +487,13 @@ body.fullscreen-map #step-5 {
 }
 
 .introduction .container .content {
-   -webkit-column-count: 2; 
+   -webkit-column-count: 2;
    -moz-column-count: 2;
-   column-count: 2; 
-   -webkit-column-gap: 30px; 
-   -moz-column-gap: 30px; 
+   column-count: 2;
+   -webkit-column-gap: 30px;
+   -moz-column-gap: 30px;
    column-gap: 30px;
-   
+
 }
 
 #last-item-on-column {
