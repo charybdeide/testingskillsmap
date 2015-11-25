@@ -59,7 +59,7 @@ function init(server) {
         knowledgeDimension: request.payload.knowledgeDimension,
         map: request.payload.map,
       };
-      models.usermap.update(query, update, { upsert: true }, function (err) {
+      models.usermap.update(query, update, { upsert: true,  runValidators: true }, function (err) {
         if (err) {
           sendError(err, reply);
         } else {

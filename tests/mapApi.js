@@ -1,6 +1,7 @@
 'use strict';
 var chai = require('chai');
 var expect = chai.expect;
+var extend = require('extend');
 var helper = require('./helper');
 
 describe('/api/map', function () {
@@ -38,13 +39,16 @@ describe('/api/map', function () {
   });
 
   it('should return 200 if valid data is sent', function (done) {
+    var payload = {};
+    extend(true, payload, helper.emptyMap, { map: { name: "test" }});
+
     testServer.inject({
       method: 'POST',
       url: '/api/map',
       headers: {
         Cookie: cookies
       },
-      payload: helper.emptyMap
+      payload: payload
     }, function (res) {
       expect(res.statusCode).to.equal(200);
       
@@ -62,5 +66,20 @@ describe('/api/map', function () {
         done();
       });
     });
+  
+    it('should return 500 if empty strings data is sent in map', function (done) {
+    testServer.inject({
+      method: 'POST',
+      url: '/api/map',
+      headers: {
+        Cookie: cookies
+      },
+      payload: helper.emptyMap
+    }, function (res) {
+      expect(res.statusCode).to.equal(400);
+      
+      done();
+    });
+  });
   
 });
