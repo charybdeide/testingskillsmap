@@ -43,15 +43,21 @@ function init(server) {
       if (!validation.isUserLoggedIn(request)) {
         return reply(Boom.forbidden());
       }
-      var session = request.session.get('session');
-      var query = { user: session.user };
-
+    
       if (!validation.isMapWitMeta(request.payload)) {
         return reply(Boom.badRequest());
       }
 
-      var skillsList = data.getSkills(request.payload.mapData);
+       if(!validation.areSkillsNotEmpty(request.payload.map.data)) {
+         return reply(Boom.badData());
+       }
+       
 
+      var session = request.session.get('session');
+      var query = { user: session.user };
+
+      var skillsList = data.getSkills(request.payload.map.data);      
+      
       var update = {
         user: session.user,
         timestamp: new Date(),

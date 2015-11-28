@@ -56,18 +56,18 @@ describe('/api/map', function () {
     });
   });
 
-    it('should return 403 if the user is not logged and tries to send map data', function (done) {
-      testServer.inject({
-        method: 'POST',
-        url: '/api/map',
-        payload: helper.emptyMap
-      }, function (res) {
-        expect(res.statusCode).to.equal(403);
-        done();
-      });
+  it('should return 403 if the user is not logged and tries to send map data', function (done) {
+    testServer.inject({
+      method: 'POST',
+      url: '/api/map',
+      payload: helper.emptyMap
+    }, function (res) {
+      expect(res.statusCode).to.equal(403);
+      done();
     });
-  
-    it('should return 500 if empty strings data is sent in map', function (done) {
+  });
+
+  it('should return 500 if empty strings data is sent in map', function (done) {
     testServer.inject({
       method: 'POST',
       url: '/api/map',
@@ -77,7 +77,35 @@ describe('/api/map', function () {
       payload: helper.emptyMap
     }, function (res) {
       expect(res.statusCode).to.equal(400);
-      
+
+      done();
+    });
+  });
+
+  it("should return 422 if skills are empty strings", function (done) {
+    testServer.inject({
+      method: 'POST',
+      url: '/api/map',
+      headers: {
+        Cookie: cookies
+      },
+      payload:  { 
+      "step1Data" : "", 
+      "isPublished" : true, 
+      "map" : { 
+        "name" : "testMap title", 
+        "data" : [ {"category": "category1", "skills" : ["skill1", "", ""]}], 
+        "knowledgeDimension" : { 
+          "facts" : "", 
+          "concepts" : "", 
+          "procedures" : "", 
+          "cognitiveStrategies" : "", 
+          "models" : "", 
+          "skillsTable" : "", 
+          "attitudes" : "", 
+          "metacognition" : "" }
+       }}}, function (res) {
+      expect(res.statusCode).to.equal(422);
       done();
     });
   });

@@ -45,7 +45,6 @@ usermap.schema.path('map.data').schema.path('category').validate(function(value)
   return true;
 }, 'You need to provide a map category');
 
-
 var keywords = mongoose.model('keywords', new mongoose.Schema({
   user: String,
   keywords: [String]
