@@ -4,8 +4,21 @@ var Boom = require('boom');
 var validation = require('./validation.js')
 
 var sendError = function (err, reply) {
-  console.error(err);
-  reply(Boom.badImplementation(err.message, err));
+  var sent = false;
+
+  if (err.name == "ValidationError") {
+    sent = Object.keys(err.errors).some(function (element) {
+      if (err.errors[element].properties && err.errors[element].properties.message) {
+        reply(Boom.badData(err.errors[element].properties.message));
+        return true;
+      }
+    }, this);
+  }
+
+  if (!sent) {
+    console.error(err);
+    reply(Boom.badImplementation(err.message, err));
+  }
 };
 
 var checkError = function (reply) {
@@ -43,21 +56,21 @@ function init(server) {
       if (!validation.isUserLoggedIn(request)) {
         return reply(Boom.forbidden());
       }
-    
+
       if (!validation.isMapWitMeta(request.payload)) {
         return reply(Boom.badRequest());
       }
 
-       if(!validation.areSkillsNotEmpty(request.payload.map.data)) {
-         return reply(Boom.badData());
-       }
-       
+      if (!validation.areSkillsNotEmpty(request.payload.map.data)) {
+        return reply(Boom.badData("You need to provide names for skills in your map"));
+      }
+
 
       var session = request.session.get('session');
       var query = { user: session.user };
 
-      var skillsList = data.getSkills(request.payload.map.data);      
-      
+      var skillsList = data.getSkills(request.payload.map.data);
+
       var update = {
         user: session.user,
         timestamp: new Date(),
@@ -65,7 +78,7 @@ function init(server) {
         knowledgeDimension: request.payload.knowledgeDimension,
         map: request.payload.map,
       };
-      models.usermap.update(query, update, { upsert: true,  runValidators: true }, function (err) {
+      models.usermap.update(query, update, { upsert: true, runValidators: true }, function (err) {
         if (err) {
           sendError(err, reply);
         } else {

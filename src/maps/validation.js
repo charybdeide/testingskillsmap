@@ -16,7 +16,7 @@ function areSkillsNotEmpty(mapData) {
    var status = true; 
    mapData.forEach(function(element) {
      element.skills.forEach(function(skill) {
-        if(!skill || skill === "") status = false;
+        if(!skill || skill.trim() === "") status = false;
      }, this);
    }, this);
    return status;
