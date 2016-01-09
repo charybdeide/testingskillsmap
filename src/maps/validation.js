@@ -12,7 +12,19 @@ function isUserLoggedIn(request)
    return true;
 }
 
+function areSkillsNotEmpty(mapData) {
+   var status = true; 
+   mapData.forEach(function(element) {
+     element.skills.forEach(function(skill) {
+        if(!skill || skill.trim() === "") status = false;
+     }, this);
+   }, this);
+   return status;
+}
+
 module.exports = {
   isMapWitMeta: isMapWitMeta,
-  isUserLoggedIn: isUserLoggedIn
+  isUserLoggedIn: isUserLoggedIn,
+  areSkillsNotEmpty: areSkillsNotEmpty
+  
 };

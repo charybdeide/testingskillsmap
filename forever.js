@@ -3,6 +3,7 @@ var forever = require('forever-monitor');
 var child = new (forever.Monitor)('app.js', {
   max: 9999,
   silent: true,
+  append:true,
   args: [],
   'logFile': 'log/daemon.log', // Path to log output from forever process (when daemonized)
   'outFile': 'log/out.log', // Path to log output from child stdout

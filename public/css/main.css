@@ -176,6 +176,10 @@ body.index .introduction {
   border-color: #EABA45;
 }
 
+.empty-field {
+  border-color: #BE042E !important;
+}
+
 .skillsMap .category-name {
     padding-top: 30px;
     height: 60px;
@@ -504,4 +508,8 @@ body.fullscreen-map #step-5 {
 #brand-sup {
   color: rgb(102, 102, 102);
   font-weight: bold;
+}
+
+.navbar-fixed-top {
+  z-index: 9999;
 }
