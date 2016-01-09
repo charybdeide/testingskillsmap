@@ -509,3 +509,7 @@ body.fullscreen-map #step-5 {
   color: rgb(102, 102, 102);
   font-weight: bold;
 }
+
+.navbar-fixed-top {
+  z-index: 9999;
+}

@@ -146,6 +146,9 @@ function addSkill(category, name) {
 
 function saveUserInput() {
 	validateFields();
+	if($(".empty-field").length !== 0) {
+		return;
+	}
 	clearTimeout(saveTimeout);
 
 	saveTimeout = setTimeout(function () {
