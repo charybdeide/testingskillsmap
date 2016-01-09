@@ -1,7 +1,7 @@
 $(function() {
 	initEditorTools();
 	initStep2();
-	
+
 	$('[data-toggle="tooltip"]').tooltip({
 		container: 'body'
 	});
@@ -24,41 +24,32 @@ $(function() {
 
 document.onreadystatechange = function () {
   var state = document.readyState;
-  if (state == 'complete') {
+  if (state === 'complete') {
       setTimeout(function(){
          $('#load').addClass('hide');
          $('#step1Editable').removeClass('hide');
       }, 1000);
   }
-}
-
-function makePublishStateBtnsVisible() {
-	$('.published-state').removeClass('hide');
-}
-
-function makeUnPublishBtnVisible() {
-	$('#shareMapBtn').addClass('hide');
-	$('#unShareMapBtn').removeClass('hide');
-}
+};
 
 function initEditorTools() {
 	var hideTimeout;
 
 	$(".navbar.navbar-fixed-top .main-menu").after($("#editorTools").html());
-	
+
 	aloha.dom.query('.editable', document).forEach(aloha);
 
 	for(var command in aloha.ui.commands) {
 		$('#'+command+'Button').on('click', aloha.ui.command(aloha.ui.commands[command]));
 	}
-	
+
 	aloha.editor.stack.unshift(function(event) {
 		if(arguments[0] && arguments[0].type) {
 			var t = arguments[0].type;
 			console.log(t);
 			clearTimeout(hideTimeout);
 
-			if(t == "keyup") {
+			if(t === "keyup") {
 				saveUserInput();
 			}
 
