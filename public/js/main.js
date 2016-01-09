@@ -20,6 +20,10 @@ $(function() {
 		$('#shareMapBtn').removeClass('hide');
 		$('#unShareMapBtn').addClass('hide');
 	});
+	
+	$('#close-btn').on('click', function() {
+		$(".btn-info-group.active").click();
+	});
 });
 
 document.onreadystatechange = function () {
