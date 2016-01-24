@@ -1,6 +1,9 @@
 var forever = require('forever-monitor');
 var log = require('./src/log.js');
- var fs = require("fs");
+var fs = require("fs");
+var zlib = require('zlib');
+
+var maxLogSize = 1024 * 1024;
 
 var child = new (forever.Monitor)('app.js', {
   max: 9999,
@@ -26,20 +29,36 @@ child.on('exit:code', function (code) {
 
 child.start();
 
-checkLogFile('log/daemon.log');
-checkLogFile('log/out.log');
-checkLogFile('log/err.log');
+function getFilesizeInBytes(filename) {
+  var stats = fs.statSync(filename);
+  var fileSizeInBytes = stats["size"];
 
-
+  return fileSizeInBytes;
+}
 
 function checkLogFile(filename) {
   setInterval(function() {
-    console.log("filename ", getFilesizeInBytes(filename));
-  }, 1000);
+    try {
+      var size = getFilesizeInBytes(filename);
+
+      if(size >= maxLogSize) {
+        var now = (new Date()).toISOString().replace(/:/g, "_").replace(/-/g, "_");
+        var gzip = zlib.createGzip();
+        var inp = fs.createReadStream(filename);
+        var out = fs.createWriteStream(filename + "." + now + ".gz");
+
+        inp.pipe(gzip).pipe(out).on('finish', function () {
+          fs.writeFile(filename, '');
+        });
+      }
+
+    } catch (e) {
+
+    }
+  }, 5000);
 }
 
-function getFilesizeInBytes(filename) {
-  var stats = fs.statSync(filename)
-  var fileSizeInBytes = stats["size"]
-  return fileSizeInBytes
-}
+checkLogFile('./log/daemon.log');
+checkLogFile('./log/out.log');
+checkLogFile('./log/err.log');
+checkLogFile('./log/resources.csv');
