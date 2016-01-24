@@ -46,6 +46,42 @@ var init = function(settings, path, callback) {
   about.init(server);
   firstPage.init(server);
 
+
+  //error handling
+  server.ext('onPreResponse', function (request, reply) {
+
+    var response = request.response;
+
+    if (response.isBoom) {
+        var errName = response.output.payload.error;
+        var statusCode = response.output.payload.statusCode;
+
+        if(statusCode === 404) {
+          return reply.view('404', {
+              statusCode: statusCode,
+              errName: errName
+          })
+          .code(statusCode);
+        } else if(statusCode >= 400 && statusCode < 500) {
+          return reply.view('400', {
+              statusCode: statusCode,
+              errName: errName
+          })
+          .code(statusCode);
+        }
+
+      if(statusCode >= 500 && statusCode < 600) {
+          return reply.view('500', {
+              statusCode: statusCode,
+              errName: errName
+          })
+          .code(statusCode);
+        }
+    }
+
+    return reply.continue();
+  });
+
   // serve static file
   server.route({
     method: 'GET',
