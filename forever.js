@@ -1,5 +1,6 @@
 var forever = require('forever-monitor');
 var log = require('./src/log.js');
+ var fs = require("fs");
 
 var child = new (forever.Monitor)('app.js', {
   max: 9999,
@@ -24,3 +25,21 @@ child.on('exit:code', function (code) {
 });
 
 child.start();
+
+checkLogFile('log/daemon.log');
+checkLogFile('log/out.log');
+checkLogFile('log/err.log');
+
+
+
+function checkLogFile(filename) {
+  setInterval(function() {
+    console.log("filename ", getFilesizeInBytes(filename));
+  }, 1000);
+}
+
+function getFilesizeInBytes(filename) {
+  var stats = fs.statSync(filename)
+  var fileSizeInBytes = stats["size"]
+  return fileSizeInBytes
+}
