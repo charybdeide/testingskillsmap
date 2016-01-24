@@ -38,7 +38,7 @@ GoodReporterExample.prototype.init = function (readstream, emitter, callback) {
           data.source.referer ? data.source.referer : "NO REFFERER");
     } else if(data.event !== "ops") {
 
-      console.log("===>", data);
+      //console.log("===>", data);
     }
   });
 

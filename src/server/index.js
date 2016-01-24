@@ -52,7 +52,7 @@ var init = function(settings, path, callback) {
 
     var response = request.response;
 
-    if (response.isBoom) {
+    if (response.isBoom && request.method === "get" && request.path.indexOf("/api/") === -1) {
         var errName = response.output.payload.error;
         var statusCode = response.output.payload.statusCode;
 
