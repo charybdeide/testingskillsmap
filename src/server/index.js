@@ -10,6 +10,35 @@ var init = function(settings, path, callback) {
   var server = new Hapi.Server();
   server.connection({ port: 3000 });
 
+  var options = {
+    opsInterval: 1000,
+    reporters: [{
+        reporter: require('./logger'),
+        events: { 'log': '*', 'request-error': '*', 'ops': '*', 'request': '*', 'response': '*', 'tail': '*' }
+    }]
+  };
+
+  server.register({
+      register: require('good'),
+      options: options
+  }, function (err) {
+      if (err) {
+        console.error(err);
+      }
+  });
+
+  server.register(require('vision'), function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+
+  server.register(require('inert'), function (err) {
+    if (err) {
+      console.error(err);
+    }
+  });
+
   session.init(server);
   views.init(server, path);
   login.init(server, settings);
@@ -23,7 +52,7 @@ var init = function(settings, path, callback) {
     path: '/{param*}',
     handler: {
       directory: {
-        path: 'public'
+        path: 'public/'
       }
     }
   });
