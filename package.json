@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "bell": "^4.0.0",
-    "boom": "~3.1.2",
+    "boom": "~2.8.0",
     "debug": "~2.2.0",
     "extend": "^3.0.0",
     "forever-monitor": "^1.6.0",
@@ -19,15 +19,13 @@
     "good-console": "^5.3.0",
     "handlebars": "~3.0.3",
     "handlebars-layouts": "~3.0.0",
-    "hapi": "^12.1.0",
-    "inert": "^3.2.0",
+    "hapi": "~8.6.1",
     "jade": "^1.9.2",
     "mongoose": "^4.0.6",
     "morgan": "~1.5.3",
     "path": "~0.11.14",
     "promise": "^7.0.3",
     "serve-favicon": "~2.2.1",
-    "vision": "^4.0.1",
     "yar": "~3.0.3"
   },
   "repository": {

@@ -27,18 +27,6 @@ var init = function(settings, path, callback) {
       }
   });
 
-  server.register(require('vision'), function (err) {
-    if (err) {
-      console.error(err);
-    }
-  });
-
-  server.register(require('inert'), function (err) {
-    if (err) {
-      console.error(err);
-    }
-  });
-
   session.init(server);
   views.init(server, path);
   login.init(server, settings);
