@@ -1,9 +1,10 @@
 var forever = require('forever-monitor');
+var log = require('./src/log.js');
 
 var child = new (forever.Monitor)('app.js', {
   max: 9999,
-  silent: true,
-  append:true,
+  silent: false,
+  append: true,
   args: [],
   'logFile': 'log/daemon.log', // Path to log output from forever process (when daemonized)
   'outFile': 'log/out.log', // Path to log output from child stdout
@@ -11,7 +12,15 @@ var child = new (forever.Monitor)('app.js', {
 });
 
 child.on('exit', function () {
-  console.log('app.js has exited after 9999 restarts');
+  log('app.js has exited after 9999 restarts');
+});
+
+child.on('restart', function () {
+  log('app.js restarted for [' + child.times + '] times');
+});
+
+child.on('exit:code', function (code) {
+  log('app.js has exited with code: ' + code);
 });
 
 child.start();
