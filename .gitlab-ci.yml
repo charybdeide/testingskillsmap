@@ -1,0 +1,10 @@
+before_script:
+  - sudo apt-get update -qq && apt-get install -y nodejs npm
+  - nodejs -v
+  - npm -v
+  - npm install
+
+rspec:
+  script:
+    - mocha test
+
