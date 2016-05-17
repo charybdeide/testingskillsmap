@@ -20,7 +20,7 @@ $(function() {
 		$('#shareMapBtn').removeClass('hide');
 		$('#unShareMapBtn').addClass('hide');
 	});
-	
+
 	$('#close-btn').on('click', function() {
 		$(".btn-info-group.active").click();
 	});
@@ -50,22 +50,20 @@ function initEditorTools() {
 	aloha.editor.stack.unshift(function(event) {
 		if(arguments[0] && arguments[0].type) {
 			var t = arguments[0].type;
-			console.log(t);
 			clearTimeout(hideTimeout);
 
 			if(t === "keyup") {
 				saveUserInput();
 			}
 
-			if(t == "leave") {
+			if(t === "leave") {
 				hideTimeout = setTimeout(function() {
 					$('.headerCreate').hide();
 					$('.main-menu').show();
 				}, 400);
 			}
 
-			if(t == "aloha.mouseup") {
-				console.log("aici");
+			if(t === "aloha.mouseup") {
 				$('.headerCreate').show();
 				$('.main-menu').hide();
 			}
@@ -81,5 +79,5 @@ function initStep2() {
 
 		$(this).toggleClass("active");
 		$(".identify-skills .group." + group).toggleClass("visible");
-	})
+	});
 }

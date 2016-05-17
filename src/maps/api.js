@@ -1,12 +1,12 @@
 var data = require('./data.js');
 var models = require('./models');
 var Boom = require('boom');
-var validation = require('./validation.js')
+var validation = require('./validation.js');
 
 var sendError = function (err, reply) {
   var sent = false;
 
-  if (err.name == "ValidationError") {
+  if (err.name === "ValidationError") {
     sent = Object.keys(err.errors).some(function (element) {
       if (err.errors[element].properties && err.errors[element].properties.message) {
         reply(Boom.badData(err.errors[element].properties.message));
@@ -64,7 +64,6 @@ function init(server) {
       if (!validation.areSkillsNotEmpty(request.payload.map.data)) {
         return reply(Boom.badData("You need to provide names for skills in your map"));
       }
-
 
       var session = request.session.get('session');
       var query = { user: session.user };

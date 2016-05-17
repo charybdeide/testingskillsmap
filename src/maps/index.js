@@ -6,15 +6,15 @@ var data = require('./data');
 var Boom = require('boom');
 
 var sendError = function(err, reply) {
-  console.error(err);
-  reply(Boom.internalServerError);
+  return reply(Boom.badRequest(err.message));
 };
 
 var unauthorizedError = function(reply, err) {
     if(err) {
       console.error(err);
     }
-    reply(Boom.unauthorized(err.message));
+
+    return reply(Boom.unauthorized(err.message));
 };
 
 var init = function(server) {
@@ -33,7 +33,7 @@ var init = function(server) {
             ]
           });
         }).catch(function(err) {
-          unauthorizedError(reply, err);
+          return unauthorizedError(reply, err);
         });
       }
   });
@@ -46,7 +46,7 @@ var init = function(server) {
           views.validateUser(request).then(function() {
             models.usermap.find({ isPublished: true }, function (err, records) {
               if(err) {
-                return sendError(err);
+                return sendError(err, reply);
               }
 
               reply.view('browse', {
@@ -62,9 +62,8 @@ var init = function(server) {
             });
 
           }).catch(function(err) {
-            unauthorizedError(reply, err);
+            return unauthorizedError(reply, err);
           });
-
       }
   });
 
@@ -76,8 +75,7 @@ var init = function(server) {
         var query = { _id: request.params.id, isPublished: true};
         models.usermap.findOne(query, {map: true}, function (err, record) {
           if (err) {
-            sendError(err);
-            return;
+            return sendError(err, reply);
           }
 
           return reply.view('map',  {

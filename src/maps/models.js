@@ -1,13 +1,7 @@
 var mongoose = require('mongoose');
 
-function checkEmptyString(value) {
-   if(value.trim() == "")
-  {
-    console.log("invalid data");
-    return false;
-  } 
-  console.log("valid data");
-  return true;
+function isEmptyString(value) {
+  return value.trim() === "";
 }
 
 var usermap = mongoose.model('usermap', new mongoose.Schema({
@@ -35,14 +29,12 @@ var usermap = mongoose.model('usermap', new mongoose.Schema({
 }, {collection: 'usermap'}));
 
 usermap.schema.path('map.name').validate(function(value) {
-  if(value.trim() == "") return false;
-  return true;
+  return !isEmptyString(value);
 }, 'You need to provide a map name');
 
 
 usermap.schema.path('map.data').schema.path('category').validate(function(value) {
-  if(value.trim() == "") return false;
-  return true;
+  return !isEmptyString(value);
 }, 'You need to provide a map category');
 
 var keywords = mongoose.model('keywords', new mongoose.Schema({

@@ -308,8 +308,30 @@ body.fullscreen-map #step-5 {
 }
 
 #personal-workspace, #step-1, #step-2, #step-3, #step-4, #step-5,
-.bs-docs-sidenav, .sign-in, .browseMapContent, .aboutContent, .publishedSkillsMap {
+.bs-docs-sidenav, .sign-in, .browseMapContent, .aboutContent, .publishedSkillsMap, .errorContent {
   padding-top: 60px;
+}
+
+.errorContent {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.errorContent .msg {
+  width: 210px;
+  height: 150px;
+  background-image: url("../img/msg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 35px 10px 0 10px;
+  display: inline-block;
+  position: relative;
+  top: -170px;
+  left: -200px;
+}
+
+.errorContent img {
+  max-width: 400px;
 }
 
 #step-5 {
