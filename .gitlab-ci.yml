@@ -6,5 +6,4 @@ before_script:
 
 rspec:
   script:
-    - mocha test
-
+    - mocha tests
