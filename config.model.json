@@ -1,7 +1,7 @@
 {
-	"TwitterClientId":  "",
-	"TwitterClientSecret": "",
-	"GoogleClientId": "",	
-	"GoogleClientSecret": "",
-	"loginRedirect": "" 	
+	"TwitterClientId":  "YOUR_TWITTER_ID",
+	"TwitterClientSecret": "YOUR_TWITTER_SECRET",
+	"GoogleClientId": "YOUR_GOOGLE_ID",	
+	"GoogleClientSecret": "YOUR_GOOGLE_SECRET",
+	"loginRedirect": "http://localhost:3000/" 	
 }
