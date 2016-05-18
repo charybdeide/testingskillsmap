@@ -1,6 +1,6 @@
 before_script:
-  - apt-get update -qq && apt-get install -y nodejs npm mongodb-org
-  - service mongod start
+  - sudo apt-get update -qq && sudo apt-get install -y nodejs nodejs-legacy npm mongodb
+  - sudo service mongod start
   - nodejs -v
   - npm -v
   - npm install
