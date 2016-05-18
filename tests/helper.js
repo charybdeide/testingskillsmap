@@ -3,7 +3,7 @@ var server = require('../src/server');
 var mongoose = require('mongoose');
 
 function before(callback) {
-  var settings = JSON.parse(fs.readFileSync('config.json'));
+  var settings = JSON.parse(fs.readFileSync('config.model.json'));
 
   mongoose.connect('mongodb://localhost:27017/testingskillsmap_test', function(err) {
     if(err) {
