@@ -64,10 +64,9 @@ function init(server) {
       var session = request.session.get('session');
       var query = { user: session.user };
       var skillsList = [];
-      //if(request.payload.map.data)
+      if(request.payload.map.data)
       {
         skillsList = data.getSkills(request.payload.map.data);
-        console.log(request.payload.map.data);
         if (!validation.areSkillsNotEmpty(request.payload.map.data)) {
           return reply(Boom.badData("You need to provide names for skills in your map"));
         }

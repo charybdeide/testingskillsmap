@@ -45,7 +45,17 @@ var emptyMap =  {
       "models" : "",
       "skillsTable" : "",
       "attitudes" : "",
-      "metacognition" : "" }}};
+      "metacognition" : "" }
+  }
+};
+
+var titleOnlyMap =  {
+  "step1Data" : "",
+  "isPublished" : false,
+  "map" : {
+    "name" : "",
+  }
+};
 
 
 module.exports = {
