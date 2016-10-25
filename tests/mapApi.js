@@ -43,7 +43,6 @@ describe('/api/map', function () {
   });
 
   it('should return 200 if valid data is sent', function (done) {
-    console.log("test with 200");
     var payload = {};
     extend(true, payload, helper.titleOnlyMap, { map: { name: "test" }});
 
