@@ -68,7 +68,10 @@ $(function () {
 		placement: "bottom"
 	});
 
-	validateFields();
+  $(document).load(function() {
+    validateFields();
+  });
+
 });
 
 function serializeMap(rootElement) {
@@ -145,6 +148,7 @@ function addSkill(category, name) {
 }
 
 function saveUserInput() {
+
 	validateFields();
 	if($(".empty-field").length !== 0) {
 		return;
