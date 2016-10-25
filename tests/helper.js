@@ -31,20 +31,20 @@ function before(callback) {
 }
 
 
-var emptyMap =  { 
-  "step1Data" : "", 
-  "isPublished" : true, 
-  "map" : { 
-    "name" : "", 
-    "data" : [], 
-    "knowledgeDimension" : { 
-      "facts" : "", 
-      "concepts" : "", 
-      "procedures" : "", 
-      "cognitiveStrategies" : "", 
-      "models" : "", 
-      "skillsTable" : "", 
-      "attitudes" : "", 
+var emptyMap =  {
+  "step1Data" : "",
+  "isPublished" : true,
+  "map" : {
+    "name" : "",
+    "data" : [],
+    "knowledgeDimension" : {
+      "facts" : "",
+      "concepts" : "",
+      "procedures" : "",
+      "cognitiveStrategies" : "",
+      "models" : "",
+      "skillsTable" : "",
+      "attitudes" : "",
       "metacognition" : "" }}};
 
 

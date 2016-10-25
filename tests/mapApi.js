@@ -3,6 +3,7 @@ var chai = require('chai');
 var expect = chai.expect;
 var extend = require('extend');
 var helper = require('./helper');
+var mongoose = require('mongoose');
 
 describe('/api/map', function () {
   var testServer;
@@ -22,7 +23,10 @@ describe('/api/map', function () {
   });
 
   after(function (done) {
-    testServer.stop(done);
+    mongoose.connection.db.dropDatabase().then(function() {
+        testServer.stop(done);
+    });
+
   });
 
   it('should return 400 if no data is sent in the request', function (done) {
@@ -51,7 +55,7 @@ describe('/api/map', function () {
       payload: payload
     }, function (res) {
       expect(res.statusCode).to.equal(200);
-      
+
       done();
     });
   });
@@ -89,27 +93,27 @@ describe('/api/map', function () {
       headers: {
         Cookie: cookies
       },
-      payload:  { 
-      "step1Data" : "", 
-      "isPublished" : true, 
-      "map" : { 
-        "name" : "testMap title", 
-        "data" : [ {"category": "category1", "skills" : ["skill1", "", ""]}], 
-        "knowledgeDimension" : { 
-          "facts" : "", 
-          "concepts" : "", 
-          "procedures" : "", 
-          "cognitiveStrategies" : "", 
-          "models" : "", 
-          "skillsTable" : "", 
-          "attitudes" : "", 
+      payload:  {
+      "step1Data" : "",
+      "isPublished" : true,
+      "map" : {
+        "name" : "testMap title",
+        "data" : [ {"category": "category1", "skills" : ["skill1", "", ""]}],
+        "knowledgeDimension" : {
+          "facts" : "",
+          "concepts" : "",
+          "procedures" : "",
+          "cognitiveStrategies" : "",
+          "models" : "",
+          "skillsTable" : "",
+          "attitudes" : "",
           "metacognition" : "" }
        }}}, function (res) {
       expect(res.statusCode).to.equal(422);
       done();
     });
   });
-  
+
    it("should return 422 if skills are strings which contain only spaces", function (done) {
     testServer.inject({
       method: 'POST',
@@ -117,25 +121,25 @@ describe('/api/map', function () {
       headers: {
         Cookie: cookies
       },
-      payload:  { 
-      "step1Data" : "", 
-      "isPublished" : true, 
-      "map" : { 
-        "name" : "testMap title", 
-        "data" : [ {"category": "category1", "skills" : ["skill1", " ", " "]}], 
-        "knowledgeDimension" : { 
-          "facts" : "", 
-          "concepts" : "", 
-          "procedures" : "", 
-          "cognitiveStrategies" : "", 
-          "models" : "", 
-          "skillsTable" : "", 
-          "attitudes" : "", 
+      payload:  {
+      "step1Data" : "",
+      "isPublished" : true,
+      "map" : {
+        "name" : "testMap title",
+        "data" : [ {"category": "category1", "skills" : ["skill1", " ", " "]}],
+        "knowledgeDimension" : {
+          "facts" : "",
+          "concepts" : "",
+          "procedures" : "",
+          "cognitiveStrategies" : "",
+          "models" : "",
+          "skillsTable" : "",
+          "attitudes" : "",
           "metacognition" : "" }
        }}}, function (res) {
       expect(res.statusCode).to.equal(422);
       done();
     });
   });
-  
+
 });
