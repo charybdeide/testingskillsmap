@@ -3,7 +3,8 @@ before_script:
   - npm -v
   - npm install
   - sudo npm install -g mocha
-
+  - sudo apt-get install -y mongodb-org
+  
 rspec:
   script:
     - mocha tests
