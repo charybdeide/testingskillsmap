@@ -17,7 +17,9 @@ $(function () {
 
 			deserializeKnowledgeDimension(parsedData.knowledgeDimension);
 		}
-	});
+	}).done(function() {
+      validateFields();
+  });
 
 	$('#addCategory').click(function () {
 		var category = addCategory();
@@ -68,7 +70,6 @@ $(function () {
 		placement: "bottom"
 	});
 
-	validateFields();
 });
 
 function serializeMap(rootElement) {
@@ -145,6 +146,7 @@ function addSkill(category, name) {
 }
 
 function saveUserInput() {
+
 	validateFields();
 	if($(".empty-field").length !== 0) {
 		return;
