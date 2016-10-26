@@ -77,7 +77,7 @@ describe('/api/map', function () {
       expect(res.statusCode).to.equal(200);
       done();
     });
-  })
+  });
 
   it('should return 403 if the user is not logged and tries to send map data', function (done) {
     testServer.inject({
