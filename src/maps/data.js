@@ -1,8 +1,8 @@
 function getSkills(mapData) {
-  if(!mapData) {
+  if(!mapData || mapData == "[]") {
     return [];
   }
-  
+
   var list = [];
   var mapLength = mapData.length;
 
@@ -19,6 +19,13 @@ function getSkills(mapData) {
     }
   }
   return list;
+}
+
+function getMapData(mapData) {
+  if(!mapData) {
+    return [];
+  }
+  return mapData;
 }
 
 
@@ -54,5 +61,6 @@ function previewMaps(maps) {
 
 module.exports = {
   getSkills: getSkills,
+  getMapData: getMapData,
   previewMaps: previewMaps
 };

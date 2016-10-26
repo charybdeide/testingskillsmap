@@ -42,7 +42,7 @@ describe('/api/map', function () {
     });
   });
 
-  it('should return 200 if valid data is sent', function (done) {
+  it('should return 200 if map with only title is sent', function (done) {
     var payload = {};
     extend(true, payload, helper.titleOnlyMap, { map: { name: "test" }});
 
@@ -59,6 +59,25 @@ describe('/api/map', function () {
       done();
     });
   });
+
+  it('should return 200 if map with only title and categories is sent', function (done) {
+    testServer.inject({
+      method: 'POST',
+      url: '/api/map',
+      headers: {
+        Cookie: cookies
+      },
+      payload:  {
+      "step1Data" : "",
+      "isPublished" : false,
+      "map" : {
+        "name" : "testMap title",
+        "data" : [ {"category": "category1"}]
+       }}}, function (res) {
+      expect(res.statusCode).to.equal(200);
+      done();
+    });
+  })
 
   it('should return 403 if the user is not logged and tries to send map data', function (done) {
     testServer.inject({
