@@ -4,7 +4,7 @@ before_script:
   - npm install
   - sudo npm install -g mocha
   - sudo apt-get install -y mongodb
-  - sudo service mongo start
+  - sudo service mongodb start
 
 rspec:
   script:
