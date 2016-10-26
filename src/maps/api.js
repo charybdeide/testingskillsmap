@@ -64,13 +64,13 @@ function init(server) {
       var session = request.session.get('session');
       var query = { user: session.user };
 
-      var mapData = data.getMapData(request.payload.map.data);
+      var mapData = request.payload.map.data;
 
       var skillsList = data.getSkills(mapData);
-      if (skillsList != "")
-        if(!validation.areSkillsNotEmpty(mapData)) {
-          return reply(Boom.badData("You need to provide names for skills in your map"));
-        }
+
+      if (skillsList.length !== 0 && !validation.areSkillsNotEmpty(mapData)) {
+        return reply(Boom.badData("You need to provide names for skills in your map"));
+      }
 
       var update = {
         user: session.user,

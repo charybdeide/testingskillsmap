@@ -1,5 +1,5 @@
 function getSkills(mapData) {
-  if(!mapData || mapData == "[]") {
+  if(!mapData || !mapData.length) {
     return [];
   }
 
@@ -22,7 +22,7 @@ function getSkills(mapData) {
 }
 
 function getMapData(mapData) {
-  if(!mapData) {
+  if(!mapData || !mapData.length) {
     return [];
   }
   return mapData;
