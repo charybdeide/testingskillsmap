@@ -61,21 +61,23 @@ function init(server) {
         return reply(Boom.badRequest());
       }
 
-      if (!validation.areSkillsNotEmpty(request.payload.map.data)) {
-        return reply(Boom.badData("You need to provide names for skills in your map"));
-      }
-
       var session = request.session.get('session');
       var query = { user: session.user };
 
-      var skillsList = data.getSkills(request.payload.map.data);
+      var mapData = request.payload.map.data;
+
+      var skillsList = data.getSkills(mapData);
+
+      if (skillsList.length !== 0 && !validation.areSkillsNotEmpty(mapData)) {
+        return reply(Boom.badData("You need to provide names for skills in your map"));
+      }
 
       var update = {
         user: session.user,
         timestamp: new Date(),
         step1Data: request.payload.step1Data,
         knowledgeDimension: request.payload.knowledgeDimension,
-        map: request.payload.map,
+        map: request.payload.map
       };
       models.usermap.update(query, update, { upsert: true, runValidators: true }, function (err) {
         if (err) {

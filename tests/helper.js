@@ -31,21 +31,31 @@ function before(callback) {
 }
 
 
-var emptyMap =  { 
-  "step1Data" : "", 
-  "isPublished" : true, 
-  "map" : { 
-    "name" : "", 
-    "data" : [], 
-    "knowledgeDimension" : { 
-      "facts" : "", 
-      "concepts" : "", 
-      "procedures" : "", 
-      "cognitiveStrategies" : "", 
-      "models" : "", 
-      "skillsTable" : "", 
-      "attitudes" : "", 
-      "metacognition" : "" }}};
+var emptyMap =  {
+  "step1Data" : "",
+  "isPublished" : true,
+  "map" : {
+    "name" : "",
+    "data" : [],
+    "knowledgeDimension" : {
+      "facts" : "",
+      "concepts" : "",
+      "procedures" : "",
+      "cognitiveStrategies" : "",
+      "models" : "",
+      "skillsTable" : "",
+      "attitudes" : "",
+      "metacognition" : "" }
+  }
+};
+
+var titleOnlyMap =  {
+  "step1Data" : "",
+  "isPublished" : false,
+  "map" : {
+    "name" : "",
+  }
+};
 
 
 module.exports = {

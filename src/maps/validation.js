@@ -18,10 +18,13 @@ function isUserLoggedIn(request)
 
 function areSkillsNotEmpty(mapData) {
    var status = true;
+   if(!mapData.forEach) {
+     return status;
+   }
    mapData.forEach(function(element) {
-     element.skills.forEach(function(skill) {
-        if(!skill || skill.trim() === "") status = false;
-     }, this);
+       element.skills.forEach(function(skill) {
+          if(!skill || skill.trim() === "") status = false;
+       }, this);
    }, this);
    return status;
 }
