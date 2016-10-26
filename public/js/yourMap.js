@@ -17,7 +17,9 @@ $(function () {
 
 			deserializeKnowledgeDimension(parsedData.knowledgeDimension);
 		}
-	});
+	}).done(function() {
+      validateFields();
+  });
 
 	$('#addCategory').click(function () {
 		var category = addCategory();
@@ -67,10 +69,6 @@ $(function () {
 		container: "body",
 		placement: "bottom"
 	});
-
-  $(document).load(function() {
-    validateFields();
-  });
 
 });
 
