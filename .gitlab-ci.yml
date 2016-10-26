@@ -2,7 +2,7 @@ before_script:
   - nodejs -v
   - npm -v
   - npm install
-  - npm install -g mocha
+  - sudo npm install -g mocha
 
 rspec:
   script:
