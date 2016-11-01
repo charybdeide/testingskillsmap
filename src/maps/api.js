@@ -65,7 +65,6 @@ function init(server) {
       var query = { user: session.user };
 
       var mapData = request.payload.map.data;
-
       var skillsList = data.getSkills(mapData);
 
       if (skillsList.length !== 0 && !validation.areSkillsNotEmpty(mapData)) {
