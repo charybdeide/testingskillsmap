@@ -1,3 +1,7 @@
+stages:
+  - test
+  - deploy
+
 before_script:
   - nodejs -v
   - npm -v
@@ -8,5 +12,6 @@ before_script:
   - sudo service mongodb start
 
 rspec:
+  stage: test
   script:
     - mocha tests
